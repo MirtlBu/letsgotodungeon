@@ -1,0 +1,21 @@
+.balloon {
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 4px 8px;
+    align-items: center;
+}
+
+.balloon-text {
+    color: rgb(10, 20, 80);
+    font-size: 11px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}
+
+.balloon-hint {
+    color: rgb(40, 60, 140);
+    font-size: 9px;
+    -unity-text-align: middle-center;
+    margin-top: 1px;
+}
