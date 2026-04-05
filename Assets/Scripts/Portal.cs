@@ -1,12 +1,38 @@
 using UnityEngine;
 
-public class Portal : MonoBehaviour
+public class Portal : InteractionZone
 {
-    [SerializeField] private string targetScene;
+    [Header("Identity")]
+    public string portalId;
 
-    private void OnTriggerEnter(Collider other)
+    [Header("Destination")]
+    [SerializeField] private string targetScene;
+    [SerializeField] private string targetPortalId;
+
+    // Where the player appears when arriving through this portal
+    public Vector3 SpawnPoint
     {
-        if (!other.CompareTag("Player")) return;
-        SceneTransition.Instance.GoToScene(targetScene);
+        get
+        {
+            Vector3 pos = transform.position + transform.forward * 1.5f;
+            Vector3 origin = pos + Vector3.up * 5f;
+            if (Physics.Raycast(origin, Vector3.down, out RaycastHit hit, 10f, Physics.AllLayers, QueryTriggerInteraction.Ignore))
+            {
+
+                pos.y = hit.point.y + 1.5f;
+            }
+            return pos;
+        }
+    }
+
+    protected override void OnInteract()
+    {
+        PortalManager.Instance.Travel(targetScene, targetPortalId);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawSphere(SpawnPoint, 0.3f);
     }
 }

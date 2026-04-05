@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/Balloon.uss?fileID=7433441132597879392&amp;guid=d76a0d669e8df4c8ea60f0c1bddafaa9&amp;type=3#Balloon"/>
     <ui:VisualElement name="balloon" class="balloon">
-        <ui:Label name="balloon-text" text="" class="balloon-text"/>
+        <ui:Label name="balloon-text" text="Rest" class="balloon-text"/>
     </ui:VisualElement>
 </ui:UXML>

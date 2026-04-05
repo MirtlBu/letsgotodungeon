@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,22 +6,18 @@ public class CharacterMovement : MonoBehaviour
     [Header("Movement")]
     public float moveSpeed = 5f;
     public float rotationSpeed = 10f;
-    public event Action OnJumpButtonPressed;
 
-    [Header("Jump")]
-    [SerializeField] private float jumpSpeed = 8f;
     [SerializeField] private float groundDistanceTolerance = 0.1f;
     [SerializeField] private LayerMask groundLayerMask;
 
     private Animator animator;
     private CharacterController controller;
     private Camera mainCamera;
-    private bool isJumping;
     private bool isFalling;
+    public bool IsGrounded => isGrounded;
     private bool isGrounded;
     private Vector3 velocity;
     private Vector2 moveInput;
-    
 
     void Start()
     {
@@ -30,9 +25,16 @@ public class CharacterMovement : MonoBehaviour
         controller = GetComponent<CharacterController>();
         mainCamera = Camera.main;
 
-        OnJumpButtonPressed += JumpButtonPressed;
         isGrounded = true;
         animator.SetBool("isGrounded", true);
+    }
+
+    public void ForceUnground()
+    {
+        isGrounded = false;
+        isFalling = false;
+        velocity.y = 0f;
+        animator.SetBool("isGrounded", false);
     }
 
     private void OnMove(InputValue inputValue)
@@ -47,10 +49,7 @@ public class CharacterMovement : MonoBehaviour
         Vector3 direction = new Vector3(moveInput.x, 0f, moveInput.y).normalized;
         bool isRunning = direction.magnitude > 0.1f;
 
-        if (controller == null)
-        {
-            return;
-        }
+        if (controller == null) return;
 
         Vector3 horizontalMove = Vector3.zero;
         if (isRunning)
@@ -74,23 +73,7 @@ public class CharacterMovement : MonoBehaviour
             velocity.y = 0f;
             isFalling = false;
             animator.SetBool("isGrounded", true);
-            if (!isJumping) animator.SetBool("isJumping", false);
             animator.SetBool("isFalling", false);
-        }
-
-        if (isJumping)
-        {
-            if (isGrounded)
-            {
-                isGrounded = false;
-                isJumping = false;
-                animator.SetBool("isGrounded", false);
-                velocity.y = jumpSpeed;
-            }
-            else
-            {
-                isJumping = false;
-            }
         }
 
         velocity.y += Physics.gravity.y * Time.deltaTime;
@@ -98,7 +81,7 @@ public class CharacterMovement : MonoBehaviour
         if (!isGrounded && !isFalling && velocity.y < 0f)
         {
             isFalling = true;
-            animator.SetBool("isJumping", false);
+            animator.SetBool("isGrounded", false);
             animator.SetBool("isFalling", true);
         }
 
@@ -122,23 +105,14 @@ public class CharacterMovement : MonoBehaviour
             groundLayerMask,
             QueryTriggerInteraction.Ignore);
 
-        float distanceToGround;
         if (isGroundBelow)
         {
-            distanceToGround = transform.position.y - hitInfo.point.y;
-            bool wasGrounded = isGrounded;
+            float distanceToGround = transform.position.y - hitInfo.point.y;
             isGrounded = distanceToGround <= groundDistanceTolerance;
         }
         else
         {
             isGrounded = false;
         }
-    }
-
-    // Jump disabled — Space is used for attack
-    private void JumpButtonPressed()
-    {
-        isJumping = true;
-        animator.SetBool("isJumping", true);
     }
 }

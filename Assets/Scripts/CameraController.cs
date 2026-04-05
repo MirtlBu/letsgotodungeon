@@ -9,8 +9,17 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
+        if (target == null)
+            target = GameObject.FindWithTag("Player")?.transform;
+
         if (target != null)
             offset = transform.position - target.position;
+    }
+
+    public void SnapToTarget()
+    {
+        if (target != null)
+            transform.position = target.position + offset;
     }
 
     void LateUpdate()

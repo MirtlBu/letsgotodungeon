@@ -3,10 +3,11 @@
     <ui:VisualElement name="hud-root" class="hud-root">
         <ui:VisualElement name="container" class="container">
             <ui:VisualElement name="health-panel" class="health-panel">
-                <ui:Image source="project://database/Assets/Textures/avatar.png?fileID=2800000&amp;guid=8dd32f9a545264ce7acc944071be1494&amp;type=3#avatar" name="avatar" class="avatar"/>
+            <ui:Image source="project://database/Assets/Textures/avatar.png?fileID=2800000&amp;guid=8dd32f9a545264ce7acc944071be1494&amp;type=3#avatar" name="avatar" class="avatar"/>
                 <ui:VisualElement name="health-bar-bg" class="health-bar-bg">
                     <ui:VisualElement name="health-bar-fill" class="health-bar-fill"/>
                 </ui:VisualElement>
+                
             </ui:VisualElement>
             <ui:VisualElement name="coin-panel" class="coin-panel">
                 <ui:Image source="project://database/Assets/Textures/coin.png?fileID=2800000&amp;guid=3f8804e20f9114d1ab3fad134f4f3042&amp;type=3#coin" name="avatar" class="avatar"/>
