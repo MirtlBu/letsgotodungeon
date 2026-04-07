@@ -85,10 +85,11 @@ public class CharacterMovement : MonoBehaviour
             animator.SetBool("isFalling", true);
         }
 
-        Vector3 move = horizontalMove * moveSpeed + Vector3.up * velocity.y;
+        float currentSpeed = PlayerStats.Instance != null ? PlayerStats.Instance.Speed : moveSpeed;
+        Vector3 move = horizontalMove * currentSpeed + Vector3.up * velocity.y;
         controller.Move(move * Time.deltaTime);
 
-        animator?.SetBool("isRunning", isRunning);
+        animator?.SetFloat("speed", isRunning ? 1f : 0f);
     }
 
     private void UpdateGrounded()

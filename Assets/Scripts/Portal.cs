@@ -14,7 +14,7 @@ public class Portal : InteractionZone
     {
         get
         {
-            Vector3 pos = transform.position + transform.forward * 1.5f;
+            Vector3 pos = transform.position;
             Vector3 origin = pos + Vector3.up * 5f;
             if (Physics.Raycast(origin, Vector3.down, out RaycastHit hit, 10f, Physics.AllLayers, QueryTriggerInteraction.Ignore))
             {
