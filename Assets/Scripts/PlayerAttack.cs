@@ -9,10 +9,13 @@ public class PlayerAttack : MonoBehaviour
 
     private float cooldownTimer;
     private PlayerStats stats;
+    private Animator animator;
+    private int attackIndex;
 
     void Start()
     {
         stats = GetComponent<PlayerStats>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -26,6 +29,13 @@ public class PlayerAttack : MonoBehaviour
     {
         cooldownTimer = attackCooldown;
 
+        if (animator != null)
+        {
+            animator.SetInteger("attackIndex", attackIndex);
+            animator.SetTrigger("attack");
+            attackIndex = 1 - attackIndex; // чередуем attack1 / attack2
+        }
+
         Collider[] hits = Physics.OverlapSphere(
             transform.position + transform.forward * (attackRange * 0.5f),
             attackRange,
@@ -36,7 +46,7 @@ public class PlayerAttack : MonoBehaviour
             var health = hit.GetComponent<HealthSystem>();
             if (health == null) continue;
 
-            float damage = stats.Damage;
+            float damage = stats != null ? stats.Damage : 25f;
 
             // Backstab: attack from behind
             Vector3 dirToPlayer = (transform.position - hit.transform.position).normalized;

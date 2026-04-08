@@ -40,7 +40,9 @@ public class EnemyAI : MonoBehaviour
         agent.SetDestination(currentPatrolTarget);
         waitTimer = waitTime;
 
-        GetComponent<HealthSystem>()?.OnDeath.AddListener(OnDeath);
+        var health = GetComponent<HealthSystem>();
+        health?.OnDeath.AddListener(OnDeath);
+        EnemyHealthBarUI.Instance?.Register(health, transform);
     }
 
     void Update()
@@ -131,6 +133,7 @@ public class EnemyAI : MonoBehaviour
 
     private void OnDeath()
     {
+        EnemyHealthBarUI.Instance?.Unregister(GetComponent<HealthSystem>());
         CoinCounter.Instance?.Add(coinReward);
         Destroy(gameObject);
     }

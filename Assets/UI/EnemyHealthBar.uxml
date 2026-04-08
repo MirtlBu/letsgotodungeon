@@ -1,0 +1,4 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/EnemyHealthBar.uss"/>
+    <ui:VisualElement name="enemy-bars-root" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; width: 100%; height: 100%;"/>
+</ui:UXML>

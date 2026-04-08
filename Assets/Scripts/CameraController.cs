@@ -2,18 +2,32 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    public static CameraController Instance { get; private set; }
+
     public Transform target;
     public float smoothSpeed = 10f;
 
-    private Vector3 offset;
+    [SerializeField] private Vector3 offset;
+
+    [ContextMenu("Capture Offset From Scene")]
+    void CaptureOffset()
+    {
+        var player = GameObject.FindWithTag("Player");
+        if (player != null)
+            offset = transform.position - player.transform.position;
+    }
+
+    void Awake()
+    {
+        if (Instance != null) { Destroy(gameObject); return; }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
 
     void Start()
     {
         if (target == null)
             target = GameObject.FindWithTag("Player")?.transform;
-
-        if (target != null)
-            offset = transform.position - target.position;
     }
 
     public void SnapToTarget()
