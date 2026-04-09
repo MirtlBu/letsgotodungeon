@@ -130,6 +130,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: da4f15536906e4fb599b5a6ac70a8958, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6362213304326613287}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: da4f15536906e4fb599b5a6ac70a8958, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2014762826058396759}
   m_SourcePrefab: {fileID: 100100000, guid: da4f15536906e4fb599b5a6ac70a8958, type: 3}
 --- !u!1 &6188810568285750949 stripped
 GameObject:
@@ -268,7 +271,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0be06a78b92742fb8fcf1d9a4e479b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDeath
-  respawnPortalId: overworld-dungeon-exit
+  respawnSceneName: Overworld
+  respawnTargetName: campfire
 --- !u!114 &6362213304326613287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,6 +285,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ec4dfc7bb0c340ecac0d9dd4f6d2748, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPersistence
+--- !u!114 &2014762826058396759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6188810568285750949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9dd1086060a648cf968720c351ef56f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DebugTeleport
+  targetPortalId: Overworld
 --- !u!4 &6820915767864417311 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: da4f15536906e4fb599b5a6ac70a8958, type: 3}
