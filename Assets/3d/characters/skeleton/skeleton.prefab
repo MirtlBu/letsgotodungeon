@@ -132,7 +132,7 @@ MonoBehaviour:
   waitTime: 1
   aggroRadius: 6
   attackRadius: 1.5
-  attackDamage: 30
+  attackDamage: 10
   attackCooldown: 1
   coinReward: 1
 --- !u!114 &666566055318759705
@@ -149,6 +149,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthSystem
   maxHealth: 200
   OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDamaged:
     m_PersistentCalls:
       m_Calls: []
 --- !u!136 &2431939433133518076

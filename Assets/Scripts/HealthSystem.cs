@@ -11,6 +11,7 @@ public class HealthSystem : MonoBehaviour
     public float MaxHealth => maxHealth;
 
     public UnityEvent OnDeath;
+    public UnityEvent OnDamaged;
 
     void Awake()
     {
@@ -22,6 +23,8 @@ public class HealthSystem : MonoBehaviour
         currentHealth = Mathf.Max(0f, currentHealth - amount);
         if (currentHealth <= 0f)
             OnDeath?.Invoke();
+        else
+            OnDamaged?.Invoke();
     }
 
     public void Heal(float amount)

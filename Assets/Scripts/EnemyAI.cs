@@ -26,7 +26,6 @@ public class EnemyAI : MonoBehaviour
     private Vector3 currentPatrolTarget;
     private float waitTimer;
     private float attackTimer;
-    private int attackIndex = 0;
 
     void Start()
     {
@@ -42,6 +41,7 @@ public class EnemyAI : MonoBehaviour
 
         var health = GetComponent<HealthSystem>();
         health?.OnDeath.AddListener(OnDeath);
+        health?.OnDamaged.AddListener(OnImpact);
         EnemyHealthBarUI.Instance?.Register(health, transform);
     }
 
@@ -109,8 +109,7 @@ public class EnemyAI : MonoBehaviour
     private bool IsPlayingAttack()
     {
         if (animator == null) return false;
-        var info = animator.GetCurrentAnimatorStateInfo(0);
-        return info.IsName("skeleton_attack1") || info.IsName("skeleton_attack2");
+        return animator.GetCurrentAnimatorStateInfo(0).IsName("enemy_attack");
     }
 
     private void FacePlayer()
@@ -125,10 +124,14 @@ public class EnemyAI : MonoBehaviour
     {
         attackTimer = attackCooldown;
         animator?.ResetTrigger("attack");
-        animator?.SetInteger("attackIndex", attackIndex);
         animator?.SetTrigger("attack");
-        attackIndex = 1 - attackIndex;
         player.GetComponent<HealthSystem>()?.TakeDamage(attackDamage);
+        Debug.Log($"[Enemy] {gameObject.name} нанёс {attackDamage} урона игроку");
+    }
+
+    private void OnImpact()
+    {
+        animator?.SetTrigger("impact");
     }
 
     private void OnDeath()

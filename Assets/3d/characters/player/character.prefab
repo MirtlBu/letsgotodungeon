@@ -224,8 +224,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50fb4af653ee04cf6be9b44c7ae7ddff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthSystem
-  maxHealth: 100
+  maxHealth: 1000
   OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDamaged:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &35939726134876101
@@ -241,7 +244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
   baseSpeed: 5
-  baseDamage: 20
+  baseDamage: 5
   baseCritChance: 0
   baseCritMultiplier: 2
 --- !u!114 &3176873577253236757
@@ -257,7 +260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
   attackRange: 1.5
-  attackCooldown: 0.5
+  attackCooldown: 1
   backstabAngle: 120
 --- !u!114 &-3526796657536310599
 MonoBehaviour:
