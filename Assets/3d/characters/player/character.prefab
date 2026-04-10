@@ -312,7 +312,7 @@ MonoBehaviour:
   maxHealth: 1000
   speed: 5
   damage: 5
-  attackCooldown: 1
+  attackCooldown: 2
   critChance: 0.491
   critMultiplier: 2
   backstabAngle: 120

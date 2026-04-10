@@ -9,7 +9,6 @@ public class PlayerAttack : MonoBehaviour
     private PlayerStats stats;
     private Stats combat;
     private Animator animator;
-    private int attackIndex;
 
     void Start()
     {
@@ -29,12 +28,7 @@ public class PlayerAttack : MonoBehaviour
     {
         cooldownTimer = combat.attackCooldown;
 
-        if (animator != null)
-        {
-            animator.SetInteger("attackIndex", attackIndex);
-            animator.SetTrigger("attack");
-            attackIndex = 1 - attackIndex; // чередуем attack1 / attack2
-        }
+        animator?.SetTrigger("attack");
 
         Collider[] hits = Physics.OverlapSphere(
             transform.position + transform.forward * (attackRange * 0.5f),
@@ -60,6 +54,7 @@ public class PlayerAttack : MonoBehaviour
             if (isCrit) damage *= stats.CritMultiplier;
 
             health.TakeDamage(damage);
+            if (isCrit) hit.GetComponent<EnemyAI>()?.ApplyLongKnockback(transform);
             Debug.Log($"[Attack] Hit {hit.name} for {damage} dmg (backstab={isBackstab}, crit={isCrit})");
         }
     }

@@ -18,6 +18,10 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float knockbackDuration = 0.2f;
     [SerializeField] private float knockbackDelay = 0.08f;
 
+    [Header("Long Knockback")]
+    [SerializeField] private float longKnockbackForce = 6f;
+    [SerializeField] private float longKnockbackDuration = 0.4f;
+
     private enum State { Patrol, Chase, Attack }
     private State state = State.Patrol;
 
@@ -135,9 +139,39 @@ public class EnemyAI : MonoBehaviour
         Debug.Log($"[Enemy] {gameObject.name} нанёс {combat.damage} урона игроку");
     }
 
+    public void ApplyLongKnockback(Transform source)
+    {
+        if (source != null)
+            StartCoroutine(LongKnockbackRoutine(source.position));
+    }
+
+    private IEnumerator LongKnockbackRoutine(Vector3 sourcePosition)
+    {
+        Vector3 dir = transform.position - sourcePosition;
+        dir.y = 0f;
+        dir.Normalize();
+
+        yield return new WaitForSeconds(knockbackDelay);
+
+        bool wasEnabled = agent.enabled;
+        agent.enabled = false;
+
+        float elapsed = 0f;
+        while (elapsed < longKnockbackDuration)
+        {
+            float t = 1f - elapsed / longKnockbackDuration;
+            transform.position += dir * (longKnockbackForce * t * Time.deltaTime);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        if (wasEnabled) agent.enabled = true;
+    }
+
     private void OnImpact()
     {
-        animator?.SetTrigger("impact");
+        if (!IsPlayingAttack())
+            animator?.SetTrigger("impact");
         if (player != null)
             StartCoroutine(KnockbackRoutine());
     }
@@ -168,6 +202,44 @@ public class EnemyAI : MonoBehaviour
     {
         EnemyHealthBarUI.Instance?.Unregister(GetComponent<HealthSystem>());
         CoinCounter.Instance?.Add(coinReward);
+        StartCoroutine(DyingRoutine());
+    }
+
+    private IEnumerator DyingRoutine()
+    {
+        enabled = false;
+        agent.enabled = false;
+        foreach (var col in GetComponentsInChildren<Collider>())
+            col.enabled = false;
+
+        if (animator) animator.applyRootMotion = false;
+        animator?.SetTrigger("dying");
+
+        // Long knockback при смерти
+        if (player != null)
+        {
+            Vector3 dir = transform.position - player.position;
+            dir.y = 0f;
+            dir.Normalize();
+
+            yield return new WaitForSeconds(knockbackDelay);
+
+            float elapsed = 0f;
+            while (elapsed < longKnockbackDuration)
+            {
+                float t = 1f - elapsed / longKnockbackDuration;
+                transform.position += dir * (longKnockbackForce * t * Time.deltaTime);
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
+        }
+
+        // Ждём до конца анимации
+        yield return null;
+        var info = animator.GetCurrentAnimatorStateInfo(0);
+        float duration = info.IsName("enemy_dying") ? info.length : 1.5f;
+        yield return new WaitForSeconds(duration + 2f);
+
         Destroy(gameObject);
     }
 

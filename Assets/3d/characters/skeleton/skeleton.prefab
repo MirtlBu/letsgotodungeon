@@ -137,8 +137,10 @@ MonoBehaviour:
   attackRadius: 1.5
   coinReward: 1
   knockbackForce: 3
-  knockbackDuration: 0.2
+  knockbackDuration: 0.05
   knockbackDelay: 0.3
+  longKnockbackForce: 6
+  longKnockbackDuration: 0.15
 --- !u!114 &666566055318759705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,10 +194,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9b92fbfc63894a6ba708ec6cf8bc167, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Stats
-  maxHealth: 1000
+  maxHealth: 10
   speed: 5
-  damage: 5
-  attackCooldown: 1
-  critChance: 0.5
+  damage: 25
+  attackCooldown: 2
+  critChance: 0
   critMultiplier: 2
   backstabAngle: 120
