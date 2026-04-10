@@ -7,6 +7,7 @@ public class PlayerDeath : MonoBehaviour
     [SerializeField] private string respawnSceneName = "Overworld";
     [SerializeField] private string respawnTargetName = "campfire";
     [SerializeField] private float deathDelay = 2f;
+    [SerializeField] private string respawnBalloonText = "Ugh... not again...";
 
     private HealthSystem health;
     private bool isDying;
@@ -109,12 +110,16 @@ public class PlayerDeath : MonoBehaviour
 
         // Ждём пока проиграется анимация вставания
         yield return null; // один кадр чтобы аниматор переключился
+        float gettingUpLength = 1.5f;
         if (anim != null)
         {
             var info = anim.GetCurrentAnimatorStateInfo(0);
-            float length = info.IsName("player_gettingup") ? info.length : 1.5f;
-            yield return new WaitForSeconds(length);
+            if (info.IsName("player_gettingup")) gettingUpLength = info.length;
         }
+
+        InteractionUI.Instance?.Show(respawnBalloonText, transform);
+        yield return new WaitForSeconds(gettingUpLength);
+        InteractionUI.Instance?.Hide();
 
         isDying = false;
         GetComponent<CharacterMovement>().enabled = true;
