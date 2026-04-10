@@ -58,7 +58,12 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         if (player == null || !agent.enabled) return;
-        if (player.GetComponent<HealthSystem>()?.CurrentHealth <= 0f) return;
+        if (player.GetComponent<HealthSystem>()?.CurrentHealth <= 0f)
+        {
+            animator?.SetFloat("speed", 0f);
+            agent.SetDestination(transform.position);
+            return;
+        }
 
         float dist = Vector3.Distance(transform.position, player.position);
         attackTimer -= Time.deltaTime;

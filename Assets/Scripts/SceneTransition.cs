@@ -29,9 +29,17 @@ public class SceneTransition : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
+    public bool suppressAutoFadeIn;
+
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         CreateOverlay();
+        if (!suppressAutoFadeIn)
+            StartCoroutine(FadeIn());
+    }
+
+    public void TriggerFadeIn()
+    {
         StartCoroutine(FadeIn());
     }
 
@@ -102,7 +110,7 @@ public class SceneTransition : MonoBehaviour
         fadeOverlay.style.left = 0; fadeOverlay.style.top = 0;
         fadeOverlay.style.right = 0; fadeOverlay.style.bottom = 0;
         fadeOverlay.style.backgroundColor = new StyleColor(Color.black);
-        fadeOverlay.style.opacity = 0f;
+        fadeOverlay.style.opacity = 1f;
         fadeOverlay.pickingMode = PickingMode.Ignore;
         root.Add(fadeOverlay);
     }

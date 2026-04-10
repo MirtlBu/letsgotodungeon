@@ -275,7 +275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDeath
   respawnSceneName: Overworld
   respawnTargetName: campfire
-  deathDelay: 2.5
+  deathDelay: 2
 --- !u!114 &6362213304326613287
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -60,6 +60,7 @@ public class PlayerDeath : MonoBehaviour
         yield return new WaitForSeconds(deathDelay);
 
         SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneTransition.Instance.suppressAutoFadeIn = true;
         SceneTransition.Instance.GoToScene(respawnSceneName);
     }
 
@@ -81,7 +82,7 @@ public class PlayerDeath : MonoBehaviour
         {
             var cc = GetComponent<CharacterController>();
             if (cc != null) cc.enabled = false;
-            transform.position = target.transform.position + new Vector3(2f, 0.5f, 0f);
+            transform.position = target.transform.position + new Vector3(2.5f, 0f, -0.5f);
             if (cc != null) cc.enabled = true;
         }
         else
@@ -89,9 +90,6 @@ public class PlayerDeath : MonoBehaviour
             Debug.LogWarning($"[PlayerDeath] GameObject '{respawnTargetName}' не найден в сцене '{respawnSceneName}'");
         }
 
-        isDying = false;
-        GetComponent<CharacterMovement>().enabled = true;
-        GetComponent<PlayerAttack>().enabled = true;
         var anim = GetComponent<Animator>();
         if (anim)
         {
@@ -99,9 +97,28 @@ public class PlayerDeath : MonoBehaviour
             anim.ResetTrigger("dying");
             anim.ResetTrigger("attack");
             anim.ResetTrigger("impact");
-            anim.Play("Idle-Walk-Run", 0, 0f);
+            anim.Play("player_gettingup", 0, 0f);
         }
+
         GetComponent<CharacterMovement>()?.ForceUnground();
         FindObjectOfType<CameraController>()?.SnapToTarget();
+
+        // Все готово — теперь можно убрать черный экран
+        SceneTransition.Instance.suppressAutoFadeIn = false;
+        SceneTransition.Instance.TriggerFadeIn();
+
+        // Ждём пока проиграется анимация вставания
+        yield return null; // один кадр чтобы аниматор переключился
+        if (anim != null)
+        {
+            var info = anim.GetCurrentAnimatorStateInfo(0);
+            float length = info.IsName("player_gettingup") ? info.length : 1.5f;
+            yield return new WaitForSeconds(length);
+        }
+
+        isDying = false;
+        GetComponent<CharacterMovement>().enabled = true;
+        GetComponent<PlayerAttack>().enabled = true;
+        anim?.Play("Idle-Walk-Run", 0, 0f);
     }
 }
