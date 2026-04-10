@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -13,6 +14,11 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float attackDamage = 10f;
     [SerializeField] private float attackCooldown = 1.5f;
     [SerializeField] private int coinReward = 10;
+
+    [Header("Knockback")]
+    [SerializeField] private float knockbackForce = 3f;
+    [SerializeField] private float knockbackDuration = 0.2f;
+    [SerializeField] private float knockbackDelay = 0.08f;
 
     private enum State { Patrol, Chase, Attack }
     private State state = State.Patrol;
@@ -47,7 +53,7 @@ public class EnemyAI : MonoBehaviour
 
     void Update()
     {
-        if (player == null) return;
+        if (player == null || !agent.enabled) return;
 
         float dist = Vector3.Distance(transform.position, player.position);
         attackTimer -= Time.deltaTime;
@@ -132,6 +138,30 @@ public class EnemyAI : MonoBehaviour
     private void OnImpact()
     {
         animator?.SetTrigger("impact");
+        if (player != null)
+            StartCoroutine(KnockbackRoutine());
+    }
+
+    private IEnumerator KnockbackRoutine()
+    {
+        Vector3 dir = (transform.position - player.position);
+        dir.y = 0f;
+        dir.Normalize();
+
+        yield return new WaitForSeconds(knockbackDelay);
+
+        agent.enabled = false;
+
+        float elapsed = 0f;
+        while (elapsed < knockbackDuration)
+        {
+            float t = 1f - elapsed / knockbackDuration; // затухает к концу
+            transform.position += dir * (knockbackForce * t * Time.deltaTime);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        agent.enabled = true;
     }
 
     private void OnDeath()

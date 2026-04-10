@@ -135,6 +135,9 @@ MonoBehaviour:
   attackDamage: 10
   attackCooldown: 1
   coinReward: 1
+  knockbackForce: 3
+  knockbackDuration: 0.2
+  knockbackDelay: 0.3
 --- !u!114 &666566055318759705
 MonoBehaviour:
   m_ObjectHideFlags: 0
