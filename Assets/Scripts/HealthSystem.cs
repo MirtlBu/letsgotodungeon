@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public class HealthSystem : MonoBehaviour
 {
-    [SerializeField] private float maxHealth = 100f;
+    private float maxHealth = 100f;
     private float currentHealth;
 
     public float HealthPercent => currentHealth / maxHealth;
@@ -15,6 +15,8 @@ public class HealthSystem : MonoBehaviour
 
     void Awake()
     {
+        var s = GetComponent<Stats>();
+        if (s != null) maxHealth = s.maxHealth;
         currentHealth = maxHealth;
     }
 

@@ -88,6 +88,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ec1a2f92b928640ebb21a70a8cad33b2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2431939433133518076}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ec1a2f92b928640ebb21a70a8cad33b2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4667032783459209408}
   m_SourcePrefab: {fileID: 100100000, guid: ec1a2f92b928640ebb21a70a8cad33b2, type: 3}
 --- !u!1 &2377721527627374052 stripped
 GameObject:
@@ -132,8 +135,6 @@ MonoBehaviour:
   waitTime: 1
   aggroRadius: 6
   attackRadius: 1.5
-  attackDamage: 10
-  attackCooldown: 1
   coinReward: 1
   knockbackForce: 3
   knockbackDuration: 0.2
@@ -150,7 +151,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50fb4af653ee04cf6be9b44c7ae7ddff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthSystem
-  maxHealth: 200
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
@@ -180,3 +180,22 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &4667032783459209408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2377721527627374052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9b92fbfc63894a6ba708ec6cf8bc167, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Stats
+  maxHealth: 1000
+  speed: 5
+  damage: 5
+  attackCooldown: 1
+  critChance: 0.5
+  critMultiplier: 2
+  backstabAngle: 120

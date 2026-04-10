@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,22 +14,18 @@ public class PlayerStats : MonoBehaviour
 {
     public static PlayerStats Instance { get; private set; }
 
-    [Header("Base Stats")]
-    public float baseSpeed = 5f;
-    public float baseDamage = 25f;
-    public float baseCritChance = 0f;   // 0–1
-    public float baseCritMultiplier = 2f;
-
+    private Stats stats;
     private readonly List<ActiveBuff> activeBuffs = new();
 
-    public float Speed => ComputeStat(StatType.Speed, baseSpeed);
-    public float Damage => ComputeStat(StatType.Damage, baseDamage);
-    public float CritChance => ComputeStat(StatType.CritChance, baseCritChance);
-    public float CritMultiplier => ComputeStat(StatType.CritMultiplier, baseCritMultiplier);
+    public float Speed          => ComputeStat(StatType.Speed,          stats.speed);
+    public float Damage         => ComputeStat(StatType.Damage,         stats.damage);
+    public float CritChance     => ComputeStat(StatType.CritChance,     stats.critChance);
+    public float CritMultiplier => ComputeStat(StatType.CritMultiplier, stats.critMultiplier);
 
     void Awake()
     {
         Instance = this;
+        stats = GetComponent<Stats>();
     }
 
     void Update()
@@ -51,7 +46,6 @@ public class PlayerStats : MonoBehaviour
             return;
         }
 
-        // Replace existing buff of same type, or add new
         var existing = activeBuffs.Find(b => b.definition.statType == buff.statType);
         if (existing != null)
             existing.timeRemaining = buff.duration;

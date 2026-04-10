@@ -11,8 +11,6 @@ public class EnemyAI : MonoBehaviour
     [Header("Combat")]
     [SerializeField] private float aggroRadius = 6f;
     [SerializeField] private float attackRadius = 1.5f;
-    [SerializeField] private float attackDamage = 10f;
-    [SerializeField] private float attackCooldown = 1.5f;
     [SerializeField] private int coinReward = 10;
 
     [Header("Knockback")]
@@ -26,6 +24,7 @@ public class EnemyAI : MonoBehaviour
     private NavMeshAgent agent;
     private Animator animator;
     private Transform player;
+    private Stats combat;
 
     private Vector3 pointA;
     private Vector3 pointB;
@@ -37,6 +36,7 @@ public class EnemyAI : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        combat = GetComponent<Stats>();
         player = GameObject.FindWithTag("Player")?.transform;
 
         pointA = transform.position + transform.forward * patrolDistance;
@@ -128,11 +128,11 @@ public class EnemyAI : MonoBehaviour
 
     private void PerformAttack()
     {
-        attackTimer = attackCooldown;
+        attackTimer = combat.attackCooldown;
         animator?.ResetTrigger("attack");
         animator?.SetTrigger("attack");
-        player.GetComponent<HealthSystem>()?.TakeDamage(attackDamage);
-        Debug.Log($"[Enemy] {gameObject.name} нанёс {attackDamage} урона игроку");
+        player.GetComponent<HealthSystem>()?.TakeDamage(combat.damage);
+        Debug.Log($"[Enemy] {gameObject.name} нанёс {combat.damage} урона игроку");
     }
 
     private void OnImpact()

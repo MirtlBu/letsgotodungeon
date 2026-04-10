@@ -4,17 +4,17 @@ using UnityEngine.InputSystem;
 public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] private float attackRange = 1.5f;
-    [SerializeField] private float attackCooldown = 0.5f;
-    [SerializeField] private float backstabAngle = 120f;
 
     private float cooldownTimer;
     private PlayerStats stats;
+    private Stats combat;
     private Animator animator;
     private int attackIndex;
 
     void Start()
     {
         stats = GetComponent<PlayerStats>();
+        combat = GetComponent<Stats>();
         animator = GetComponent<Animator>();
     }
 
@@ -27,7 +27,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void PerformAttack()
     {
-        cooldownTimer = attackCooldown;
+        cooldownTimer = combat.attackCooldown;
 
         if (animator != null)
         {
@@ -52,7 +52,7 @@ public class PlayerAttack : MonoBehaviour
             Vector3 dirToPlayer = (transform.position - hit.transform.position).normalized;
             float dot = Vector3.Dot(hit.transform.forward, dirToPlayer);
             float angle = Mathf.Acos(Mathf.Clamp(dot, -1f, 1f)) * Mathf.Rad2Deg;
-            bool isBackstab = angle < backstabAngle * 0.5f;
+            bool isBackstab = angle > (180f - combat.backstabAngle * 0.5f);
             if (isBackstab) damage *= 2f;
 
             // Crit
