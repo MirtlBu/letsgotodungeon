@@ -58,6 +58,7 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         if (player == null || !agent.enabled) return;
+        if (player.GetComponent<HealthSystem>()?.CurrentHealth <= 0f) return;
 
         float dist = Vector3.Distance(transform.position, player.position);
         attackTimer -= Time.deltaTime;
@@ -135,7 +136,9 @@ public class EnemyAI : MonoBehaviour
         attackTimer = combat.attackCooldown;
         animator?.ResetTrigger("attack");
         animator?.SetTrigger("attack");
+        player.GetComponent<PlayerCombat>()?.RecordAttacker(transform);
         player.GetComponent<HealthSystem>()?.TakeDamage(combat.damage);
+        player.GetComponent<PlayerCombat>()?.ApplyKnockback(transform);
         Debug.Log($"[Enemy] {gameObject.name} нанёс {combat.damage} урона игроку");
     }
 

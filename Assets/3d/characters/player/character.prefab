@@ -136,6 +136,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: da4f15536906e4fb599b5a6ac70a8958, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5408713088481007007}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: da4f15536906e4fb599b5a6ac70a8958, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8059490921436771278}
   m_SourcePrefab: {fileID: 100100000, guid: da4f15536906e4fb599b5a6ac70a8958, type: 3}
 --- !u!1 &6188810568285750949 stripped
 GameObject:
@@ -272,6 +275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDeath
   respawnSceneName: Overworld
   respawnTargetName: campfire
+  deathDelay: 2.5
 --- !u!114 &6362213304326613287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,13 +313,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9b92fbfc63894a6ba708ec6cf8bc167, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Stats
-  maxHealth: 1000
+  maxHealth: 10
   speed: 5
   damage: 5
   attackCooldown: 2
   critChance: 0.491
   critMultiplier: 2
   backstabAngle: 120
+--- !u!114 &8059490921436771278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6188810568285750949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f41bf63cf35584a788f152f503260fdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCombat
+  knockbackForce: 6
+  knockbackDuration: 0.15
+  knockbackDelay: 0.05
+  longKnockbackForce: 12
+  longKnockbackDuration: 0.2
 --- !u!4 &6820915767864417311 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: da4f15536906e4fb599b5a6ac70a8958, type: 3}
