@@ -138,6 +138,16 @@ public class DialogueManager : MonoBehaviour
 
     // ─── End ──────────────────────────────────────────────────
 
+    public void CancelDialogue()
+    {
+        if (!IsActive) return;
+        IsActive = false;
+        inChoice = false;
+        InteractionUI.Instance?.Hide();
+        InteractionUI.Instance?.HidePlayer();
+        onEnd?.Invoke();
+    }
+
     private void EndDialogue()
     {
         IsActive = false;

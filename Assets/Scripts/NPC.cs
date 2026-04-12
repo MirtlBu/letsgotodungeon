@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class NPC : InteractionZone
@@ -5,15 +6,18 @@ public class NPC : InteractionZone
     [Header("NPC")]
     [SerializeField] private string npcName = "NPC";
     [SerializeField] private float facePlayerSpeed = 5f;
+    [SerializeField] private float returnSpeed = 1f;
 
     private Animator animator;
     private Transform player;
     private bool isTalking;
+    private Vector3 startPosition;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         player = GameObject.FindWithTag("Player")?.transform;
+        startPosition = transform.position;
     }
 
     void Update()
@@ -36,11 +40,36 @@ public class NPC : InteractionZone
     {
         isTalking = false;
         animator?.SetBool("talking", false);
+        StartCoroutine(ReturnToStart());
+    }
+
+    private IEnumerator ReturnToStart()
+    {
+        animator?.SetTrigger("returning");
+
+        while (Vector3.Distance(transform.position, startPosition) > 0.05f)
+        {
+            Vector3 dir = (startPosition - transform.position).normalized;
+            dir.y = 0f;
+
+            if (dir != Vector3.zero)
+            {
+                Quaternion target = Quaternion.LookRotation(dir);
+                transform.rotation = Quaternion.Slerp(transform.rotation, target, facePlayerSpeed * Time.deltaTime);
+            }
+
+            transform.position = Vector3.MoveTowards(transform.position, startPosition, returnSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+        transform.position = startPosition;
+        if (animator != null) animator.applyRootMotion = true;
     }
 
     protected override void OnDialogueStart()
     {
         isTalking = true;
+        if (animator != null) animator.applyRootMotion = false;
         animator?.SetBool("talking", true);
     }
 }

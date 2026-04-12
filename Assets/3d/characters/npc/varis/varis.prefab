@@ -89,6 +89,7 @@ MonoBehaviour:
   defaultDialogue: {fileID: 11400000, guid: 87dc4eef94f2240b4b28e12ee9a7cc88, type: 2}
   npcName: NPC
   facePlayerSpeed: 5
+  returnSpeed: 0.5
 --- !u!136 &3482097013308883832
 CapsuleCollider:
   m_ObjectHideFlags: 0

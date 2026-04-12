@@ -36,8 +36,9 @@ public class InteractionZone : MonoBehaviour
         if (!other.CompareTag("Player")) return;
         playerInRange = false;
         waitingForDismiss = false;
-        if (DialogueManager.Instance == null || !DialogueManager.Instance.IsActive)
-            InteractionUI.Instance?.Hide();
+        skipNextEnter = false;
+        DialogueManager.Instance?.CancelDialogue();
+        InteractionUI.Instance?.Hide();
     }
 
     protected virtual void Update()
