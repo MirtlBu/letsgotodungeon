@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   lines:
   - text: The dungeon! Of course...
-  - text: The place of darkness and suffering! Echoes. Bones. Regret. And something
-      that remembers every step you take...
+  - text: 'The place of darkness and suffering! Echoes. Bones. Regret. '
+  - text: And something that remembers every step you take...
   choices:
   - text: Ahem!
     nextDialogue: {fileID: 11400000, guid: cdc78bd7b20f44f3fb2f474e149a2ebe, type: 2}

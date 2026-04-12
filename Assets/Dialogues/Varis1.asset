@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Varis1
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   lines:
-  - text: Greeting, traveler! Where are you headed?
+  - text: Greetings, traveler! Where are you headed?
   choices:
   - text: I'm going to the dungeon.
     nextDialogue: {fileID: 11400000, guid: 38d3e7dc2dbe54359b822e70a00ce38c, type: 2}

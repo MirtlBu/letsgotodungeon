@@ -15,6 +15,4 @@ MonoBehaviour:
   lines:
   - text: Go, then. And just know this - the deeper you go...
   - text: ...the less of you will return.
-  choices:
-  - text: At least it will be fun. See you!
-    nextDialogue: {fileID: 0}
+  choices: []

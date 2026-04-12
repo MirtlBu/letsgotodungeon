@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e53d6b19f9bce4499996687ff4c387e8, type: 3}
   m_Name: Varis_default
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
-  lines: []
+  lines:
+  - text: They all go down there... none come back the same.
   choices: []

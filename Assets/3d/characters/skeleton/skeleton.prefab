@@ -133,7 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
   patrolDistance: 4
   waitTime: 1
-  aggroRadius: 6
+  aggroRadius: 8
   attackRadius: 1.5
   coinReward: 1
   knockbackForce: 3
@@ -194,10 +194,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9b92fbfc63894a6ba708ec6cf8bc167, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Stats
-  maxHealth: 10
+  maxHealth: 100
   speed: 5
   damage: 25
   attackCooldown: 2
-  critChance: 0
+  critChance: 1
   critMultiplier: 2
   backstabAngle: 120

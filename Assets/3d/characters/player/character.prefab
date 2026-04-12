@@ -276,6 +276,7 @@ MonoBehaviour:
   respawnSceneName: Overworld
   respawnTargetName: campfire
   deathDelay: 2
+  respawnBalloonText: Ugh... not again...
 --- !u!114 &6362213304326613287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,11 +314,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9b92fbfc63894a6ba708ec6cf8bc167, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Stats
-  maxHealth: 10
+  maxHealth: 70
   speed: 5
-  damage: 5
+  damage: 20
   attackCooldown: 2
-  critChance: 0.491
+  critChance: 1
   critMultiplier: 2
   backstabAngle: 120
 --- !u!114 &8059490921436771278
