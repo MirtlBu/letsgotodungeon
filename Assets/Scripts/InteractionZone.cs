@@ -5,11 +5,14 @@ public class InteractionZone : MonoBehaviour
 {
     [SerializeField] private string promptText = "...";
     [SerializeField] protected DialogueSO dialogue;
+    [SerializeField] private DialogueSO defaultDialogue;
 
     private bool playerInRange;
     private bool waitingForDismiss;
+    private bool skipNextEnter;
 
     protected virtual void OnInteract() { }
+    protected virtual void OnDialogueStart() { }
     protected virtual void OnDialogueEnd() { }
 
     protected void ShowResult(string text)
@@ -37,7 +40,7 @@ public class InteractionZone : MonoBehaviour
             InteractionUI.Instance?.Hide();
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (!playerInRange) return;
 
@@ -45,6 +48,8 @@ public class InteractionZone : MonoBehaviour
         if (DialogueManager.Instance != null && DialogueManager.Instance.IsActive) return;
 
         if (!Keyboard.current.enterKey.wasPressedThisFrame) return;
+
+        if (skipNextEnter) { skipNextEnter = false; return; }
 
         if (waitingForDismiss)
         {
@@ -56,10 +61,12 @@ public class InteractionZone : MonoBehaviour
         if (dialogue != null)
         {
             InteractionUI.Instance?.Hide();
+            OnDialogueStart();
             DialogueManager.Instance?.StartDialogue(dialogue, transform, () =>
             {
+                dialogue = defaultDialogue;
+                skipNextEnter = true;
                 OnDialogueEnd();
-                // После диалога показываем prompt снова если игрок ещё в зоне
                 if (playerInRange)
                     InteractionUI.Instance?.Show(promptText, transform);
             });

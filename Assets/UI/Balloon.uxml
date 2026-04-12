@@ -3,4 +3,7 @@
     <ui:VisualElement name="balloon" class="balloon">
         <ui:Label name="balloon-text" text="Rest" class="balloon-text"/>
     </ui:VisualElement>
+    <ui:VisualElement name="player-balloon" class="balloon player-balloon">
+        <ui:Label name="player-balloon-text" text="" class="balloon-text"/>
+    </ui:VisualElement>
 </ui:UXML>

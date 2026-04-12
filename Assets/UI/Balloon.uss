@@ -13,3 +13,7 @@
     -unity-font-style: bold;
     -unity-text-align: middle-center;
 }
+
+.player-balloon {
+    background-color: rgb(220, 240, 255);
+}

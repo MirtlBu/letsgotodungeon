@@ -11,6 +11,7 @@ public class DialogueManager : MonoBehaviour
 
     private DialogueSO current;
     private Transform anchor;
+    private Transform playerAnchor;
     private int lineIndex;
     private bool inChoice;
     private int choiceIndex;
@@ -29,6 +30,7 @@ public class DialogueManager : MonoBehaviour
         IsActive = true;
         current = dialogue;
         anchor = speakerAnchor;
+        playerAnchor = GameObject.FindWithTag("Player")?.transform;
         lineIndex = 0;
         inChoice = false;
         onEnd = onComplete;
@@ -54,9 +56,10 @@ public class DialogueManager : MonoBehaviour
     {
         if (lineIndex >= current.lines.Length)
         {
-            // Все строки показаны
             if (current.choices != null && current.choices.Length == 2)
                 BeginChoice();
+            else if (current.choices != null && current.choices.Length == 1)
+                BeginSingleChoice();
             else
                 EndDialogue();
             return;
@@ -73,10 +76,19 @@ public class DialogueManager : MonoBehaviour
 
     // ─── Choice ───────────────────────────────────────────────
 
+    private void BeginSingleChoice()
+    {
+        inChoice = true;
+        choiceIndex = 0;
+        InteractionUI.Instance?.Hide();
+        InteractionUI.Instance?.ShowPlayer(current.choices[0].text, playerAnchor);
+    }
+
     private void BeginChoice()
     {
         inChoice = true;
         choiceIndex = 0;
+        InteractionUI.Instance?.Hide();
         ShowChoiceText();
     }
 
@@ -86,7 +98,7 @@ public class DialogueManager : MonoBehaviour
         string arrow = choiceIndex == 0 ? "◄ " : " ►";
         string other = current.choices[1 - choiceIndex].text;
         // Показываем активный вариант крупнее, второй как подсказку
-        InteractionUI.Instance?.Show($"{(choiceIndex == 0 ? "► " : "  ")}{current.choices[0].text}\n{(choiceIndex == 1 ? "► " : "  ")}{current.choices[1].text}", anchor);
+        InteractionUI.Instance?.ShowPlayer($"{(choiceIndex == 0 ? "► " : "  ")}{current.choices[0].text}\n{(choiceIndex == 1 ? "► " : "  ")}{current.choices[1].text}", playerAnchor);
     }
 
     private void UpdateChoice()
@@ -109,11 +121,11 @@ public class DialogueManager : MonoBehaviour
     private void ConfirmChoice()
     {
         inChoice = false;
+        InteractionUI.Instance?.HidePlayer();
         var chosen = current.choices[choiceIndex];
 
         if (chosen.nextDialogue != null)
         {
-            // Продолжаем диалог следующим SO
             current = chosen.nextDialogue;
             lineIndex = 0;
             ShowCurrentLine();
@@ -130,6 +142,7 @@ public class DialogueManager : MonoBehaviour
     {
         IsActive = false;
         InteractionUI.Instance?.Hide();
+        InteractionUI.Instance?.HidePlayer();
         onEnd?.Invoke();
     }
 }

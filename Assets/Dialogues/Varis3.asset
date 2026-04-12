@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e53d6b19f9bce4499996687ff4c387e8, type: 3}
+  m_Name: Varis3
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
+  lines:
+  - text: Go, then. And just know this - the deeper you go...
+  - text: ...the less of you will return.
+  choices:
+  - text: At least it will be fun. See you!
+    nextDialogue: {fileID: 0}
