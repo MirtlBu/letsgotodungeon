@@ -133,8 +133,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
   patrolDistance: 4
   waitTime: 1
-  aggroRadius: 8
+  aggroRadius: 4
   attackRadius: 1.5
+  rotationSpeed: 1
   coinReward: 1
   knockbackForce: 3
   knockbackDuration: 0.05
@@ -198,6 +199,6 @@ MonoBehaviour:
   speed: 5
   damage: 25
   attackCooldown: 2
-  critChance: 1
+  critChance: 0.3
   critMultiplier: 2
-  backstabAngle: 120
+  backstabAngle: 180

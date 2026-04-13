@@ -11,6 +11,7 @@ public class EnemyAI : MonoBehaviour
     [Header("Combat")]
     [SerializeField] private float aggroRadius = 6f;
     [SerializeField] private float attackRadius = 1.5f;
+    [SerializeField] private float rotationSpeed = 3f;
     [SerializeField] private int coinReward = 10;
 
     [Header("Knockback")]
@@ -133,7 +134,10 @@ public class EnemyAI : MonoBehaviour
         Vector3 dir = (player.position - transform.position);
         dir.y = 0f;
         if (dir != Vector3.zero)
-            transform.rotation = Quaternion.LookRotation(dir);
+        {
+            Quaternion target = Quaternion.LookRotation(dir);
+            transform.rotation = Quaternion.Slerp(transform.rotation, target, rotationSpeed * Time.deltaTime);
+        }
     }
 
     private void PerformAttack()
