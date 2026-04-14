@@ -133,9 +133,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
   patrolDistance: 4
   waitTime: 1
-  aggroRadius: 4
+  aggroRadius: 3
   attackRadius: 1.5
-  rotationSpeed: 1
+  rotationSpeed: 0.5
   coinReward: 1
   knockbackForce: 3
   knockbackDuration: 0.05
@@ -197,8 +197,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Stats
   maxHealth: 100
   speed: 5
-  damage: 25
-  attackCooldown: 2
+  damage: 20
+  attackCooldown: 2.5
   critChance: 0.3
   critMultiplier: 2
   backstabAngle: 180

@@ -46,9 +46,16 @@ public class PlayerCombat : MonoBehaviour
         StartCoroutine(KnockbackRoutine(source.position, longKnockbackForce, longKnockbackDuration));
     }
 
+    private bool IsAttacking()
+    {
+        if (animator == null) return false;
+        return animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack");
+    }
+
     private IEnumerator KnockbackRoutine(Vector3 sourcePosition, float force, float duration)
     {
-        animator?.SetTrigger("impact");
+        if (!IsAttacking())
+            animator?.SetTrigger("impact");
 
         Vector3 dir = transform.position - sourcePosition;
         dir.y = 0f;

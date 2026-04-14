@@ -56,6 +56,10 @@ public class PlayerStats : MonoBehaviour
     private float ComputeStat(StatType type, float baseValue)
     {
         float result = baseValue;
+
+        if (PlayerInventory.Instance != null)
+            result *= PlayerInventory.Instance.GetEquipmentMultiplier(type);
+
         foreach (var buff in activeBuffs)
         {
             if (buff.definition.statType != type) continue;
