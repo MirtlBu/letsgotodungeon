@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e53d6b19f9bce4499996687ff4c387e8, type: 3}
+  m_Name: offer
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
+  lines:
+  - text: "Ah, a traveler! Step closer, I have something for you\u2026 "
+  - text: "A blessing... It sharpens your strength, steadies your hand\u2026"
+  - text: Only 100 coins.
+  choices:
+  - text: "Yes. I\u2019ll take it."
+    nextDialogue: {fileID: 11400000, guid: 95a2a4ccedfa9456ca3c572095657559, type: 2}
+  - text: "I don\u2019t need it. I can handle this on my own."
+    nextDialogue: {fileID: 11400000, guid: 00d2a71dd47ec49608c1bffbf1f11e80, type: 2}

@@ -214,6 +214,7 @@ public class EnemyAI : MonoBehaviour
     {
         EnemyHealthBarUI.Instance?.Unregister(GetComponent<HealthSystem>());
         CoinCounter.Instance?.Add(coinReward);
+        QuestManager.Instance?.ReportKill();
         StartCoroutine(DyingRoutine());
     }
 

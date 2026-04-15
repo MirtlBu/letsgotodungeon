@@ -9,12 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41b3aa5c2230a4587af9e737077d0e19, type: 3}
-  m_Name: Buff
-  m_EditorClassIdentifier: Assembly-CSharp::BuffDefinition
-  buffName: 
-  icon: {fileID: 0}
-  statType: 0
-  multiplier: 1
-  flatBonus: 0
-  duration: 10
+  m_Script: {fileID: 11500000, guid: da4144e414ade4e64906ae016515349c, type: 3}
+  m_Name: QuestSO
+  m_EditorClassIdentifier: Assembly-CSharp::QuestSO
+  questId: 
+  questName: 
+  description: 
+  objectiveType: 1
+  targetCount: 30
+  rewardType: 1
+  rewardCoins: 0

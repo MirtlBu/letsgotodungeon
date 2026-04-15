@@ -46,6 +46,13 @@ public class CharacterMovement : MonoBehaviour
     {
         UpdateGrounded();
 
+        // Блокируем движение во время активного диалога
+        if (DialogueManager.Instance != null && DialogueManager.Instance.IsActive)
+        {
+            animator?.SetFloat("speed", 0f);
+            return;
+        }
+
         Vector3 direction = new Vector3(moveInput.x, 0f, moveInput.y).normalized;
         bool isRunning = direction.magnitude > 0.1f;
 

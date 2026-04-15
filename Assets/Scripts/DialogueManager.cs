@@ -104,9 +104,13 @@ public class DialogueManager : MonoBehaviour
     private void UpdateChoice()
     {
         bool left  = Keyboard.current.aKey.wasPressedThisFrame ||
-                     Keyboard.current.leftArrowKey.wasPressedThisFrame;
+                     Keyboard.current.leftArrowKey.wasPressedThisFrame ||
+                     Keyboard.current.sKey.wasPressedThisFrame ||
+                     Keyboard.current.downArrowKey.wasPressedThisFrame;
         bool right = Keyboard.current.dKey.wasPressedThisFrame ||
-                     Keyboard.current.rightArrowKey.wasPressedThisFrame;
+                     Keyboard.current.rightArrowKey.wasPressedThisFrame ||
+                     Keyboard.current.wKey.wasPressedThisFrame ||
+                     Keyboard.current.upArrowKey.wasPressedThisFrame;
 
         if (left || right)
         {
@@ -118,15 +122,27 @@ public class DialogueManager : MonoBehaviour
             ConfirmChoice();
     }
 
+    // Подписчик может вызвать OverrideNextDialogue() внутри OnChoiceConfirmed,
+    // чтобы заменить следующий диалог (например, NpcTrader перенаправляет на noMoneyDialogue)
+    public event System.Action<int> OnChoiceConfirmed;
+    private DialogueSO nextDialogueOverride;
+
+    public void OverrideNextDialogue(DialogueSO next) => nextDialogueOverride = next;
+
     private void ConfirmChoice()
     {
+        int idx = choiceIndex;
         inChoice = false;
         InteractionUI.Instance?.HidePlayer();
-        var chosen = current.choices[choiceIndex];
 
-        if (chosen.nextDialogue != null)
+        nextDialogueOverride = null;
+        OnChoiceConfirmed?.Invoke(idx);
+
+        DialogueSO next = nextDialogueOverride ?? current.choices[idx].nextDialogue;
+
+        if (next != null)
         {
-            current = chosen.nextDialogue;
+            current = next;
             lineIndex = 0;
             ShowCurrentLine();
         }
@@ -138,9 +154,13 @@ public class DialogueManager : MonoBehaviour
 
     // ─── End ──────────────────────────────────────────────────
 
+    // Какой DialogueSO закончился последним — используется NpcTrader для проверки выбора
+    public DialogueSO LastFinishedDialogue { get; private set; }
+
     public void CancelDialogue()
     {
         if (!IsActive) return;
+        LastFinishedDialogue = current;
         IsActive = false;
         inChoice = false;
         InteractionUI.Instance?.Hide();
@@ -150,6 +170,7 @@ public class DialogueManager : MonoBehaviour
 
     private void EndDialogue()
     {
+        LastFinishedDialogue = current;
         IsActive = false;
         InteractionUI.Instance?.Hide();
         InteractionUI.Instance?.HidePlayer();

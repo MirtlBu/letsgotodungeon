@@ -21,6 +21,14 @@ public class InteractionZone : MonoBehaviour
         InteractionUI.Instance.Show(text, transform);
     }
 
+    // Вызывай после ручного StartDialogue (OnInteract-flow), чтобы не было мгновенного перезапуска
+    protected void FinishInteraction()
+    {
+        skipNextEnter = true;
+        if (playerInRange)
+            InteractionUI.Instance?.Show(promptText, transform);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;

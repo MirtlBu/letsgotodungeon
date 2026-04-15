@@ -6,6 +6,18 @@ public class CoinCounter : MonoBehaviour
 
     private int count = 0;
 
+    [Header("Debug")]
+    public int debugAddCoins = 0;
+
+    void Update()
+    {
+        if (debugAddCoins != 0)
+        {
+            count += debugAddCoins;
+            debugAddCoins = 0;
+        }
+    }
+
     void Awake()
     {
         if (Instance != null) { Destroy(gameObject); return; }

@@ -98,6 +98,7 @@ public class PlayerDeath : MonoBehaviour
             anim.ResetTrigger("dying");
             anim.ResetTrigger("attack");
             anim.ResetTrigger("impact");
+            anim.SetFloat("speed", 0f);
             anim.Play("player_gettingup", 0, 0f);
         }
 
