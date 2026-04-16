@@ -16,6 +16,7 @@ public class PlayerStats : MonoBehaviour
 
     private Stats stats;
     private readonly List<ActiveBuff> activeBuffs = new();
+    public IReadOnlyList<ActiveBuff> ActiveBuffs => activeBuffs;
 
     public float Speed          => ComputeStat(StatType.Speed,          stats.speed);
     public float Damage         => ComputeStat(StatType.Damage,         stats.damage);

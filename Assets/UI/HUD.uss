@@ -50,6 +50,24 @@
     border-bottom-right-radius: 5px;
 }
 
+.buff-icons {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    height: 100%;
+}
+
+.buff-icon {
+    width: 28px;
+    height: 28px;
+    margin: 0 3px;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
 .coin-panel {
     width: 30%;
     flex-direction: row;

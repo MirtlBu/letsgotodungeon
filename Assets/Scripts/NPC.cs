@@ -4,7 +4,6 @@ using UnityEngine;
 public class NPC : InteractionZone
 {
     [Header("NPC")]
-    [SerializeField] private string npcName = "NPC";
     [SerializeField] private float facePlayerSpeed = 5f;
     [SerializeField] private float returnSpeed = 1f;
 

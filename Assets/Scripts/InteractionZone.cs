@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,11 +15,30 @@ public class InteractionZone : MonoBehaviour
     protected virtual void OnInteract() { }
     protected virtual void OnDialogueStart() { }
     protected virtual void OnDialogueEnd() { }
+    protected virtual void OnResultHidden() { }
 
     protected void ShowResult(string text)
     {
         waitingForDismiss = true;
         InteractionUI.Instance.Show(text, transform);
+    }
+
+    // Исчезает по Enter ИЛИ через duration секунд — что наступит раньше
+    protected void ShowResultTimed(string text, float duration = 3f)
+    {
+        ShowResult(text);
+        StartCoroutine(AutoHideResult(duration));
+    }
+
+    private IEnumerator AutoHideResult(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        if (!waitingForDismiss) yield break; // Enter уже нажали раньше
+        waitingForDismiss = false;
+        InteractionUI.Instance?.Hide();
+        if (playerInRange)
+            InteractionUI.Instance?.Show(promptText, transform);
+        OnResultHidden();
     }
 
     // Вызывай после ручного StartDialogue (OnInteract-flow), чтобы не было мгновенного перезапуска
@@ -63,7 +83,10 @@ public class InteractionZone : MonoBehaviour
         if (waitingForDismiss)
         {
             waitingForDismiss = false;
-            InteractionUI.Instance.Show(promptText, transform);
+            InteractionUI.Instance?.Hide();
+            if (playerInRange)
+                InteractionUI.Instance?.Show(promptText, transform);
+            OnResultHidden();
             return;
         }
 

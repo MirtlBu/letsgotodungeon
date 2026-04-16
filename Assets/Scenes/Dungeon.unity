@@ -5593,7 +5593,16 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2380188249833633937, guid: ea34628c6894d484b838d57cf733080f, type: 3}
       insertIndex: 1
       addedObject: {fileID: 236941277}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3045541890491687467, guid: ea34628c6894d484b838d57cf733080f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1390661587}
+    - targetCorrespondingSourceObject: {fileID: 3045541890491687467, guid: ea34628c6894d484b838d57cf733080f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1390661589}
+    - targetCorrespondingSourceObject: {fileID: 3045541890491687467, guid: ea34628c6894d484b838d57cf733080f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1390661588}
   m_SourcePrefab: {fileID: 100100000, guid: ea34628c6894d484b838d57cf733080f, type: 3}
 --- !u!4 &1384854269 stripped
 Transform:
@@ -5727,6 +5736,81 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1390661586 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3045541890491687467, guid: ea34628c6894d484b838d57cf733080f, type: 3}
+  m_PrefabInstance: {fileID: 1384854268}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1390661587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390661586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cc3563d55303491fa3fb8239c5fcc73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ConditionalInteractable
+  promptText: Investigate
+  dialogue: {fileID: 0}
+  defaultDialogue: {fileID: 0}
+  conditionType: 2
+  requiredBuff: {fileID: 11400000, guid: 738ecac91b19c46458b8a00d70c19494, type: 2}
+  requiredQuest: {fileID: 0}
+  failText: Seems I don't have the strength to pull it out...
+  successText: I got it!
+  rewardType: 1
+  rewardBuff: {fileID: 0}
+  rewardCoins: 0
+  destroyOnSuccess: 1
+--- !u!136 &1390661588
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390661586}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 3
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!136 &1390661589
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390661586}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3
+  m_Height: 3
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &1393398776
 GameObject:
   m_ObjectHideFlags: 0

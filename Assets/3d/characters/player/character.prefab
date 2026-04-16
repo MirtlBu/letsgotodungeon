@@ -483,6 +483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 097cf4dc51d2149ffada6bf64018ba1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInventory
+  debugResetSword: 1
 --- !u!4 &6820915767864417311 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: da4f15536906e4fb599b5a6ac70a8958, type: 3}
