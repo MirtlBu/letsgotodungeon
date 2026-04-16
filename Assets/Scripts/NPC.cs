@@ -63,8 +63,11 @@ public class NPC : InteractionZone
         }
 
         transform.position = startPosition;
-        if (animator != null) animator.applyRootMotion = true;
+        if (animator != null) animator.applyRootMotion = RestoreRootMotionAfterReturn;
     }
+
+    // Переопредели в подклассе если не нужен root motion после возврата (например NpcTrader)
+    protected virtual bool RestoreRootMotionAfterReturn => true;
 
     protected override void OnDialogueStart()
     {

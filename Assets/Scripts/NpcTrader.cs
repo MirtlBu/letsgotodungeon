@@ -22,6 +22,8 @@ public class NpcTrader : NPC
     [Tooltip("Не хватает монет — вместо acceptDialogue будет этот")]
     [SerializeField] private DialogueSO noMoneyDialogue;
 
+    protected override bool RestoreRootMotionAfterReturn => false;
+
     // Каждый кадр выставляем dialogue = offerDialogue, чтобы InteractionZone
     // сам обработал конец диалога (skipNextEnter + balloon) — как у обычного NPC
     new void Update()
@@ -32,7 +34,8 @@ public class NpcTrader : NPC
 
     protected override void OnDialogueStart()
     {
-        base.OnDialogueStart();
+        base.OnDialogueStart(); // ставит "talking" = true
+        GetComponent<Animator>()?.SetBool("talk", true);
         DialogueManager.Instance.OnChoiceConfirmed += OnChoiceSelected;
     }
 
@@ -50,6 +53,7 @@ public class NpcTrader : NPC
 
     protected override void OnDialogueEnd()
     {
+        GetComponent<Animator>()?.SetBool("talk", false);
         base.OnDialogueEnd(); // NPC разворачивается и уходит на место
         DialogueManager.Instance.OnChoiceConfirmed -= OnChoiceSelected; // на случай cancel
 
