@@ -54,7 +54,6 @@ public class PlayerAttack : MonoBehaviour
             if (isCrit) damage *= stats.CritMultiplier;
 
             health.TakeDamage(damage);
-            if (isCrit) hit.GetComponent<EnemyAI>()?.ApplyLongKnockback(transform);
             Debug.Log($"[Attack] Hit {hit.name} for {damage} dmg (backstab={isBackstab}, crit={isCrit})");
         }
     }

@@ -145,39 +145,16 @@ public class EnemyAI : MonoBehaviour
         attackTimer = combat.attackCooldown;
         animator?.ResetTrigger("attack");
         animator?.SetTrigger("attack");
+
+        Vector3 dirToPlayer = player.position - transform.position;
+        dirToPlayer.y = 0f;
+        float angle = Vector3.Angle(transform.forward, dirToPlayer);
+        if (angle > 70f) return;
+
         player.GetComponent<PlayerCombat>()?.RecordAttacker(transform);
         player.GetComponent<HealthSystem>()?.TakeDamage(combat.damage);
         player.GetComponent<PlayerCombat>()?.ApplyKnockback(transform);
         Debug.Log($"[Enemy] {gameObject.name} нанёс {combat.damage} урона игроку");
-    }
-
-    public void ApplyLongKnockback(Transform source)
-    {
-        if (source != null)
-            StartCoroutine(LongKnockbackRoutine(source.position));
-    }
-
-    private IEnumerator LongKnockbackRoutine(Vector3 sourcePosition)
-    {
-        Vector3 dir = transform.position - sourcePosition;
-        dir.y = 0f;
-        dir.Normalize();
-
-        yield return new WaitForSeconds(knockbackDelay);
-
-        bool wasEnabled = agent.enabled;
-        agent.enabled = false;
-
-        float elapsed = 0f;
-        while (elapsed < longKnockbackDuration)
-        {
-            float t = 1f - elapsed / longKnockbackDuration;
-            transform.position += dir * (longKnockbackForce * t * Time.deltaTime);
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-
-        if (wasEnabled) agent.enabled = true;
     }
 
     private void OnImpact()

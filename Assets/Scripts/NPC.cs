@@ -42,6 +42,13 @@ public class NPC : InteractionZone
         StartCoroutine(ReturnToStart());
     }
 
+    protected override void OnDialogueCancelled()
+    {
+        isTalking = false;
+        animator?.SetBool("talking", false);
+        StartCoroutine(ReturnToStart());
+    }
+
     private IEnumerator ReturnToStart()
     {
         animator?.SetTrigger("returning");
@@ -62,16 +69,11 @@ public class NPC : InteractionZone
         }
 
         transform.position = startPosition;
-        if (animator != null) animator.applyRootMotion = RestoreRootMotionAfterReturn;
     }
-
-    // Переопредели в подклассе если не нужен root motion после возврата (например NpcTrader)
-    protected virtual bool RestoreRootMotionAfterReturn => true;
 
     protected override void OnDialogueStart()
     {
         isTalking = true;
-        if (animator != null) animator.applyRootMotion = false;
         animator?.SetBool("talking", true);
     }
 }

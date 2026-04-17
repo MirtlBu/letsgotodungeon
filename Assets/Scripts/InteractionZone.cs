@@ -15,6 +15,7 @@ public class InteractionZone : MonoBehaviour
     protected virtual void OnInteract() { }
     protected virtual void OnDialogueStart() { }
     protected virtual void OnDialogueEnd() { }
+    protected virtual void OnDialogueCancelled() { }
     protected virtual void OnResultHidden() { }
 
     protected void ShowResult(string text)
@@ -65,7 +66,9 @@ public class InteractionZone : MonoBehaviour
         playerInRange = false;
         waitingForDismiss = false;
         skipNextEnter = false;
+        bool wasActive = DialogueManager.Instance != null && DialogueManager.Instance.IsActive;
         DialogueManager.Instance?.CancelDialogue();
+        if (wasActive) OnDialogueCancelled();
         InteractionUI.Instance?.Hide();
     }
 
