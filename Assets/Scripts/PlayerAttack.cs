@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] private float attackRange = 1.5f;
-    [SerializeField] private float combatIdleTimeout = 1f;
+    [SerializeField] private float combatIdleTimeout = 5f;
 
     private float cooldownTimer;
     private float combatIdleTimer;

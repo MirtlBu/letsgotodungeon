@@ -22,7 +22,7 @@ public class PlayerDeath : MonoBehaviour
     {
         if (isDying) return;
         isDying = true;
-        GetComponent<CharacterMovement>().enabled = false;
+        GetComponent<CharacterMovement>().IsLocked = true;
         GetComponent<PlayerAttack>().enabled = false;
         StartCoroutine(DyingRoutine());
     }
@@ -94,7 +94,7 @@ public class PlayerDeath : MonoBehaviour
         var anim = GetComponent<Animator>();
         if (anim)
         {
-            anim.applyRootMotion = true;
+            anim.applyRootMotion = false;
             anim.ResetTrigger("dying");
             anim.ResetTrigger("attack");
             anim.ResetTrigger("impact");
@@ -123,7 +123,7 @@ public class PlayerDeath : MonoBehaviour
         InteractionUI.Instance?.Hide();
 
         isDying = false;
-        GetComponent<CharacterMovement>().enabled = true;
+        GetComponent<CharacterMovement>().IsLocked = false;
         GetComponent<PlayerAttack>().enabled = true;
         anim?.Play("Idle-Walk-Run", 0, 0f);
     }

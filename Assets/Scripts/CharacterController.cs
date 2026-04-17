@@ -18,6 +18,7 @@ public class CharacterMovement : MonoBehaviour
     private bool isGrounded;
     private Vector3 velocity;
     private Vector2 moveInput;
+    public bool IsLocked { get; set; }
 
     void Start()
     {
@@ -46,8 +47,7 @@ public class CharacterMovement : MonoBehaviour
     {
         UpdateGrounded();
 
-        // Блокируем движение во время активного диалога
-        if (DialogueManager.Instance != null && DialogueManager.Instance.IsActive)
+        if (IsLocked || (DialogueManager.Instance != null && DialogueManager.Instance.IsActive))
         {
             animator?.SetFloat("speed", 0f);
             return;
