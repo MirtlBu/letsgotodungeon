@@ -159,8 +159,7 @@ public class EnemyAI : MonoBehaviour
 
     private void OnImpact()
     {
-        if (!IsPlayingAttack())
-            animator?.SetTrigger("impact");
+        animator?.SetTrigger("impact");
         if (player != null)
             StartCoroutine(KnockbackRoutine());
     }
