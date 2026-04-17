@@ -1,0 +1,4 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/DamageNumbers.uss?fileID=7433441132597879392&amp;guid=856a6cb997f0f407d835bd97442cecae&amp;type=3#DamageNumbers"/>
+    <ui:VisualElement name="damage-container" style="position: absolute; width: 100%; height: 100%;"/>
+</ui:UXML>

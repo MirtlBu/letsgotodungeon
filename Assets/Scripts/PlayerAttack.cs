@@ -106,7 +106,7 @@ public class PlayerAttack : MonoBehaviour
             if (isCrit) damage *= stats.CritMultiplier;
 
             health.TakeDamage(damage);
-            Debug.Log($"[Attack] Hit {hit.name} for {damage} dmg (backstab={isBackstab}, crit={isCrit})");
+            DamageNumbersUI.Instance?.Show(damage, hit.transform.position + Vector3.up * 1.5f, isCrit);
         }
     }
 

@@ -154,7 +154,7 @@ public class EnemyAI : MonoBehaviour
         player.GetComponent<PlayerCombat>()?.RecordAttacker(transform);
         player.GetComponent<HealthSystem>()?.TakeDamage(combat.damage);
         player.GetComponent<PlayerCombat>()?.ApplyKnockback(transform);
-        Debug.Log($"[Enemy] {gameObject.name} нанёс {combat.damage} урона игроку");
+        DamageNumbersUI.Instance?.Show(combat.damage, player.position + Vector3.up * 1.5f, false, isPlayerDamage: true);
     }
 
     private void OnImpact()
