@@ -32,8 +32,7 @@ public class PlayerAttack : MonoBehaviour
             bool moving = kb.wKey.isPressed || kb.aKey.isPressed || kb.sKey.isPressed || kb.dKey.isPressed;
             if (moving)
             {
-                combatIdleTimer = 0f;
-                animator?.SetBool("inCombat", false);
+                combatIdleTimer = combatIdleTimeout;
             }
             else
             {

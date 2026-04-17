@@ -381,7 +381,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
   attackRange: 1.5
-  combatIdleTimeout: 1.5
+  combatIdleTimeout: 1
 --- !u!114 &-3526796657536310599
 MonoBehaviour:
   m_ObjectHideFlags: 0
