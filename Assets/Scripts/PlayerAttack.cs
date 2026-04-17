@@ -4,8 +4,10 @@ using UnityEngine.InputSystem;
 public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] private float attackRange = 1.5f;
+    [SerializeField] private float combatIdleTimeout = 1f;
 
     private float cooldownTimer;
+    private float combatIdleTimer;
     private PlayerStats stats;
     private Stats combat;
     private Animator animator;
@@ -15,20 +17,71 @@ public class PlayerAttack : MonoBehaviour
         stats = GetComponent<PlayerStats>();
         combat = GetComponent<Stats>();
         animator = GetComponent<Animator>();
+
+        var health = GetComponent<HealthSystem>();
+        health?.OnDamaged.AddListener(OnHit);
     }
 
     void Update()
     {
         cooldownTimer -= Time.deltaTime;
+
+        if (combatIdleTimer > 0f)
+        {
+            var kb = Keyboard.current;
+            bool moving = kb.wKey.isPressed || kb.aKey.isPressed || kb.sKey.isPressed || kb.dKey.isPressed;
+            if (moving)
+            {
+                combatIdleTimer = 0f;
+                animator?.SetBool("inCombat", false);
+            }
+            else
+            {
+                combatIdleTimer -= Time.deltaTime;
+                if (combatIdleTimer <= 0f)
+                    animator?.SetBool("inCombat", false);
+            }
+        }
+
         if (Keyboard.current.spaceKey.wasPressedThisFrame && cooldownTimer <= 0f)
             PerformAttack();
+    }
+
+    private void OnHit()
+    {
+        SetCombatActive();
+    }
+
+    private void SetCombatActive()
+    {
+        animator?.SetBool("inCombat", true);
+        combatIdleTimer = combatIdleTimeout;
+    }
+
+    private void FaceNearestEnemy()
+    {
+        Collider[] nearby = Physics.OverlapSphere(transform.position, attackRange * 1.5f, LayerMask.GetMask("Enemy"));
+        float bestDist = float.MaxValue;
+        Transform nearest = null;
+        foreach (var col in nearby)
+        {
+            float d = Vector3.Distance(transform.position, col.transform.position);
+            if (d < bestDist) { bestDist = d; nearest = col.transform; }
+        }
+        if (nearest == null) return;
+        Vector3 dir = nearest.position - transform.position;
+        dir.y = 0f;
+        if (dir != Vector3.zero)
+            transform.rotation = Quaternion.LookRotation(dir);
     }
 
     private void PerformAttack()
     {
         cooldownTimer = combat.attackCooldown;
 
+        FaceNearestEnemy();
         animator?.SetTrigger("attack");
+        SetCombatActive();
 
         Collider[] hits = Physics.OverlapSphere(
             transform.position + transform.forward * (attackRange * 0.5f),

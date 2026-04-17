@@ -381,6 +381,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
   attackRange: 1.5
+  combatIdleTimeout: 1.5
 --- !u!114 &-3526796657536310599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,10 +435,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9b92fbfc63894a6ba708ec6cf8bc167, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Stats
-  maxHealth: 80
+  maxHealth: 1000
   speed: 5
   damage: 20
-  attackCooldown: 2.5
+  attackCooldown: 1.5
   critChance: 0.8
   critMultiplier: 2
   backstabAngle: 120
