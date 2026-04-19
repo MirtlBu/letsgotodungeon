@@ -177,7 +177,7 @@ Light:
   serializedVersion: 12
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.5
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -304,11 +304,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 20
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -447,16 +447,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DungeonGenerator
   roundPrefab: {fileID: 7720840474352808498, guid: 696d234bd4eb64c7ba10512a0f704004, type: 3}
   cubePrefab: {fileID: 3034150105237442887, guid: 716a9956730854055b7307ea8a4ffb20, type: 3}
-  blockSize: 1
+  blockSize: 2
   platformCount: 5
   minConnectors: 4
-  maxConnectors: 8
-  turnChance: 0.3
+  maxConnectors: 6
+  turnChance: 0.5
+  platformClearance: 3
+  coinPrefab: {fileID: 5767021491435710014, guid: 15032c5a637fc486190426fca76c9e12, type: 3}
+  coinsPerCorridor: 5
+  coinSpacing: 1
+  coinHeight: 6
+  envPrefabs:
+  - {fileID: 1984653030819374225, guid: 05e553d8213dd4906b4686382a4ad765, type: 3}
+  - {fileID: 201984643914821986, guid: 92c13dfbc115d4df2b26d33f3dec3054, type: 3}
+  - {fileID: 6044236242681456611, guid: e4669e674eb734d0a8c70e72a14d1b4c, type: 3}
+  - {fileID: 201984643914821986, guid: 93134cc455e22432895f42ce7f1b4bf7, type: 3}
+  minEnvPerPlatform: 1
+  maxEnvPerPlatform: 3
+  envRadius: 2.4
   enemyPrefab: {fileID: 2377721527627374052, guid: 313d9a6175a824fd99850c2f678deb9a, type: 3}
   minEnemies: 1
   maxEnemies: 1
   entrancePortalPrefab: {fileID: 2755819397356861, guid: 666f151ae29a645848d3ab7c0a9b6302, type: 3}
   exitPortalPrefab: {fileID: 2755819397356861, guid: 666f151ae29a645848d3ab7c0a9b6302, type: 3}
+  portalInset: 1
 --- !u!4 &1627333595
 Transform:
   m_ObjectHideFlags: 0
