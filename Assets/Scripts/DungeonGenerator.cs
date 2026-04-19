@@ -18,16 +18,16 @@ public class DungeonGenerator : MonoBehaviour
 
     [Header("Enemies")]
     public GameObject enemyPrefab;
-    [SerializeField] private int minEnemies = 1;
-    [SerializeField] private int maxEnemies = 3;
+    [SerializeField] private int minEnemies = 2;
+    [SerializeField] private int maxEnemies = 5;
 
     [Header("Portals")]
     public GameObject entrancePortalPrefab;
     public GameObject exitPortalPrefab;
 
-    private readonly List<GameObject>      spawned        = new();
-    private readonly HashSet<Vector3Int>   occupiedCells  = new();
-    private readonly HashSet<Vector3Int>   platformCells  = new();
+    private readonly List<GameObject>    spawned       = new();
+    private readonly HashSet<Vector3Int> occupiedCells = new();
+    private readonly HashSet<Vector3Int> platformCells = new();
     private NavMeshSurface surface;
 
     void Start()
@@ -58,28 +58,25 @@ public class DungeonGenerator : MonoBehaviour
         occupiedCells.Add(startCell);
         platformCells.Add(startCell);
 
-        // Берём первый порт старта
         Transform fromPort = initPorts[0];
         startPiece.MarkConnected(fromPort);
 
         // ── Segments: коридор из кубов → round ───────────────────────
-        var cubePieces      = new List<GameObject>();
+        var cubePieces            = new List<GameObject>();
         var intermediatePlatforms = new List<GameObject>();
-        int totalSegments   = platformCount + 1;
-        GameObject exitGO = null;
+        int totalSegments         = platformCount + 1;
+        GameObject exitGO         = null;
 
         for (int seg = 0; seg < totalSegments; seg++)
         {
-            int count = Random.Range(minConnectors, maxConnectors + 1);
-
+            int count      = Random.Range(minConnectors, maxConnectors + 1);
             bool justTurned = false;
 
             for (int i = 0; i < count; i++)
             {
-                var cubeGO = SnapStraight(cubePrefab, fromPort);
+                var cubeGO    = Snap(cubePrefab, fromPort);
                 var cubePiece = cubeGO.GetComponent<DungeonPiece>();
 
-                // Проверяем overlap по реальной позиции
                 Vector3Int cell = WorldToCell(cubeGO.transform.position);
                 if (occupiedCells.Contains(cell))
                 {
@@ -90,9 +87,8 @@ public class DungeonGenerator : MonoBehaviour
                 occupiedCells.Add(cell);
                 cubePieces.Add(cubeGO);
 
-                // Поворот только если в прошлый раз шли прямо
-                Transform exitPort = null;
-                bool actuallyTurned = false;
+                Transform exitPort    = null;
+                bool actuallyTurned   = false;
 
                 if (!justTurned && Random.value < turnChance)
                 {
@@ -109,7 +105,7 @@ public class DungeonGenerator : MonoBehaviour
             }
 
             nextSegment:
-            var roundGO = SnapStraight(roundPrefab, fromPort);
+            var roundGO    = Snap(roundPrefab, fromPort);
             Vector3Int roundCell = WorldToCell(roundGO.transform.position);
             if (occupiedCells.Contains(roundCell) || TooCloseToPlatform(roundCell))
             {
@@ -126,7 +122,6 @@ public class DungeonGenerator : MonoBehaviour
             {
                 intermediatePlatforms.Add(roundGO);
 
-                // Промежуточная платформа — выбираем порт продолжения
                 Transform nextPort = Random.value < turnChance
                     ? GetTurnPort(roundPiece, fromPort)
                     : GetOppositePort(roundPiece, fromPort);
@@ -154,8 +149,7 @@ public class DungeonGenerator : MonoBehaviour
             SpawnPortal(exitPortalPrefab, exitGO.transform.position);
     }
 
-    // Простой снап без проверок — для теста
-    private GameObject SnapStraight(GameObject prefab, Transform fromPort)
+    private GameObject Snap(GameObject prefab, Transform fromPort)
     {
         var go    = Instantiate(prefab, Vector3.zero, Quaternion.identity);
         spawned.Add(go);
@@ -166,12 +160,12 @@ public class DungeonGenerator : MonoBehaviour
         var free = piece.GetFreePorts();
         if (free.Count == 0) return go;
 
-        Transform attachPort = free[0];
+        Transform attachPort      = free[0];
         piece.MarkConnected(attachPort);
 
-        Quaternion desiredRot   = Quaternion.LookRotation(-fromPort.forward, Vector3.up);
-        go.transform.rotation   = desiredRot * Quaternion.Inverse(attachPort.localRotation);
-        go.transform.position  += fromPort.position - attachPort.position;
+        Quaternion desiredRot     = Quaternion.LookRotation(-fromPort.forward, Vector3.up);
+        go.transform.rotation     = desiredRot * Quaternion.Inverse(attachPort.localRotation);
+        go.transform.position    += fromPort.position - attachPort.position;
 
         return go;
     }
@@ -209,70 +203,9 @@ public class DungeonGenerator : MonoBehaviour
         foreach (var p in piece.GetFreePorts())
         {
             float dot = Vector3.Dot(p.forward, fromPort.forward);
-            if (Mathf.Abs(dot) < 0.5f) candidates.Add(p); // ~90°
+            if (Mathf.Abs(dot) < 0.5f) candidates.Add(p);
         }
         return candidates.Count > 0 ? candidates[Random.Range(0, candidates.Count)] : null;
-    }
-
-    // Снапает prefab к fromPort. Если клетка занята — уничтожает и возвращает null.
-    private GameObject TrySnap(GameObject prefab, Transform fromPort)
-    {
-        var go = Instantiate(prefab, Vector3.zero, Quaternion.identity);
-        spawned.Add(go);
-
-        var piece = go.GetComponent<DungeonPiece>();
-        if (piece != null)
-        {
-            var free = piece.GetFreePorts();
-            if (free.Count > 0)
-            {
-                Transform attachPort = free[0];
-                piece.MarkConnected(attachPort);
-
-                Quaternion desiredRot = Quaternion.LookRotation(-fromPort.forward, Vector3.up);
-                go.transform.rotation = desiredRot * Quaternion.Inverse(attachPort.localRotation);
-                go.transform.position += fromPort.position - attachPort.position;
-            }
-        }
-
-        // Проверяем реальную позицию ПОСЛЕ снаппинга
-        Vector3Int cell = WorldToCell(go.transform.position);
-        if (occupiedCells.Contains(cell))
-        {
-            spawned.Remove(go);
-            Destroy(go);
-            return null;
-        }
-
-        occupiedCells.Add(cell);
-        return go;
-    }
-
-    private Transform PickExitPort(DungeonPiece piece, Transform fromPort)
-    {
-        var freePorts = piece.GetFreePorts();
-        var straight  = new List<Transform>();
-        var turns     = new List<Transform>();
-
-        foreach (var p in freePorts)
-        {
-            float dot = Vector3.Dot(p.forward, fromPort.forward);
-            if (dot < -0.5f) continue;
-            if (dot > 0.5f)  straight.Add(p);
-            else             turns.Add(p);
-        }
-
-        bool goTurn = turns.Count > 0 && (straight.Count == 0 || Random.value < turnChance);
-        if (goTurn)              return turns[Random.Range(0, turns.Count)];
-        if (straight.Count > 0) return straight[Random.Range(0, straight.Count)];
-        return freePorts.Count > 0 ? freePorts[0] : null;
-    }
-
-    private GameObject Place(GameObject prefab, Vector3 pos, Quaternion rot)
-    {
-        var go = Instantiate(prefab, pos, rot);
-        spawned.Add(go);
-        return go;
     }
 
     private Vector3Int WorldToCell(Vector3 pos) => new Vector3Int(
@@ -281,14 +214,21 @@ public class DungeonGenerator : MonoBehaviour
         Mathf.RoundToInt(pos.z / blockSize)
     );
 
+    private GameObject Place(GameObject prefab, Vector3 pos, Quaternion rot)
+    {
+        var go = Instantiate(prefab, pos, rot);
+        spawned.Add(go);
+        return go;
+    }
+
     private void SpawnEnemies(Vector3 center)
     {
         if (enemyPrefab == null) return;
         int count = Random.Range(minEnemies, maxEnemies + 1);
         for (int i = 0; i < count; i++)
         {
-            Vector2 r       = Random.insideUnitCircle;
-            Vector3 pos     = center + new Vector3(r.x, 1f, r.y);
+            Vector2 r   = Random.insideUnitCircle;
+            Vector3 pos = center + new Vector3(r.x, 1f, r.y);
             if (NavMesh.SamplePosition(pos, out NavMeshHit hit, 4f, NavMesh.AllAreas))
                 pos = hit.position;
             spawned.Add(Instantiate(enemyPrefab, pos, Quaternion.identity));
@@ -298,7 +238,7 @@ public class DungeonGenerator : MonoBehaviour
     private void SpawnPortal(GameObject prefab, Vector3 pos)
     {
         if (prefab == null) return;
-        spawned.Add(Instantiate(prefab, pos, Quaternion.identity));
+        spawned.Add(Instantiate(prefab, pos + Vector3.up * 5f, Quaternion.Euler(90f, 0f, 0f)));
     }
 
     public void Clear()

@@ -307,8 +307,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -332,13 +332,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1027146680}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
+  m_LocalPosition: {x: 0, y: 22, z: -27.94}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
 --- !u!114 &1027146684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -454,7 +454,7 @@ MonoBehaviour:
   turnChance: 0.3
   enemyPrefab: {fileID: 2377721527627374052, guid: 313d9a6175a824fd99850c2f678deb9a, type: 3}
   minEnemies: 1
-  maxEnemies: 3
+  maxEnemies: 1
   entrancePortalPrefab: {fileID: 2755819397356861, guid: 666f151ae29a645848d3ab7c0a9b6302, type: 3}
   exitPortalPrefab: {fileID: 2755819397356861, guid: 666f151ae29a645848d3ab7c0a9b6302, type: 3}
 --- !u!4 &1627333595
