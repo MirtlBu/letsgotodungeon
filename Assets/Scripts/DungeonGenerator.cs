@@ -10,24 +10,24 @@ public class DungeonGenerator : MonoBehaviour
     public GameObject cubePrefab;  // коннектор, 4 порта
 
     [Header("Generation")]
-    [SerializeField] private float blockSize         = 2f;
-    [SerializeField] private int   platformCount     = 3;
-    [SerializeField] private int   minConnectors     = 4;
-    [SerializeField] private int   maxConnectors     = 8;
-    [SerializeField] private float turnChance        = 0.3f;
-    [SerializeField] private int   platformClearance = 3; // мин. дистанция между платформами в клетках
+    [SerializeField] private float blockSize = 2f;
+    [SerializeField] private int platformCount = 3;
+    [SerializeField] private int minConnectors = 4;
+    [SerializeField] private int maxConnectors = 8;
+    [SerializeField] private float turnChance = 0.3f;
+    [SerializeField] private int platformClearance = 3; // мин. дистанция между платформами в клетках
 
     [Header("Coins")]
     public GameObject coinPrefab;
-    [SerializeField] private int   coinsPerCorridor = 5;
-    [SerializeField] private float coinSpacing      = 1f;
-    [SerializeField] private float coinHeight       = 1f;
+    [SerializeField] private int coinsPerCorridor = 5;
+    [SerializeField] private float coinSpacing = 1f;
+    [SerializeField] private float coinHeight = 1f;
 
     [Header("Environment")]
     public GameObject[] envPrefabs;
-    [SerializeField] private int   minEnvPerPlatform = 1;
-    [SerializeField] private int   maxEnvPerPlatform = 3;
-    [SerializeField] private float envRadius         = 1.5f; // разброс от центра платформы
+    [SerializeField] private int minEnvPerPlatform = 1;
+    [SerializeField] private int maxEnvPerPlatform = 3;
+    [SerializeField] private float envRadius = 1.5f; // разброс от центра платформы
 
     [Header("Enemies")]
     public GameObject enemyPrefab;
@@ -39,15 +39,16 @@ public class DungeonGenerator : MonoBehaviour
     public GameObject exitPortalPrefab;
     [SerializeField] private float portalInset = 1f; // сдвиг назад от порта вглубь платформы
 
-    private readonly List<GameObject>    spawned       = new();
+    private readonly List<GameObject> spawned = new();
     private readonly HashSet<Vector3Int> occupiedCells = new();
     private readonly HashSet<Vector3Int> platformCells = new();
     private NavMeshSurface surface;
 
     void Start()
     {
-        surface = GetComponent<NavMeshSurface>();
-        Generate();
+        // DungeonGenerator отключён — сцена статическая
+        // surface = GetComponent<NavMeshSurface>();
+        // Generate();
     }
 
     public void Generate()
@@ -61,7 +62,7 @@ public class DungeonGenerator : MonoBehaviour
         Clear();
 
         // ── Start round ───────────────────────────────────────────────
-        var startGO    = Place(roundPrefab, Vector3.zero, Quaternion.identity);
+        var startGO = Place(roundPrefab, Vector3.zero, Quaternion.identity);
         var startPiece = startGO.GetComponent<DungeonPiece>();
         if (startPiece == null) { Debug.LogError("Нет DungeonPiece на roundPrefab!", this); return; }
 
@@ -78,21 +79,21 @@ public class DungeonGenerator : MonoBehaviour
 
         // ── Segments: коридор из кубов → round ───────────────────────
         var intermediatePlatforms = new List<GameObject>();
-        var intermediateDirs      = new List<Vector3>();
-        var corridorPaths         = new List<List<Vector3>>();
-        int totalSegments         = platformCount + 1;
-        GameObject exitGO         = null;
-        Vector3    exitPortDir    = Vector3.forward;
+        var intermediateDirs = new List<Vector3>();
+        var corridorPaths = new List<List<Vector3>>();
+        int totalSegments = platformCount + 1;
+        GameObject exitGO = null;
+        Vector3 exitPortDir = Vector3.forward;
 
         for (int seg = 0; seg < totalSegments; seg++)
         {
-            int  count      = Random.Range(minConnectors, maxConnectors + 1);
+            int count = Random.Range(minConnectors, maxConnectors + 1);
             bool justTurned = false;
-            var  segPath    = new List<Vector3>();
+            var segPath = new List<Vector3>();
 
             for (int i = 0; i < count; i++)
             {
-                var cubeGO    = Snap(cubePrefab, fromPort);
+                var cubeGO = Snap(cubePrefab, fromPort);
                 var cubePiece = cubeGO.GetComponent<DungeonPiece>();
 
                 Vector3Int cell = WorldToCell(cubeGO.transform.position);
@@ -105,7 +106,7 @@ public class DungeonGenerator : MonoBehaviour
                 occupiedCells.Add(cell);
                 segPath.Add(cubeGO.transform.position);
 
-                Transform exitPort  = null;
+                Transform exitPort = null;
                 bool actuallyTurned = false;
 
                 if (i >= 3 && !justTurned && Random.value < turnChance)
@@ -127,9 +128,9 @@ public class DungeonGenerator : MonoBehaviour
                 fromPort = exitPort;
             }
 
-            nextSegment:
+        nextSegment:
             if (segPath.Count > 0) corridorPaths.Add(segPath);
-            var roundGO      = Snap(roundPrefab, fromPort);
+            var roundGO = Snap(roundPrefab, fromPort);
             Vector3Int roundCell = WorldToCell(roundGO.transform.position);
             if (occupiedCells.Contains(roundCell) || TooCloseToPlatform(roundCell))
             {
@@ -185,7 +186,7 @@ public class DungeonGenerator : MonoBehaviour
 
     private GameObject Snap(GameObject prefab, Transform fromPort)
     {
-        var go    = Instantiate(prefab, Vector3.zero, Quaternion.identity);
+        var go = Instantiate(prefab, Vector3.zero, Quaternion.identity);
         spawned.Add(go);
 
         var piece = go.GetComponent<DungeonPiece>();
@@ -194,11 +195,11 @@ public class DungeonGenerator : MonoBehaviour
         var free = piece.GetFreePorts();
         if (free.Count == 0) return go;
 
-        Transform attachPort   = free[0];
+        Transform attachPort = free[0];
         piece.MarkConnected(attachPort);
 
-        Quaternion desiredRot  = Quaternion.LookRotation(-fromPort.forward, Vector3.up);
-        go.transform.rotation  = desiredRot * Quaternion.Inverse(attachPort.localRotation);
+        Quaternion desiredRot = Quaternion.LookRotation(-fromPort.forward, Vector3.up);
+        go.transform.rotation = desiredRot * Quaternion.Inverse(attachPort.localRotation);
         go.transform.position += fromPort.position - attachPort.position;
 
         return go;
@@ -207,19 +208,19 @@ public class DungeonGenerator : MonoBehaviour
     private bool TooCloseToPlatform(Vector3Int cell)
     {
         for (int x = -platformClearance; x <= platformClearance; x++)
-        for (int z = -platformClearance; z <= platformClearance; z++)
-        {
-            if (x == 0 && z == 0) continue;
-            if (platformCells.Contains(new Vector3Int(cell.x + x, cell.y, cell.z + z)))
-                return true;
-        }
+            for (int z = -platformClearance; z <= platformClearance; z++)
+            {
+                if (x == 0 && z == 0) continue;
+                if (platformCells.Contains(new Vector3Int(cell.x + x, cell.y, cell.z + z)))
+                    return true;
+            }
         return false;
     }
 
     private Transform GetOppositePort(DungeonPiece piece, Transform fromPort)
     {
-        Transform best    = null;
-        float     bestDot = -2f;
+        Transform best = null;
+        float bestDot = -2f;
         foreach (var p in piece.GetFreePorts())
         {
             float dot = Vector3.Dot(p.forward, fromPort.forward);
@@ -261,7 +262,7 @@ public class DungeonGenerator : MonoBehaviour
         for (int i = 0; i < path.Count - 1; i++)
             totalLen += Vector3.Distance(path[i], path[i + 1]);
 
-        float span        = (coinsPerCorridor - 1) * coinSpacing;
+        float span = (coinsPerCorridor - 1) * coinSpacing;
         float startOffset = Mathf.Max(0f, (totalLen - span) * 0.5f); // центрируем
 
         // Вспомогательная функция: получить позицию на дистанции d от начала пути
@@ -280,8 +281,8 @@ public class DungeonGenerator : MonoBehaviour
 
         for (int c = 0; c < coinsPerCorridor; c++)
         {
-            float   dist = startOffset + c * coinSpacing;
-            Vector3 pos  = PointAtDistance(dist);
+            float dist = startOffset + c * coinSpacing;
+            Vector3 pos = PointAtDistance(dist);
             pos.y += coinHeight;
             spawned.Add(Instantiate(coinPrefab, pos, Quaternion.identity));
         }
@@ -295,9 +296,9 @@ public class DungeonGenerator : MonoBehaviour
         {
             var prefab = envPrefabs[Random.Range(0, envPrefabs.Length)];
             if (prefab == null) continue;
-            Vector2 r   = Random.insideUnitCircle * envRadius;
+            Vector2 r = Random.insideUnitCircle * envRadius;
             Vector3 pos = center + new Vector3(r.x, 5f, r.y);
-            float   yRot = Random.Range(0f, 360f);
+            float yRot = Random.Range(0f, 360f);
             spawned.Add(Instantiate(prefab, pos, Quaternion.Euler(0f, yRot, 0f)));
         }
     }
@@ -311,7 +312,7 @@ public class DungeonGenerator : MonoBehaviour
         int count = Random.Range(minEnemies, maxEnemies + 1);
         for (int i = 0; i < count; i++)
         {
-            Vector2 r   = Random.insideUnitCircle;
+            Vector2 r = Random.insideUnitCircle;
             Vector3 pos = center + new Vector3(r.x, 1f, r.y);
             if (NavMesh.SamplePosition(pos, out NavMeshHit hit, 4f, NavMesh.AllAreas))
                 pos = hit.position;
