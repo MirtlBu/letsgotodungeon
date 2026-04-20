@@ -5,6 +5,7 @@ public class BuffDefinition : ScriptableObject
 {
     public string buffName;
     public Sprite icon;
+    public GameObject vfxPrefab; // visual effects object spawned on player while buff is active
     public StatType statType;
 
     [Header("Effect")]

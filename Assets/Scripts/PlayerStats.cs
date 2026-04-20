@@ -8,11 +8,14 @@ public class ActiveBuff
 {
     public BuffDefinition definition;
     public float timeRemaining;
+    public GameObject vfxInstance; // spawned vfx object, destroyed when buff expires
 }
 
 public class PlayerStats : MonoBehaviour
 {
     public static PlayerStats Instance { get; private set; }
+
+    [SerializeField] private Transform vfxAnchor; // empty child GO on player at desired VFX position
 
     private Stats stats;
     private readonly List<ActiveBuff> activeBuffs = new();
@@ -31,11 +34,20 @@ public class PlayerStats : MonoBehaviour
 
     void Update()
     {
+        Transform anchor = vfxAnchor != null ? vfxAnchor : transform;
         for (int i = activeBuffs.Count - 1; i >= 0; i--)
         {
             activeBuffs[i].timeRemaining -= Time.deltaTime;
             if (activeBuffs[i].timeRemaining <= 0f)
+            {
+                if (activeBuffs[i].vfxInstance != null)
+                    Destroy(activeBuffs[i].vfxInstance);
                 activeBuffs.RemoveAt(i);
+            }
+            else if (activeBuffs[i].vfxInstance != null)
+            {
+                activeBuffs[i].vfxInstance.transform.position = anchor.position;
+            }
         }
     }
 
@@ -49,9 +61,19 @@ public class PlayerStats : MonoBehaviour
 
         var existing = activeBuffs.Find(b => b.definition.statType == buff.statType);
         if (existing != null)
+        {
             existing.timeRemaining = buff.duration;
+        }
         else
-            activeBuffs.Add(new ActiveBuff { definition = buff, timeRemaining = buff.duration });
+        {
+            GameObject vfxInst = null;
+            if (buff.vfxPrefab != null)
+            {
+                Transform anchor = vfxAnchor != null ? vfxAnchor : transform;
+                vfxInst = Instantiate(buff.vfxPrefab, anchor.position, Quaternion.identity);
+            }
+            activeBuffs.Add(new ActiveBuff { definition = buff, timeRemaining = buff.duration, vfxInstance = vfxInst });
+        }
     }
 
     private float ComputeStat(StatType type, float baseValue)
