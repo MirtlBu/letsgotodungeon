@@ -19,7 +19,7 @@ public class Portal : InteractionZone
             if (Physics.Raycast(origin, Vector3.down, out RaycastHit hit, 10f, Physics.AllLayers, QueryTriggerInteraction.Ignore))
             {
 
-                pos.y = hit.point.y + 1.5f;
+                pos.y = hit.point.y + 0.5f;
             }
             return pos;
         }

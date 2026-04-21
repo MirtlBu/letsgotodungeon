@@ -136,7 +136,7 @@ MonoBehaviour:
   aggroRadius: 3
   attackRadius: 2
   rotationSpeed: 0.5
-  coinReward: 5
+  coinReward: 20
   knockbackForce: 5
   knockbackDuration: 0.05
   knockbackDelay: 0.3
@@ -197,8 +197,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Stats
   maxHealth: 1
   speed: 5
-  damage: 50
-  attackCooldown: 3
+  damage: 100
+  attackCooldown: 2.5
   critChance: 0.3
   critMultiplier: 2
   backstabAngle: 180

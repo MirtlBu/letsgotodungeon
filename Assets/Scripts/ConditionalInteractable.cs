@@ -43,17 +43,27 @@ public class ConditionalInteractable : InteractionZone
     [SerializeField] private bool destroyOnSuccess = false;
     [SerializeField] private GameObject objectToDestroyOnSuccess; // уничтожается после баллона
     [SerializeField] private GameObject objectToHideImmediately;  // скрывается сразу (SetActive false)
+    [SerializeField] private bool oneShot = false;
+    [SerializeField] [TextArea(1, 2)] private string usedText = "Nothing more here...";
 
     private bool pendingDestroy;
     private bool pendingShowWeapon;
+    private bool used;
 
     protected override void OnInteract()
     {
+        if (used)
+        {
+            ShowResultTimed(usedText);
+            return;
+        }
+
         if (CheckCondition())
         {
             GiveReward();
             onSuccess?.Invoke();
             ShowResultTimed(successText, 2f);
+            if (oneShot) used = true;
             if (destroyOnSuccess) pendingDestroy = true;
         }
         else
