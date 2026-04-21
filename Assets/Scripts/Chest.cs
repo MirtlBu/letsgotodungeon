@@ -1,24 +1,20 @@
 using UnityEngine;
 
-public class Chest : InteractionZone
+// Только анимация открытия. Вызывается через ConditionalInteractable → On Success.
+public class Chest : MonoBehaviour
 {
     private Animator animator;
     private bool opened;
 
-    void Start()
+    void Awake()
     {
         animator = GetComponent<Animator>();
     }
 
-    protected override void OnInteract()
+    public void Open()
     {
         if (opened) return;
         opened = true;
-
         animator?.SetTrigger("open");
-
-        var player = GameObject.FindWithTag("Player");
-        if (player == null) return;
-        player.GetComponent<HealthSystem>()?.Heal(float.MaxValue);
     }
 }

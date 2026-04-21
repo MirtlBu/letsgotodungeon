@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2567213960162147341}
   - component: {fileID: 5076004283779466348}
   m_Layer: 0
-  m_Name: long_particles
+  m_Name: heal_long_particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

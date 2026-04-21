@@ -368,7 +368,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bad45721c09e4ac8a5c2fef981e65a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
-  vfxAnchor: {fileID: 0}
 --- !u!114 &3176873577253236757
 MonoBehaviour:
   m_ObjectHideFlags: 0

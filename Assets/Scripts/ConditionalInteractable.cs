@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public enum InteractConditionType
 {
@@ -35,6 +36,9 @@ public class ConditionalInteractable : InteractionZone
     [SerializeField] private BuffDefinition rewardBuff;     // для ApplyBuff
     [SerializeField] private int rewardCoins;               // для GiveCoins
 
+    [Header("On Success")]
+    [SerializeField] private UnityEvent onSuccess;
+
     [Header("One-time")]
     [SerializeField] private bool destroyOnSuccess = false;
     [SerializeField] private GameObject objectToDestroyOnSuccess; // уничтожается после баллона
@@ -48,6 +52,7 @@ public class ConditionalInteractable : InteractionZone
         if (CheckCondition())
         {
             GiveReward();
+            onSuccess?.Invoke();
             ShowResultTimed(successText, 2f);
             if (destroyOnSuccess) pendingDestroy = true;
         }
