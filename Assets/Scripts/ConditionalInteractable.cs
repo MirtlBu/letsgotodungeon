@@ -37,15 +37,18 @@ public class ConditionalInteractable : InteractionZone
 
     [Header("One-time")]
     [SerializeField] private bool destroyOnSuccess = false;
+    [SerializeField] private GameObject objectToDestroyOnSuccess; // уничтожается после баллона
+    [SerializeField] private GameObject objectToHideImmediately;  // скрывается сразу (SetActive false)
 
     private bool pendingDestroy;
+    private bool pendingShowWeapon;
 
     protected override void OnInteract()
     {
         if (CheckCondition())
         {
             GiveReward();
-            ShowResultTimed(successText);
+            ShowResultTimed(successText, 2f);
             if (destroyOnSuccess) pendingDestroy = true;
         }
         else
@@ -56,9 +59,14 @@ public class ConditionalInteractable : InteractionZone
 
     protected override void OnResultHidden()
     {
-        if (!pendingDestroy) return;
+        if (!pendingDestroy && !pendingShowWeapon) return;
         InteractionUI.Instance?.Hide();
-        Destroy(gameObject);
+        if (pendingDestroy) Destroy(gameObject);
+        if (pendingShowWeapon)
+        {
+            pendingShowWeapon = false;
+            GameObject.FindWithTag("Player")?.GetComponent<WeaponVisibility>()?.SetAlwaysVisible();
+        }
     }
 
     private bool CheckCondition()
@@ -72,12 +80,10 @@ public class ConditionalInteractable : InteractionZone
                 return PlayerInventory.Instance != null && PlayerInventory.Instance.HasSword;
 
             case InteractConditionType.HasActiveBuff:
-                // Проверяем есть ли активный бафф на нужный стат
-                // (PlayerStats не открывает список напрямую, проверяем через ComputeStat)
                 if (requiredBuff == null || PlayerStats.Instance == null) return false;
-                float computed = GetStatValue(requiredBuff.statType);
-                float baseVal  = GetBaseStatValue(requiredBuff.statType);
-                return computed > baseVal;
+                foreach (var b in PlayerStats.Instance.ActiveBuffs)
+                    if (b.definition == requiredBuff) return true;
+                return false;
 
             case InteractConditionType.QuestCompleted:
                 if (requiredQuest == null || QuestManager.Instance == null) return false;
@@ -95,6 +101,8 @@ public class ConditionalInteractable : InteractionZone
         {
             case InteractRewardType.GiveSword:
                 PlayerInventory.Instance?.GiveSword();
+                pendingShowWeapon = true; // меч в руках появится только после скрытия game_sword
+                if (objectToHideImmediately != null) objectToHideImmediately.SetActive(false);
                 break;
             case InteractRewardType.ApplyBuff:
                 if (rewardBuff != null) PlayerStats.Instance?.ApplyBuff(rewardBuff);
@@ -105,32 +113,4 @@ public class ConditionalInteractable : InteractionZone
         }
     }
 
-    // ─── Helpers для проверки HasActiveBuff ───────────────────
-
-    private float GetStatValue(StatType type)
-    {
-        if (PlayerStats.Instance == null) return 0f;
-        return type switch
-        {
-            StatType.Speed          => PlayerStats.Instance.Speed,
-            StatType.Damage         => PlayerStats.Instance.Damage,
-            StatType.CritChance     => PlayerStats.Instance.CritChance,
-            StatType.CritMultiplier => PlayerStats.Instance.CritMultiplier,
-            _ => 0f
-        };
-    }
-
-    private float GetBaseStatValue(StatType type)
-    {
-        var stats = GetComponentInParent<Stats>() ?? FindObjectOfType<Stats>();
-        if (stats == null) return 0f;
-        return type switch
-        {
-            StatType.Speed          => stats.speed,
-            StatType.Damage         => stats.damage,
-            StatType.CritChance     => stats.critChance,
-            StatType.CritMultiplier => stats.critMultiplier,
-            _ => 0f
-        };
-    }
 }

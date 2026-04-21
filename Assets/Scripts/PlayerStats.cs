@@ -15,8 +15,6 @@ public class PlayerStats : MonoBehaviour
 {
     public static PlayerStats Instance { get; private set; }
 
-    [SerializeField] private Transform vfxAnchor; // empty child GO on player at desired VFX position
-
     private Stats stats;
     private readonly List<ActiveBuff> activeBuffs = new();
     public IReadOnlyList<ActiveBuff> ActiveBuffs => activeBuffs;
@@ -34,7 +32,6 @@ public class PlayerStats : MonoBehaviour
 
     void Update()
     {
-        Transform anchor = vfxAnchor != null ? vfxAnchor : transform;
         for (int i = activeBuffs.Count - 1; i >= 0; i--)
         {
             activeBuffs[i].timeRemaining -= Time.deltaTime;
@@ -46,7 +43,7 @@ public class PlayerStats : MonoBehaviour
             }
             else if (activeBuffs[i].vfxInstance != null)
             {
-                activeBuffs[i].vfxInstance.transform.position = anchor.position;
+                activeBuffs[i].vfxInstance.transform.position = transform.position;
             }
         }
     }
@@ -68,10 +65,7 @@ public class PlayerStats : MonoBehaviour
         {
             GameObject vfxInst = null;
             if (buff.vfxPrefab != null)
-            {
-                Transform anchor = vfxAnchor != null ? vfxAnchor : transform;
-                vfxInst = Instantiate(buff.vfxPrefab, anchor.position, Quaternion.identity);
-            }
+                vfxInst = Instantiate(buff.vfxPrefab, transform.position, Quaternion.identity);
             activeBuffs.Add(new ActiveBuff { definition = buff, timeRemaining = buff.duration, vfxInstance = vfxInst });
         }
     }

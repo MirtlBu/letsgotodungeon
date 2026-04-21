@@ -7024,11 +7024,13 @@ MonoBehaviour:
   requiredBuff: {fileID: 11400000, guid: 738ecac91b19c46458b8a00d70c19494, type: 2}
   requiredQuest: {fileID: 0}
   failText: Seems I don't have the strength to pull it out...
-  successText: I got it!
+  successText: "Wait\u2026 I can pull it out?"
   rewardType: 1
   rewardBuff: {fileID: 0}
   rewardCoins: 0
   destroyOnSuccess: 1
+  objectToDestroyOnSuccess: {fileID: 0}
+  objectToHideImmediately: {fileID: 0}
 --- !u!136 &1390661588
 CapsuleCollider:
   m_ObjectHideFlags: 0

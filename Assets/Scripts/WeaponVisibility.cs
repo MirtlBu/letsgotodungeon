@@ -16,6 +16,7 @@ public class WeaponVisibility : MonoBehaviour
     void Update()
     {
         if (animator == null || weapon == null) return;
+        if (alwaysVisible) return;
         bool isAttacking = animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack");
         if (wasAttacking && !isAttacking)
             weapon.SetActive(false);
@@ -29,4 +30,13 @@ public class WeaponVisibility : MonoBehaviour
         weapon?.SetActive(true);
     }
     public void HideWeapon() => weapon?.SetActive(false);
+
+    // Вызови после получения меча — меч остаётся виден постоянно
+    public void SetAlwaysVisible()
+    {
+        alwaysVisible = true;
+        weapon?.SetActive(true);
+    }
+
+    private bool alwaysVisible;
 }
