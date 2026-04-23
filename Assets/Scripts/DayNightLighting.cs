@@ -19,7 +19,6 @@ public class DayNightLighting : MonoBehaviour
         public Color    groundColor     = new Color(0.3f, 0.25f, 0.2f);
         public Color    sunColor        = Color.white;
         [Range(0f, 2f)] public float    sunIntensity    = 1f;
-        [Range(0f, 1f)] public float    ambientIntensity = 0.5f;
     }
 
     [SerializeField] private LightingPhase[] phases;
@@ -33,6 +32,11 @@ public class DayNightLighting : MonoBehaviour
 
     void OnEnable()
     {
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            enabled = false;
+            return;
+        }
         if (phases != null)
             System.Array.Sort(phases, (a, b) => a.startHour.CompareTo(b.startHour));
         Apply();
@@ -80,12 +84,15 @@ public class DayNightLighting : MonoBehaviour
 
         if (sun != null)
         {
-            // Интенсивность — плавный лерп до следующей фазы
             int   toIdx = (fromIdx + 1) % phases.Length;
             float t     = GetBlend(phase.startHour, phases[toIdx].startHour, hour);
             sun.color     = Color.Lerp(phase.sunColor,     phases[toIdx].sunColor,     t);
             sun.intensity = Mathf.Lerp(phase.sunIntensity, phases[toIdx].sunIntensity, t);
-            RenderSettings.ambientIntensity = Mathf.Lerp(phase.ambientIntensity, phases[toIdx].ambientIntensity, t);
+
+            RenderSettings.ambientMode        = UnityEngine.Rendering.AmbientMode.Trilight;
+            RenderSettings.ambientSkyColor     = Color.Lerp(phase.skyColor,     phases[toIdx].skyColor,     t);
+            RenderSettings.ambientEquatorColor = Color.Lerp(phase.equatorColor, phases[toIdx].equatorColor, t);
+            RenderSettings.ambientGroundColor  = Color.Lerp(phase.groundColor,  phases[toIdx].groundColor,  t);
 
             float sunAngle = (hour / 24f) * 360f - 90f;
             sun.transform.rotation = Quaternion.Euler(sunAngle, sunYaw, 0f);
