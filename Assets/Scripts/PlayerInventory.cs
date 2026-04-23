@@ -6,17 +6,9 @@ public class PlayerInventory : MonoBehaviour
 
     public bool HasSword { get; private set; }
 
-    [Header("Debug")]
-    [SerializeField] private bool debugResetSword = false;
-
     void Awake()
     {
         Instance = this;
-        if (debugResetSword)
-        {
-            PlayerPrefs.DeleteKey("HasSword");
-            PlayerPrefs.Save();
-        }
         HasSword = PlayerPrefs.GetInt("HasSword", 0) == 1;
     }
 

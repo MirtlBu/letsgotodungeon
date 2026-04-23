@@ -7548,8 +7548,9 @@ MonoBehaviour:
   destroyOnSuccess: 1
   objectToDestroyOnSuccess: {fileID: 0}
   objectToHideImmediately: {fileID: 0}
-  oneShot: 0
+  oneShot: 1
   usedText: Nothing more here...
+  persistKey: game_sword
 --- !u!136 &1390661588
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -11313,6 +11314,7 @@ MonoBehaviour:
   objectToHideImmediately: {fileID: 0}
   oneShot: 0
   usedText: Nothing more here...
+  persistKey: 
 --- !u!114 &6346939188350311904 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2443803431041389140, guid: 96a148e72cf3f4fd0b2a32ae0a92c460, type: 3}

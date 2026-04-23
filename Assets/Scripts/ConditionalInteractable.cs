@@ -46,9 +46,19 @@ public class ConditionalInteractable : InteractionZone
     [SerializeField] private bool oneShot = false;
     [SerializeField] [TextArea(1, 2)] private string usedText = "Nothing more here...";
 
+    [Header("Persistent Destroy")]
+    [Tooltip("Если не пусто — при destroyOnSuccess сохраняет этот ключ в PlayerPrefs и не появляется снова никогда")]
+    [SerializeField] private string persistKey = "";
+
     private bool pendingDestroy;
     private bool pendingShowWeapon;
     private bool used;
+
+    void OnEnable()
+    {
+        if (!string.IsNullOrEmpty(persistKey) && PlayerPrefs.GetInt(persistKey, 0) == 1)
+            Destroy(gameObject);
+    }
 
     protected override void OnInteract()
     {
@@ -76,7 +86,15 @@ public class ConditionalInteractable : InteractionZone
     {
         if (!pendingDestroy && !pendingShowWeapon) return;
         InteractionUI.Instance?.Hide();
-        if (pendingDestroy) Destroy(gameObject);
+        if (pendingDestroy)
+        {
+            if (!string.IsNullOrEmpty(persistKey))
+            {
+                PlayerPrefs.SetInt(persistKey, 1);
+                PlayerPrefs.Save();
+            }
+            Destroy(gameObject);
+        }
         if (pendingShowWeapon)
         {
             pendingShowWeapon = false;

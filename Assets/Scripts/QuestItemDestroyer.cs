@@ -14,13 +14,13 @@ public class QuestItemDestroyer : MonoBehaviour
             Destroy(gameObject);
     }
 
-    // Подключи к OnSuccess в ConditionalInteractable
+    // Подключи к OnSuccess в ConditionalInteractable.
+    // Только сохраняет факт сбора — уничтожение объекта делает destroyOnSuccess.
     public void Collect()
     {
         if (string.IsNullOrEmpty(key)) return;
         PlayerPrefs.SetInt(key, 1);
         PlayerPrefs.Save();
-        Destroy(gameObject);
     }
 
     public bool IsCollected() =>
