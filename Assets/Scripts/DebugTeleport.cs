@@ -9,8 +9,17 @@ public class DebugTeleport : MonoBehaviour
 {
     [SerializeField] private string targetPortalId = "overworld";
 
+    [Header("Debug Cheat (Q)")]
+    [SerializeField] private BuffDefinition debugBuff; // перетащи нужный бафф
+
     void Update()
     {
+        if (Keyboard.current.qKey.wasPressedThisFrame && debugBuff != null)
+        {
+            PlayerStats.Instance?.ApplyBuff(debugBuff);
+            Debug.Log("[Debug] Buff applied");
+        }
+
         if (!Keyboard.current.tabKey.wasPressedThisFrame) return;
 
         Portal portal = FindPortal(targetPortalId);

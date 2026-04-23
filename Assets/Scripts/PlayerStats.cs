@@ -27,8 +27,14 @@ public class PlayerStats : MonoBehaviour
 
     void Awake()
     {
-        Instance = this;
         stats = GetComponent<Stats>();
+        if (Instance != null) return; // дубликат — не трогаем живой Instance
+        Instance = this;
+    }
+
+    void OnDestroy()
+    {
+        if (Instance == this) Instance = null;
     }
 
     void Update()

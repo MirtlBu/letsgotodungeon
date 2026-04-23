@@ -9,6 +9,8 @@ public class ShadowPlaneRegistrar : MonoBehaviour
         var controller = FindFirstObjectByType<ShadowController>();
         if (controller != null)
             controller.Register(gameObject);
+
+        
     }
 
     void OnDestroy()

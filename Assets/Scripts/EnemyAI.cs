@@ -229,7 +229,11 @@ public class EnemyAI : MonoBehaviour
         float duration = info.IsName("enemy_dying") ? info.length : 1.5f;
         yield return new WaitForSeconds(duration + 2f);
 
-        Destroy(gameObject);
+        var respawner = GetComponent<EnemyRespawner>();
+        if (respawner != null)
+            respawner.TriggerDeath();
+        else
+            Destroy(gameObject);
     }
 
     void OnDrawGizmosSelected()

@@ -27,6 +27,15 @@ public class ShadowController : MonoBehaviour
         colors = null;
     }
 
+    void Start()
+    {
+        if (player == null)
+        {
+            var go = GameObject.FindWithTag("Player");
+            if (go != null) player = go.transform;
+        }
+    }
+
     void Update()
     {
         if (shadowPlane == null || player == null || mesh == null) return;

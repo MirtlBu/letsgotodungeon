@@ -91,6 +91,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ec1a2f92b928640ebb21a70a8cad33b2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4667032783459209408}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ec1a2f92b928640ebb21a70a8cad33b2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -5919444125635648023}
   m_SourcePrefab: {fileID: 100100000, guid: ec1a2f92b928640ebb21a70a8cad33b2, type: 3}
 --- !u!1 &2377721527627374052 stripped
 GameObject:
@@ -202,3 +205,15 @@ MonoBehaviour:
   critChance: 0.3
   critMultiplier: 2
   backstabAngle: 180
+--- !u!114 &-5919444125635648023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2377721527627374052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cd4e26121f6f472aae3920675e7925b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyRespawner
