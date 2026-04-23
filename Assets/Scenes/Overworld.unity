@@ -15,18 +15,18 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
   m_Fog: 0
-  m_FogColor: {r: 0.12091216, g: 0.04209684, b: 0.20754719, a: 1}
+  m_FogColor: {r: 0, g: 0, b: 0, a: 0}
   m_FogMode: 3
   m_FogDensity: 0
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.9221513, g: 0.82959294, b: 0.32830516, a: 1}
+  m_AmbientSkyColor: {r: 0.7059052, g: 0.33333334, b: 0.7921569, a: 0}
   m_AmbientEquatorColor: {r: 1.1340392, g: 0.7571484, b: 0.4011931, a: 1}
   m_AmbientGroundColor: {r: 0.07772846, g: 0.8724092, b: 1.4980392, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 1
   m_SubtractiveShadowColor: {r: 0.09019608, g: 0.9137255, b: 0.84588015, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 12ccb828343c3405fb94289774b51aad, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: b2c257d201f0a4367b983180ad4eb01b, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -3427,6 +3427,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1055836258}
   - component: {fileID: 1055836257}
+  - component: {fileID: 1055836259}
   m_Layer: 0
   m_Name: GameClock
   m_TagString: Untagged
@@ -3446,7 +3447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf068c32976394585b527738066fbe47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameClock
-  TimeScale: 1
+  TimeScale: 40.6
   OnHourChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3468,6 +3469,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1055836259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1055836256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71dc99bd6500f487a928c676198e608f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DayNightLighting
+  phases:
+  - name: night
+    startHour: 0
+    skybox: {fileID: 2100000, guid: dc2984f00f15c44f6a112358bc1d6bd5, type: 2}
+    sunIntensity: 0.1
+  - name: morning
+    startHour: 5
+    skybox: {fileID: 2100000, guid: 088a8f0f1612d4564968d5d3e2abda16, type: 2}
+    sunIntensity: 1
+  - name: day
+    startHour: 12
+    skybox: {fileID: 2100000, guid: ea1836890e9674cb7ba5f25d55f1eaa5, type: 2}
+    sunIntensity: 2
+  - name: evening
+    startHour: 18
+    skybox: {fileID: 2100000, guid: b2c257d201f0a4367b983180ad4eb01b, type: 2}
+    sunIntensity: 1
+  sun: {fileID: 1634738792}
+  sunYaw: 95
+  previewHour: 22.9
 --- !u!4 &1055894160 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1018590895025301941, guid: 837c2d9b472964d72b509e7fdfd75693, type: 3}
@@ -5765,8 +5798,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 12
   m_Type: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 0.8773585, g: 0.77057403, b: 0.10346207, a: 0}
+  m_Intensity: 0.26500005
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -5828,7 +5861,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1634738790}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7244977, y: -0, z: -0, w: 0.6892773}
+  m_LocalRotation: {x: 0.5413193, y: -0.4411311, z: -0.59074634, w: -0.40422216}
   m_LocalPosition: {x: -91.478325, y: 8.580001, z: -1.197712}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
