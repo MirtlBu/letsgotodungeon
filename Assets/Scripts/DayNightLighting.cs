@@ -23,6 +23,7 @@ public class DayNightLighting : MonoBehaviour
 
     [SerializeField] private LightingPhase[] phases;
     [SerializeField] private Light sun;
+    [SerializeField] private Renderer skyPlane;
 
     [Tooltip("Горизонтальный угол солнца (Y). 0 = север, 90 = восток")]
     [SerializeField] [Range(0f, 360f)] private float sunYaw = 45f;
@@ -96,6 +97,14 @@ public class DayNightLighting : MonoBehaviour
 
             float sunAngle = (hour / 24f) * 360f - 90f;
             sun.transform.rotation = Quaternion.Euler(sunAngle, sunYaw, 0f);
+        }
+
+        if (skyPlane != null)
+        {
+            int   ni = (fromIdx + 1) % phases.Length;
+            float nt = GetBlend(phase.startHour, phases[ni].startHour, hour);
+            skyPlane.material.SetColor("_TopColor",    Color.Lerp(phase.skyColor,     phases[ni].skyColor,     nt));
+            skyPlane.material.SetColor("_BottomColor", Color.Lerp(phase.equatorColor, phases[ni].equatorColor, nt));
         }
     }
 
