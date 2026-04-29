@@ -14,6 +14,12 @@ public class QuestItemDestroyer : MonoBehaviour
             Destroy(gameObject);
     }
 
+    void OnEnable()
+    {
+        if (IsCollected())
+            Destroy(gameObject);
+    }
+
     // Подключи к OnSuccess в ConditionalInteractable.
     // Только сохраняет факт сбора — уничтожение объекта делает destroyOnSuccess.
     public void Collect()

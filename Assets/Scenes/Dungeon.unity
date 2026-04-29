@@ -6368,7 +6368,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   destroyOnSuccess: 1
-  objectToDestroyOnSuccess: {fileID: 0}
+  objectToDestroyOnSuccess: {fileID: 1390661586}
   objectToHideImmediately: {fileID: 0}
   oneShot: 1
   usedText: Nothing more here...

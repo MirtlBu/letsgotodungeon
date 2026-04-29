@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: sky_background
+  m_Name: sky_background_overworld
   m_Shader: {fileID: -6465566751694194690, guid: f6bb1757748e54bfe9a5fb263c23a3b8, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -117,11 +117,11 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 0.5235849, g: 0.82092226, b: 1, a: 1}
-    - _BottomColor: {r: 0.6179245, g: 0.9148064, b: 1, a: 1}
+    - _BottomColor: {r: 0.97212976, g: 0.9471008, b: 0.731859, a: 1}
     - _Color: {r: 0.52358484, g: 0.82092226, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _TopColor: {r: 0.087842636, g: 0.6758339, b: 0.8867924, a: 1}
+    - _TopColor: {r: 0.12982987, g: 0.761655, b: 0.9463263, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &6571966833759566847

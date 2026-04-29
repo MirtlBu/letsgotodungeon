@@ -10,7 +10,15 @@ public class WeaponVisibility : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        weapon?.SetActive(false);
+        if (PlayerInventory.Instance != null && PlayerInventory.Instance.HasSword)
+        {
+            alwaysVisible = true;
+            weapon?.SetActive(true);
+        }
+        else
+        {
+            weapon?.SetActive(false);
+        }
     }
 
     void Update()

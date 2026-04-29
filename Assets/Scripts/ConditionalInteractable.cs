@@ -54,8 +54,14 @@ public class ConditionalInteractable : InteractionZone
     private bool pendingShowWeapon;
     private bool used;
 
-    void OnEnable()
+    void Start()
     {
+        // If this is game_sword and the player already has the sword — destroy immediately
+        if (rewardType == InteractRewardType.GiveSword && PlayerPrefs.GetInt("HasSword", 0) == 1)
+        {
+            Destroy(gameObject);
+            return;
+        }
         if (!string.IsNullOrEmpty(persistKey) && PlayerPrefs.GetInt(persistKey, 0) == 1)
             Destroy(gameObject);
     }
