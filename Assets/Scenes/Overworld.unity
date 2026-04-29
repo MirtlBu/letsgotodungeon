@@ -2518,6 +2518,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 579076629}
+  - {fileID: 464337953}
   m_Father: {fileID: 1200183457}
   m_LocalEulerAnglesHint: {x: 30, y: 45, z: 0}
 --- !u!114 &330585547
@@ -3585,6 +3586,119 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &464337952
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 464337953}
+  - component: {fileID: 464337956}
+  - component: {fileID: 464337955}
+  - component: {fileID: 464337954}
+  m_Layer: 0
+  m_Name: sky_background_dungeon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &464337953
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464337952}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.0047995895, y: -0.49997693, z: 0.8659856, w: 0.008313149}
+  m_LocalPosition: {x: 0.07, y: -0.01, z: 539.58}
+  m_LocalScale: {x: 3, y: 0.855, z: 1.98}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 330585546}
+  m_LocalEulerAnglesHint: {x: 90, y: -133.9, z: 0}
+--- !u!64 &464337954
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464337952}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &464337955
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464337952}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 0
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a1ad000900d9e42f6b99689890347e0f, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &464337956
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464337952}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &490543361
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4601,7 +4715,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1209966943}
+  - {fileID: 2072710340}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8744,6 +8858,87 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4294095667257945379, guid: 4a565db5334244e528805081ee14fff5, type: 3}
   m_PrefabInstance: {fileID: 1578248995}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &952747412
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 952747414}
+  - component: {fileID: 952747413}
+  m_Layer: 0
+  m_Name: SceneLighting
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &952747413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952747412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71dc99bd6500f487a928c676198e608f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DayNightLighting
+  phases:
+  - name: night
+    startHour: 0
+    skybox: {fileID: 2100000, guid: 1cc6e6796f833a94f94e6d794ca654c3, type: 2}
+    skyColor: {r: 0.037019268, g: 0.009211458, b: 0.21698111, a: 1}
+    equatorColor: {r: 0, g: 0.1794597, b: 0.254717, a: 1}
+    groundColor: {r: 0.2, g: 0.20970935, b: 0.29803923, a: 1}
+    sunColor: {r: 0.043569524, g: 0.027589884, b: 0.18867922, a: 1}
+    sunIntensity: 0.3
+  - name: morning
+    startHour: 6
+    skybox: {fileID: 2100000, guid: 7c86d4abbd33b564b9e773aceadb8572, type: 2}
+    skyColor: {r: 0.47450984, g: 0.5892235, b: 1, a: 1}
+    equatorColor: {r: 1, g: 0.88001883, b: 0.5518868, a: 1}
+    groundColor: {r: 0.3, g: 0.25, b: 0.2, a: 1}
+    sunColor: {r: 1, g: 0.74389744, b: 0.43867922, a: 1}
+    sunIntensity: 2
+  - name: day
+    startHour: 12
+    skybox: {fileID: 2100000, guid: 12ccb828343c3405fb94289774b51aad, type: 2}
+    skyColor: {r: 0.10196078, g: 0.79339576, b: 0.9529412, a: 1}
+    equatorColor: {r: 0.96903306, g: 1, b: 0.76862746, a: 1}
+    groundColor: {r: 0.3, g: 0.25, b: 0.2, a: 1}
+    sunColor: {r: 1, g: 0.6725162, b: 0.19339621, a: 1}
+    sunIntensity: 2
+  - name: evening
+    startHour: 18
+    skybox: {fileID: 2100000, guid: 44d0573bf6d91e447b62f3aff840f2ae, type: 2}
+    skyColor: {r: 0.38065147, g: 0.47598818, b: 0.8867924, a: 1}
+    equatorColor: {r: 1, g: 0.4710085, b: 0.4009434, a: 1}
+    groundColor: {r: 0.3, g: 0.25, b: 0.2, a: 1}
+    sunColor: {r: 1, g: 0.7137255, b: 0.37254903, a: 1}
+    sunIntensity: 2
+  sun: {fileID: 1634738792}
+  skyPlane: {fileID: 579076627}
+  sunYaw: 131
+  previewHour: 12.6
+--- !u!4 &952747414
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952747412}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &956266850
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10330,7 +10525,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1055836258}
   - component: {fileID: 1055836257}
-  - component: {fileID: 1055836259}
   m_Layer: 0
   m_Name: GameClock
   m_TagString: Untagged
@@ -10372,55 +10566,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1055836259
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1055836256}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71dc99bd6500f487a928c676198e608f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DayNightLighting
-  phases:
-  - name: night
-    startHour: 0
-    skybox: {fileID: 2100000, guid: 1cc6e6796f833a94f94e6d794ca654c3, type: 2}
-    skyColor: {r: 0.037019268, g: 0.009211458, b: 0.21698111, a: 1}
-    equatorColor: {r: 0, g: 0.1794597, b: 0.254717, a: 1}
-    groundColor: {r: 0.2, g: 0.20970935, b: 0.29803923, a: 1}
-    sunColor: {r: 0.043569524, g: 0.027589884, b: 0.18867922, a: 1}
-    sunIntensity: 0.3
-  - name: morning
-    startHour: 6
-    skybox: {fileID: 2100000, guid: 7c86d4abbd33b564b9e773aceadb8572, type: 2}
-    skyColor: {r: 0.47450984, g: 0.5892235, b: 1, a: 1}
-    equatorColor: {r: 1, g: 0.88001883, b: 0.5518868, a: 1}
-    groundColor: {r: 0.3, g: 0.25, b: 0.2, a: 1}
-    sunColor: {r: 1, g: 0.74389744, b: 0.43867922, a: 1}
-    sunIntensity: 2
-  - name: day
-    startHour: 12
-    skybox: {fileID: 2100000, guid: 12ccb828343c3405fb94289774b51aad, type: 2}
-    skyColor: {r: 0.10196078, g: 0.79339576, b: 0.9529412, a: 1}
-    equatorColor: {r: 0.96903306, g: 1, b: 0.76862746, a: 1}
-    groundColor: {r: 0.3, g: 0.25, b: 0.2, a: 1}
-    sunColor: {r: 1, g: 0.6725162, b: 0.19339621, a: 1}
-    sunIntensity: 2
-  - name: evening
-    startHour: 18
-    skybox: {fileID: 2100000, guid: 44d0573bf6d91e447b62f3aff840f2ae, type: 2}
-    skyColor: {r: 0.38065147, g: 0.47598818, b: 0.8867924, a: 1}
-    equatorColor: {r: 1, g: 0.4710085, b: 0.4009434, a: 1}
-    groundColor: {r: 0.3, g: 0.25, b: 0.2, a: 1}
-    sunColor: {r: 1, g: 0.7137255, b: 0.37254903, a: 1}
-    sunIntensity: 2
-  sun: {fileID: 1634738792}
-  skyPlane: {fileID: 579076627}
-  sunYaw: 131
-  previewHour: 12.6
 --- !u!1001 &1060214098
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11610,6 +11755,7 @@ GameObject:
   - component: {fileID: 1200183457}
   - component: {fileID: 1200183458}
   - component: {fileID: 1200183459}
+  - component: {fileID: 1200183460}
   m_Layer: 0
   m_Name: camera
   m_TagString: Untagged
@@ -11665,6 +11811,20 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   shadowRadius: 20
+--- !u!114 &1200183460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200183456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d96f44cce231464798f8c63a503dee4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkyBackgroundSwitcher
+  overworldSky: {fileID: 579076625}
+  dungeonSky: {fileID: 464337952}
 --- !u!1 &1200314475
 GameObject:
   m_ObjectHideFlags: 0
@@ -11797,144 +11957,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4145714917553634392, guid: c86ab1956bd3242269a3640dbd5c8358, type: 3}
   m_PrefabInstance: {fileID: 21902353}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &1209966943
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: sky_background (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
-    (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
-    (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
-    (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
-    (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
-    (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
-    (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
-    (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
-    (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
-    (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
-    (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
-    (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
-    (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
-    (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
-    (Instance) (Instance) (Instance) (Instance) (Instance)
-  m_Shader: {fileID: -6465566751694194690, guid: f6bb1757748e54bfe9a5fb263c23a3b8, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses:
-  - MOTIONVECTORS
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _BaseMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _BumpMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailAlbedoMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailMask:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailNormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _EmissionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _OcclusionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _ParallaxMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SpecGlossMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_Lightmaps:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_LightmapsInd:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_ShadowMasks:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _AddPrecomputedVelocity: 0
-    - _AlphaClip: 0
-    - _AlphaToMask: 0
-    - _Blend: 0
-    - _BlendModePreserveSpecular: 1
-    - _BumpScale: 1
-    - _ClearCoatMask: 0
-    - _ClearCoatSmoothness: 0
-    - _Cull: 2
-    - _Cutoff: 0.5
-    - _DetailAlbedoMapScale: 1
-    - _DetailNormalMapScale: 1
-    - _DstBlend: 0
-    - _DstBlendAlpha: 0
-    - _EnvironmentReflections: 1
-    - _GlossMapScale: 0
-    - _Glossiness: 0
-    - _GlossyReflections: 0
-    - _Metallic: 0
-    - _OcclusionStrength: 1
-    - _Parallax: 0.005
-    - _QueueControl: 0
-    - _QueueOffset: 0
-    - _ReceiveShadows: 1
-    - _Smoothness: 0
-    - _SmoothnessTextureChannel: 0
-    - _SpecularHighlights: 1
-    - _SrcBlend: 1
-    - _SrcBlendAlpha: 1
-    - _Surface: 0
-    - _WorkflowMode: 1
-    - _XRMotionVectorsPass: 1
-    - _ZWrite: 1
-    m_Colors:
-    - _BaseColor: {r: 0.5235849, g: 0.82092226, b: 1, a: 1}
-    - _BottomColor: {r: 0.97212976, g: 0.9471008, b: 0.731859, a: 1}
-    - _Color: {r: 0.023495909, g: 0.027023554, b: 0.1509434, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _TopColor: {r: 0.12982987, g: 0.761655, b: 0.9463263, a: 1}
-  m_BuildTextureStacks: []
-  m_AllowLocking: 1
 --- !u!4 &1217538393 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 459073596370223712, guid: fe7ed92ad5b7243dda6f1b9d27d1b4c9, type: 3}
@@ -20748,6 +20770,145 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 459073596370223712, guid: 6b4521f1a6985431d8720048dcffaa8a, type: 3}
   m_PrefabInstance: {fileID: 971777133}
   m_PrefabAsset: {fileID: 0}
+--- !u!21 &2072710340
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: sky_background (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
+    (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
+    (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
+    (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
+    (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
+    (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
+    (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
+    (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
+    (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
+    (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
+    (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
+    (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
+    (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
+    (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
+    (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
+    (Instance)
+  m_Shader: {fileID: -6465566751694194690, guid: f6bb1757748e54bfe9a5fb263c23a3b8, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AddPrecomputedVelocity: 0
+    - _AlphaClip: 0
+    - _AlphaToMask: 0
+    - _Blend: 0
+    - _BlendModePreserveSpecular: 1
+    - _BumpScale: 1
+    - _ClearCoatMask: 0
+    - _ClearCoatSmoothness: 0
+    - _Cull: 2
+    - _Cutoff: 0.5
+    - _DetailAlbedoMapScale: 1
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _DstBlendAlpha: 0
+    - _EnvironmentReflections: 1
+    - _GlossMapScale: 0
+    - _Glossiness: 0
+    - _GlossyReflections: 0
+    - _Metallic: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.005
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _ReceiveShadows: 1
+    - _Smoothness: 0
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _SrcBlendAlpha: 1
+    - _Surface: 0
+    - _WorkflowMode: 1
+    - _XRMotionVectorsPass: 1
+    - _ZWrite: 1
+    m_Colors:
+    - _BaseColor: {r: 0.5235849, g: 0.82092226, b: 1, a: 1}
+    - _BottomColor: {r: 0.97212976, g: 0.9471008, b: 0.731859, a: 1}
+    - _Color: {r: 0.023495909, g: 0.027023554, b: 0.1509434, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _TopColor: {r: 0.12982987, g: 0.761655, b: 0.9463263, a: 1}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
 --- !u!1001 &2072718666
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21787,3 +21948,4 @@ SceneRoots:
   - {fileID: 629171983}
   - {fileID: 575350706}
   - {fileID: 1255293423}
+  - {fileID: 952747414}

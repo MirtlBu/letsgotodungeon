@@ -33,11 +33,6 @@ public class DayNightLighting : MonoBehaviour
 
     void OnEnable()
     {
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0)
-        {
-            enabled = false;
-            return;
-        }
         if (phases != null)
             System.Array.Sort(phases, (a, b) => a.startHour.CompareTo(b.startHour));
         Apply();
@@ -103,8 +98,8 @@ public class DayNightLighting : MonoBehaviour
         {
             int   ni = (fromIdx + 1) % phases.Length;
             float nt = GetBlend(phase.startHour, phases[ni].startHour, hour);
-            skyPlane.material.SetColor("_TopColor",    Color.Lerp(phase.skyColor,     phases[ni].skyColor,     nt));
-            skyPlane.material.SetColor("_BottomColor", Color.Lerp(phase.equatorColor, phases[ni].equatorColor, nt));
+            skyPlane.sharedMaterial.SetColor("_TopColor",    Color.Lerp(phase.skyColor,     phases[ni].skyColor,     nt));
+            skyPlane.sharedMaterial.SetColor("_BottomColor", Color.Lerp(phase.equatorColor, phases[ni].equatorColor, nt));
         }
     }
 
