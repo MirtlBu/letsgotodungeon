@@ -36,7 +36,9 @@ public class DayNightMaterial : MonoBehaviour
 
     void Update()
     {
-        bool on = ShouldBeOn(GetCurrentHour());
+        float hour = GetCurrentHour();
+        bool on = ShouldBeOn(hour);
+        Debug.Log($"[DayNightMaterial] {name} | hour={hour:F1} | hourOn={hourOn} hourOff={hourOff} | shouldBeOn={on} | childActive={_emissionChild.activeSelf} | GameClock={GameClock.Instance != null}");
         if (_emissionChild.activeSelf != on)
             _emissionChild.SetActive(on);
     }
