@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -28,6 +30,17 @@ public class CharacterMovement : MonoBehaviour
 
         isGrounded = true;
         animator.SetBool("isGrounded", true);
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        mainCamera = Camera.main;
     }
 
     public void ForceUnground()
@@ -38,11 +51,6 @@ public class CharacterMovement : MonoBehaviour
         animator.SetBool("isGrounded", false);
     }
 
-    private void OnMove(InputValue inputValue)
-    {
-        moveInput = inputValue.Get<Vector2>();
-    }
-
     void Update()
     {
         UpdateGrounded();
@@ -51,6 +59,14 @@ public class CharacterMovement : MonoBehaviour
         {
             animator?.SetFloat("speed", 0f);
             return;
+        }
+
+        var kb = Keyboard.current;
+        if (kb != null)
+        {
+            float h = (kb.dKey.isPressed ? 1f : 0f) - (kb.aKey.isPressed ? 1f : 0f);
+            float v = (kb.wKey.isPressed ? 1f : 0f) - (kb.sKey.isPressed ? 1f : 0f);
+            moveInput = new Vector2(h, v);
         }
 
         Vector3 direction = new Vector3(moveInput.x, 0f, moveInput.y).normalized;

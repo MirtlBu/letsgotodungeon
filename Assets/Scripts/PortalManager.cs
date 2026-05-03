@@ -51,7 +51,14 @@ public class PortalManager : MonoBehaviour
         if (cc != null) cc.enabled = true;
 
         var movement = player.GetComponent<CharacterMovement>();
-        movement?.ForceUnground();
+        if (movement != null)
+        {
+            movement.ForceUnground();
+            movement.IsLocked = false;
+            movement.enabled = true;
+        }
+
+        DialogueManager.Instance?.CancelDialogue();
 
         FindObjectOfType<CameraController>()?.SnapToTarget();
     }
