@@ -20,6 +20,13 @@ public class EnemyRespawner : MonoBehaviour
         // Подписываемся в Start (не OnEnable) — слушатель остаётся активным
         // даже когда gameObject неактивен (SetActive false не удаляет подписку)
         GameClock.Instance?.OnMidnight.AddListener(OnMidnight);
+
+        // Если враг был убит до полуночи — стартуем мёртвым
+        if (respawnable && DungeonState.Instance != null && DungeonState.Instance.IsEnemyDead(spawnPosition))
+        {
+            isDead = true;
+            gameObject.SetActive(false);
+        }
     }
 
     void OnDestroy()
@@ -32,9 +39,14 @@ public class EnemyRespawner : MonoBehaviour
     {
         isDead = true;
         if (respawnable)
+        {
+            DungeonState.Instance?.RegisterEnemyDeath(spawnPosition);
             gameObject.SetActive(false);
+        }
         else
+        {
             Destroy(gameObject);
+        }
     }
 
     private void OnMidnight()
