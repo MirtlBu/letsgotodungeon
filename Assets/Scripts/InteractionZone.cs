@@ -11,6 +11,7 @@ public class InteractionZone : MonoBehaviour
     private bool playerInRange;
     private bool waitingForDismiss;
     private bool skipNextEnter;
+    private Coroutine resultCoroutine;
 
     protected virtual void OnInteract() { }
     protected virtual void OnDialogueStart() { }
@@ -28,12 +29,14 @@ public class InteractionZone : MonoBehaviour
     protected void ShowResultTimed(string text, float duration = 3f)
     {
         ShowResult(text);
-        StartCoroutine(AutoHideResult(duration));
+        if (resultCoroutine != null) InteractionUI.Instance?.StopCoroutine(resultCoroutine);
+        resultCoroutine = InteractionUI.Instance?.StartCoroutine(AutoHideResult(duration));
     }
 
     private IEnumerator AutoHideResult(float duration)
     {
         yield return new WaitForSeconds(duration);
+        if (this == null) { InteractionUI.Instance?.Hide(); yield break; } // объект уничтожен пока ждали
         if (!waitingForDismiss) yield break; // Enter уже нажали раньше
         waitingForDismiss = false;
         InteractionUI.Instance?.Hide();
@@ -86,6 +89,7 @@ public class InteractionZone : MonoBehaviour
         if (waitingForDismiss)
         {
             waitingForDismiss = false;
+            if (resultCoroutine != null) { InteractionUI.Instance?.StopCoroutine(resultCoroutine); resultCoroutine = null; }
             InteractionUI.Instance?.Hide();
             if (playerInRange)
                 InteractionUI.Instance?.Show(promptText, transform);
