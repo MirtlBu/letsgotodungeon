@@ -30,7 +30,6 @@ public class DungeonState : MonoBehaviour
     private void OnMidnight()
     {
         deadEnemies.Clear();
-        collectedCoins.Clear();
     }
 
     public bool IsEnemyDead(Vector3 pos)       => deadEnemies.Contains(Key(pos));
