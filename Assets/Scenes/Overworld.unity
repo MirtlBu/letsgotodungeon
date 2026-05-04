@@ -17753,8 +17753,16 @@ PrefabInstance:
       value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 5560188393229215857, guid: e2c5f5ed86dac41bb83f3e744684d893, type: 3}
-      propertyPath: groundDistanceTolerance
+      propertyPath: fallDelay
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5560188393229215857, guid: e2c5f5ed86dac41bb83f3e744684d893, type: 3}
+      propertyPath: fallDistanceThreshold
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5560188393229215857, guid: e2c5f5ed86dac41bb83f3e744684d893, type: 3}
+      propertyPath: groundDistanceTolerance
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6188810568285750949, guid: e2c5f5ed86dac41bb83f3e744684d893, type: 3}
       propertyPath: m_Name

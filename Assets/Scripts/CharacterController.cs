@@ -10,12 +10,16 @@ public class CharacterMovement : MonoBehaviour
     public float rotationSpeed = 10f;
 
     [SerializeField] private float groundDistanceTolerance = 0.1f;
+    [SerializeField] private float fallDelay = 0.15f;
+    [SerializeField] private float fallMinHeight = 0.8f;
     [SerializeField] private LayerMask groundLayerMask;
 
     private Animator animator;
     private CharacterController controller;
     private Camera mainCamera;
     private bool isFalling;
+    private float distanceToGround;
+    private float notGroundedTime;
     public bool IsGrounded => isGrounded;
     private bool isGrounded;
     private Vector3 velocity;
@@ -91,9 +95,9 @@ public class CharacterMovement : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
 
-        if (isGrounded && velocity.y < 0f)
+        if (isGrounded)
         {
-            velocity.y = 0f;
+            if (velocity.y < 0f) velocity.y = 0f;
             isFalling = false;
             animator.SetBool("isGrounded", true);
             animator.SetBool("isFalling", false);
@@ -101,7 +105,13 @@ public class CharacterMovement : MonoBehaviour
 
         velocity.y += Physics.gravity.y * Time.deltaTime;
 
-        if (!isGrounded && !isFalling && velocity.y < 0f)
+        if (!isGrounded)
+            notGroundedTime += Time.deltaTime;
+        else
+            notGroundedTime = 0f;
+
+        bool nearGround = Physics.Raycast(transform.position + Vector3.up * 5f, Vector3.down, fallMinHeight + 5f, groundLayerMask, QueryTriggerInteraction.Ignore);
+        if (!isGrounded && !isFalling && velocity.y < 0f && notGroundedTime > fallDelay && !nearGround)
         {
             isFalling = true;
             animator.SetBool("isGrounded", false);
@@ -117,26 +127,14 @@ public class CharacterMovement : MonoBehaviour
 
     private void UpdateGrounded()
     {
-        float sphereCastRadius = controller.radius - 0.1f;
-        Vector3 sphereCastOrigin = transform.position + new Vector3(0f, controller.radius, 0f);
+        float rayOffset = 5f;
+        Vector3 rayOrigin = transform.position + Vector3.up * rayOffset;
 
-        bool isGroundBelow = Physics.SphereCast(
-            sphereCastOrigin,
-            sphereCastRadius,
-            Vector3.down,
-            out RaycastHit hitInfo,
-            1000f,
-            groundLayerMask,
-            QueryTriggerInteraction.Ignore);
-
-        if (isGroundBelow)
-        {
-            float distanceToGround = transform.position.y - hitInfo.point.y;
-            isGrounded = distanceToGround <= groundDistanceTolerance;
-        }
+        if (Physics.Raycast(rayOrigin, Vector3.down, out RaycastHit hitInfo, 100f, groundLayerMask, QueryTriggerInteraction.Ignore))
+            distanceToGround = hitInfo.distance - rayOffset;
         else
-        {
-            isGrounded = false;
-        }
+            distanceToGround = float.MaxValue;
+
+        isGrounded = controller.isGrounded || distanceToGround <= groundDistanceTolerance;
     }
 }
