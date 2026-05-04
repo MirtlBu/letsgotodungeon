@@ -17748,6 +17748,10 @@ PrefabInstance:
       propertyPath: debugBuff
       value: 
       objectReference: {fileID: 11400000, guid: 738ecac91b19c46458b8a00d70c19494, type: 2}
+    - target: {fileID: 5408713088481007007, guid: e2c5f5ed86dac41bb83f3e744684d893, type: 3}
+      propertyPath: maxHealth
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 5560188393229215857, guid: e2c5f5ed86dac41bb83f3e744684d893, type: 3}
       propertyPath: groundDistanceTolerance
       value: 1
