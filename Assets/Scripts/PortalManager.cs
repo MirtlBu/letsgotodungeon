@@ -46,7 +46,7 @@ public class PortalManager : MonoBehaviour
 
         var cc = player.GetComponent<CharacterController>();
         if (cc != null) cc.enabled = false;
-        Vector3 spawnPoint = destination.SpawnPoint + Vector3.up * 0.2f;
+        Vector3 spawnPoint = destination.SpawnPoint + Vector3.up * 1.1f;
         player.transform.position = spawnPoint;
         if (cc != null) cc.enabled = true;
 

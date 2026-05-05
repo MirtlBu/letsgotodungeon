@@ -136,7 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
   patrolDistance: 4
   waitTime: 2
-  aggroRadius: 3
+  aggroRadius: 4
   attackRadius: 2
   rotationSpeed: 0.5
   coinReward: 20
