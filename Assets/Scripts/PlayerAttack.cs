@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] private float attackRange = 1.5f;
-    [SerializeField] private float combatIdleTimeout = 5f;
+    [SerializeField] private float combatIdleTimeout = 3f;
 
     private float cooldownTimer;
     private float combatIdleTimer;
@@ -28,18 +28,9 @@ public class PlayerAttack : MonoBehaviour
 
         if (combatIdleTimer > 0f)
         {
-            var kb = Keyboard.current;
-            bool moving = kb.wKey.isPressed || kb.aKey.isPressed || kb.sKey.isPressed || kb.dKey.isPressed;
-            if (moving)
-            {
-                combatIdleTimer = combatIdleTimeout;
-            }
-            else
-            {
-                combatIdleTimer -= Time.deltaTime;
-                if (combatIdleTimer <= 0f)
-                    animator?.SetBool("inCombat", false);
-            }
+            combatIdleTimer -= Time.deltaTime;
+            if (combatIdleTimer <= 0f)
+                animator?.SetBool("inCombat", false);
         }
 
         if (Keyboard.current.spaceKey.wasPressedThisFrame && cooldownTimer <= 0f)
