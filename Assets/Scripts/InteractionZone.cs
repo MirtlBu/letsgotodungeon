@@ -10,7 +10,7 @@ public class InteractionZone : MonoBehaviour
 
     private bool playerInRange;
     private bool waitingForDismiss;
-    private bool skipNextEnter;
+    protected bool skipNextEnter;
     private Coroutine resultCoroutine;
 
     protected virtual void OnInteract() { }
