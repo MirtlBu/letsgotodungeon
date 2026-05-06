@@ -9,19 +9,19 @@ public class CloudMover : MonoBehaviour
     [SerializeField] private float speed = 1f;
     [SerializeField] private float wrapDistance = 40f;
 
-    private Vector3 startPos;
+    private Vector3 startLocalPos;
 
     void Start()
     {
-        startPos = transform.position;
+        startLocalPos = transform.localPosition;
     }
 
     void Update()
     {
-        transform.position += direction.normalized * speed * Time.deltaTime;
+        transform.localPosition += direction.normalized * speed * Time.deltaTime;
 
         // Когда облако улетело на wrapDistance вперёд — телепортируем назад
-        if (Vector3.Dot(transform.position - startPos, direction) > wrapDistance)
-            transform.position -= direction.normalized * wrapDistance * 2f;
+        if (Vector3.Dot(transform.localPosition - startLocalPos, direction) > wrapDistance)
+            transform.localPosition -= direction.normalized * wrapDistance * 2f;
     }
 }
