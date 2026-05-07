@@ -12,6 +12,11 @@ public class PlayerInventory : MonoBehaviour
         HasSword = PlayerPrefs.GetInt("HasSword", 0) == 1;
     }
 
+    public void Reset()
+    {
+        HasSword = false;
+    }
+
     public void GiveSword()
     {
         if (HasSword) return;

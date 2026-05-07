@@ -31,4 +31,6 @@ public class CoinCounter : MonoBehaviour
     }
 
     public int GetCount() => count;
+
+    public void Reset() => count = 0;
 }

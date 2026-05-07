@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: offer
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   lines:
-  - text: "Ah, a traveler! Step closer, I have something for you\u2026 "
-  - text: "A blessing... It sharpens your strength, steadies your hand\u2026"
-  - text: Only 100 coins.
+  - text: "Oh, a traveler. I haven\u2019t seen someone like you in decades. Come
+      here, I have something you may like\u2026"
+  - text: "\u2026it\u2019s a blessing that makes you stronger. Your foes shall run
+      in fear when they see your strength."
+  - text: For a small price of 100 coins, I will make it happen.
   choices:
   - text: "Yes. I\u2019ll take it."
     nextDialogue: {fileID: 11400000, guid: 95a2a4ccedfa9456ca3c572095657559, type: 2}

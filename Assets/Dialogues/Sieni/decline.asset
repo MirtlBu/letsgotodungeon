@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: decline
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   lines:
-  - text: "Very well. Trust in luck\u2026 it has claimed many loyal followers."
+  - text: Oh, I thought you were wiser than that, traveler.
   choices: []

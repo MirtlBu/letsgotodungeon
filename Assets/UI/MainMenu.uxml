@@ -1,0 +1,17 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/MenuShared.uss?fileID=7433441132597879392&amp;guid=51706847f13084676b5129d663eb7890&amp;type=3#MenuShared"/>
+    <ui:VisualElement name="container">
+        <ui:Label text="Let&apos;s Go to Dungeon!" class="header"/>
+        <ui:VisualElement name="buttons">
+            <ui:Button text="Start" name="start-btn" class="menu_button"/>
+            <ui:Button text="Credits" name="credits-btn" class="menu_button"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="credits-panel" class="hidden">
+            <ui:Button text="x" name="credits-close-btn"/>
+            <ui:Label text="Let&apos;s Go to Dungeon!" class="credits-title"/>
+            <ui:Label text="Thanks to SnowySnowl for mushroom merchant concept and text." class="credits-text"/>
+            <ui:Label text="And there was no game without my awesome teachers Jaakko Rousu and Jussi Mäki ❤️" class="credits-text"/>
+            <ui:Label text="Design, Art &amp; Worldbuilding made by me with Unity and Blender, C# code created with AI assistance." class="credits-text"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

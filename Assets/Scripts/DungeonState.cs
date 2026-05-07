@@ -32,6 +32,12 @@ public class DungeonState : MonoBehaviour
         deadEnemies.Clear();
     }
 
+    public void Reset()
+    {
+        deadEnemies.Clear();
+        collectedCoins.Clear();
+    }
+
     public bool IsEnemyDead(Vector3 pos)       => deadEnemies.Contains(Key(pos));
     public void RegisterEnemyDeath(Vector3 pos) => deadEnemies.Add(Key(pos));
 

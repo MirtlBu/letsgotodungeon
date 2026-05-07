@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: accept
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   lines:
-  - text: Pleasure doing business, traveler.
+  - text: Wonderful, you shall now be blessed with an astonishing strength, traveler.
   choices: []

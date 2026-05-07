@@ -1,0 +1,77 @@
+.hidden {
+    display: none;
+}
+
+#container {
+    flex-grow: 1;
+    width: 90%;
+    -unity-text-align: upper-left;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+}
+
+#buttons {
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    align-content: center;
+    font-size: 8px;
+}
+
+#credits-panel {
+    flex-grow: 1;
+    align-items: flex-start;
+    justify-content: center;
+    align-self: center;
+    align-content: center;
+    width: 60%;
+    height: 80%;
+    position: absolute;
+    background-color: rgb(227, 217, 233);
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+}
+
+#credits-close-btn {
+    top: 0;
+    right: 0;
+    align-self: auto;
+    position: absolute;
+    background-color: rgba(188, 188, 188, 0);
+    border-left-color: rgba(149, 149, 149, 0);
+    border-right-color: rgba(149, 149, 149, 0);
+    border-top-color: rgba(149, 149, 149, 0);
+    border-bottom-color: rgba(149, 149, 149, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    font-size: 8px;
+}
+
+#credits-panel .credits-title {
+    font-size: 12px;
+    align-self: center;
+    flex-wrap: wrap;
+}
+
+#credits-panel .credits-text {
+    font-size: 8px;
+    flex-wrap: wrap;
+    white-space: normal;
+}
+
+.header {
+    font-size: 20px;
+}
+
+.menu_button {
+    padding: 4px 4px 4px 4px;
+}
+
+.menu_button {
+}
