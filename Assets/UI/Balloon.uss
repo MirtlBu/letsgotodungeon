@@ -12,6 +12,7 @@
     margin: 0;
     -unity-font-style: bold;
     -unity-text-align: middle-center;
+    -unity-font-definition: url("project://database/Assets/Fonts/Source_Sans_3/static/SourceSans3-Regular.ttf?fileID=12800000&guid=8e04b28572331409a94910a64989171b&type=3#SourceSans3-Regular");
 }
 
 .player-balloon {

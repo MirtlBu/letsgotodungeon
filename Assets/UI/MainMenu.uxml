@@ -1,17 +1,19 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/MenuShared.uss?fileID=7433441132597879392&amp;guid=51706847f13084676b5129d663eb7890&amp;type=3#MenuShared"/>
-    <ui:VisualElement name="container">
-        <ui:Label text="Let&apos;s Go to Dungeon!" class="header"/>
-        <ui:VisualElement name="buttons">
-            <ui:Button text="Start" name="start-btn" class="menu_button"/>
-            <ui:Button text="Credits" name="credits-btn" class="menu_button"/>
+    <ui:VisualElement name="container" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px;">
+        <ui:VisualElement style="flex-grow: 1; width: 60%; aspect-ratio: auto;">
+            <ui:VisualElement name="logo" style="flex-grow: 1; width: 100%; background-image: url(&quot;project://database/Assets/Textures/ui_elements/main.png?fileID=2800000&amp;guid=8efe9a3d49c664bd4b2dd27c038f2cfb&amp;type=3#main&quot;); height: auto; aspect-ratio: auto;"/>
         </ui:VisualElement>
-        <ui:VisualElement name="credits-panel" class="hidden">
-            <ui:Button text="x" name="credits-close-btn"/>
-            <ui:Label text="Let&apos;s Go to Dungeon!" class="credits-title"/>
-            <ui:Label text="Thanks to SnowySnowl for mushroom merchant concept and text." class="credits-text"/>
-            <ui:Label text="And there was no game without my awesome teachers Jaakko Rousu and Jussi Mäki ❤️" class="credits-text"/>
-            <ui:Label text="Design, Art &amp; Worldbuilding made by me with Unity and Blender, C# code created with AI assistance." class="credits-text"/>
+        <ui:VisualElement name="buttons">
+            <ui:Button text="Start" name="start-btn" class="menu_button" style="background-image: url(&quot;project://database/Assets/Textures/ui_elements/btn3.png?fileID=2800000&amp;guid=ebb40abe2fc024ec28650bf84fcdf598&amp;type=3#btn3&quot;); background-color: rgba(188, 188, 188, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; padding-top: 4px; padding-right: 8px; padding-bottom: 4px; padding-left: 8px; -unity-font-definition: url(&quot;project://database/Assets/Fonts/Bowlby_One_SC/BowlbyOneSC-Regular.ttf?fileID=12800000&amp;guid=d0cfebe53fd0842758604d78fdc42825&amp;type=3#BowlbyOneSC-Regular&quot;); color: rgb(245, 241, 226);"/>
+            <ui:Button text="Credits" name="credits-btn" class="menu_button" style="border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; background-image: url(&quot;project://database/Assets/Textures/ui_elements/btn2.png?fileID=2800000&amp;guid=d8982c2b60e834858ac81b51e8300317&amp;type=3#btn2&quot;); background-color: rgba(188, 188, 188, 0); padding-right: 8px; padding-left: 8px; color: rgb(246, 242, 226); -unity-font-definition: url(&quot;project://database/Assets/Fonts/Bowlby_One_SC/BowlbyOneSC-Regular.ttf?fileID=12800000&amp;guid=d0cfebe53fd0842758604d78fdc42825&amp;type=3#BowlbyOneSC-Regular&quot;);"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="credits-panel" class="hidden" style="background-image: url(&quot;project://database/Assets/Textures/ui_elements/credits.png?fileID=2800000&amp;guid=de77c0fc13a1b4d639e5112ef846abeb&amp;type=3#credits&quot;); background-color: rgba(227, 217, 233, 0); padding-top: 50px; padding-right: 50px; padding-bottom: 50px; padding-left: 50px;">
+            <ui:Button text="x" name="credits-close-btn" style="display: flex;"/>
+            <ui:Label text="Credits" emoji-fallback-support="false" class="credits-title" style="-unity-font-definition: url(&quot;project://database/Assets/Fonts/Bowlby_One_SC/BowlbyOneSC-Regular.ttf?fileID=12800000&amp;guid=d0cfebe53fd0842758604d78fdc42825&amp;type=3#BowlbyOneSC-Regular&quot;); color: rgb(255, 253, 247); font-size: 20px;"/>
+            <ui:Label text="Thanks to SnowySnowl for mushroom merchant concept and text." class="credits-text" style="-unity-font-definition: url(&quot;project://database/Assets/Fonts/Bowlby_One_SC/BowlbyOneSC-Regular.ttf?fileID=12800000&amp;guid=d0cfebe53fd0842758604d78fdc42825&amp;type=3#BowlbyOneSC-Regular&quot;); color: rgb(255, 253, 247);"/>
+            <ui:Label text="And there was no game without my teachers Jaakko Rousu and Jussi Mäki ❤️" class="credits-text" style="-unity-font-definition: url(&quot;project://database/Assets/Fonts/Bowlby_One_SC/BowlbyOneSC-Regular.ttf?fileID=12800000&amp;guid=d0cfebe53fd0842758604d78fdc42825&amp;type=3#BowlbyOneSC-Regular&quot;); color: rgb(255, 253, 247);"/>
+            <ui:Label text="Design, Art &amp; Worldbuilding made by me with Unity and Blender, C# code created with AI assistance." class="credits-text" style="-unity-font-definition: url(&quot;project://database/Assets/Fonts/Bowlby_One_SC/BowlbyOneSC-Regular.ttf?fileID=12800000&amp;guid=d0cfebe53fd0842758604d78fdc42825&amp;type=3#BowlbyOneSC-Regular&quot;); color: rgb(255, 253, 247);"/>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
