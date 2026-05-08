@@ -6,7 +6,7 @@ public class GameClock : MonoBehaviour
     public static GameClock Instance { get; private set; }
 
     // 24 игровых часа = 5 реальных минут → 4.8 игровых минут/сек
-    private const float GameMinutesPerRealSecond = 4.8f;
+    private const float GameMinutesPerRealSecond = 2.4f;
 
     [Range(1f, 100f)]
     public float TimeScale = 1f;
