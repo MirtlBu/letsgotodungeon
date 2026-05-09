@@ -3,6 +3,8 @@ using UnityEngine;
 public class Coin : MonoBehaviour
 {
     public float rotationSpeed = 90f;
+    [SerializeField] private AudioClip pickupSound;
+    [SerializeField] [Range(0f, 1f)] private float pickupVolume = 0.6f;
 
     void Start()
     {
@@ -21,6 +23,8 @@ public class Coin : MonoBehaviour
         {
             DungeonState.Instance?.RegisterCoinCollected(transform.position);
             CoinCounter.Instance.Add(1);
+            if (pickupSound != null)
+                AudioSource.PlayClipAtPoint(pickupSound, transform.position, pickupVolume);
             Destroy(gameObject);
         }
     }
