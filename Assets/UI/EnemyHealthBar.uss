@@ -1,9 +1,9 @@
 .enemy-bar-bg {
     position: absolute;
-    width: 30px;
-    height: 3px;
+    width: 40px;
+    height: 6px;
     background-color: rgba(38, 38, 38, 217);
-    border-radius: 3px;
+    border-radius: 6px;
 }
 
 .enemy-bar-fill {
@@ -13,5 +13,5 @@
     bottom: 0;
     width: 100%;
     background-color: rgb(217, 38, 38);
-    border-radius: 3px;
+    border-radius: 6px;
 }

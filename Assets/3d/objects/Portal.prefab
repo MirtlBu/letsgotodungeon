@@ -58,9 +58,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8175043227423101039, guid: d434219bda3b546479cd5d493a054ec6, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1927879498303925895}
-    - targetCorrespondingSourceObject: {fileID: 8175043227423101039, guid: d434219bda3b546479cd5d493a054ec6, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 5644440369678814828}
   m_SourcePrefab: {fileID: 100100000, guid: d434219bda3b546479cd5d493a054ec6, type: 3}
 --- !u!1 &2755819397356861 stripped
@@ -68,22 +65,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8175043227423101039, guid: d434219bda3b546479cd5d493a054ec6, type: 3}
   m_PrefabInstance: {fileID: 8176950223843282258}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1927879498303925895
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2755819397356861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d7dc38ff20374374baf82879a2eab5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Portal
-  promptText: Enter
-  portalId: Dungeon
-  targetScene: Overworld
-  targetPortalId: Overworld
 --- !u!65 &5644440369678814828
 BoxCollider:
   m_ObjectHideFlags: 0

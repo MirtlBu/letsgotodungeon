@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: offer
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   lines:
-  - text: "Oh, a traveler. I haven\u2019t seen someone like you in decades. Come
-      here, I have something you may like\u2026"
-  - text: "\u2026it\u2019s a blessing that makes you stronger. Your foes shall run
-      in fear when they see your strength."
+  - text: "Oh, a traveler. I haven\u2019t seen someone like you in decades. "
+  - text: "Come here, I have something you may like\u2026"
+  - text: "\u2026it\u2019s a blessing that makes you stronger. "
+  - text: Your foes shall run in fear when they see your strength.
   - text: For a small price of 100 coins, I will make it happen.
   choices:
   - text: "Yes. I\u2019ll take it."

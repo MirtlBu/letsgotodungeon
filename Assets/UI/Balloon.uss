@@ -1,14 +1,14 @@
 .balloon {
     position: absolute;
     background-color: rgb(255, 255, 255);
-    border-radius: 10px;
-    padding: 2px 4px;
+    border-radius: 30px;
+    padding: 8px 16px;
     align-items: center;
 }
 
 .balloon-text {
     color: rgb(10, 20, 80);
-    font-size: 5px;
+    font-size: 20px;
     margin: 0;
     -unity-font-style: bold;
     -unity-text-align: middle-center;
@@ -17,4 +17,10 @@
 
 .player-balloon {
     background-color: rgb(220, 240, 255);
+     font-size: 20px;
+    margin: 0;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    -unity-font-definition: url("project://database/Assets/Fonts/Source_Sans_3/static/SourceSans3-Regular.ttf?fileID=12800000&guid=8e04b28572331409a94910a64989171b&type=3#SourceSans3-Regular");
+
 }

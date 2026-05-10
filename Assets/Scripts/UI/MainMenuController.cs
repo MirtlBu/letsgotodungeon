@@ -15,6 +15,7 @@ public class MainMenuController : MonoBehaviour
         root.Q<Button>("start-btn")?.RegisterCallback<ClickEvent>(_ => StartNewGame());
         root.Q<Button>("credits-btn")?.RegisterCallback<ClickEvent>(_ => ShowCredits());
         root.Q<Button>("credits-close-btn")?.RegisterCallback<ClickEvent>(_ => HideCredits(root));
+        root.Q<Button>("exit-btn")?.RegisterCallback<ClickEvent>(_ => Application.Quit());
     }
 
     private void StartNewGame()

@@ -1,16 +1,16 @@
 .damage-number {
     position: absolute;
-    font-size: 6px;
+    font-size: 20px;
     -unity-font-style: bold;
     color: rgb(238, 130, 238);
 }
 
 .damage-number-crit {
-    font-size: 8px;
+    font-size: 26px;
     color: rgb(160, 32, 240);
 }
 
 .damage-number-player {
     color: rgb(135, 206, 250);
-    font-size: 8px;
+    font-size: 20px;
 }
