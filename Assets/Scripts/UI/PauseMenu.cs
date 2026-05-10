@@ -63,8 +63,19 @@ public class PauseMenu : MonoBehaviour
 
     private void GoToMainMenu()
     {
-        Resume();
-        SceneTransition.Instance?.GoToScene(mainMenuScene);
+        Time.timeScale = 1f;
+        DestroyAllDontDestroyOnLoadObjects();
+        SceneManager.LoadScene(mainMenuScene);
+    }
+
+    private void DestroyAllDontDestroyOnLoadObjects()
+    {
+        var temp = new GameObject("__ddol_probe__");
+        DontDestroyOnLoad(temp);
+        var ddolScene = temp.scene;
+        Destroy(temp);
+        foreach (var go in ddolScene.GetRootGameObjects())
+            Destroy(go);
     }
 
     private void ShowCredits()
