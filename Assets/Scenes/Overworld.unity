@@ -1765,7 +1765,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a9e71f1108b184197abc0cf2cc786fb9, type: 3}
   - {fileID: 8300000, guid: 9232ee9abf6924c2da6f8cf0c0d5748c, type: 3}
   dungeonClips:
-  - {fileID: 8300000, guid: 3763327e7e6ac48bf92855745577d6b8, type: 3}
   - {fileID: 8300000, guid: 5f9767c234638403daba264b898d8ca6, type: 3}
   - {fileID: 8300000, guid: 4ed17ea18c476471e80bb9f31fd5bd09, type: 3}
   volume: 0.05

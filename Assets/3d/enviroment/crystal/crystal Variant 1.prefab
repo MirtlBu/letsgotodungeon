@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2093183936270710230}
   - component: {fileID: 404492498923376972}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: crystal Variant 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ GameObject:
   - component: {fileID: 7262659038533869280}
   - component: {fileID: 3250982002590856091}
   - component: {fileID: 1132349696507565583}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sphere.011
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 4813708776032984931}
   - component: {fileID: 3712711519326510910}
   - component: {fileID: 2730375312392765359}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: new_sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4993,7 +4993,7 @@ GameObject:
   - component: {fileID: 6923914303260648459}
   - component: {fileID: 6396265869249566153}
   - component: {fileID: 9053292921886433030}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
