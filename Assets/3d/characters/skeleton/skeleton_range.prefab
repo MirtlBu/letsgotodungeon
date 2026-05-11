@@ -120,6 +120,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d2d2bd9e058414cd78cc361be72d778a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7181744436822160097}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d2d2bd9e058414cd78cc361be72d778a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 788405657921367632}
   m_SourcePrefab: {fileID: 100100000, guid: d2d2bd9e058414cd78cc361be72d778a, type: 3}
 --- !u!4 &598314946101717675 stripped
 Transform:
@@ -255,3 +258,19 @@ MonoBehaviour:
   knockbackDelay: 0.08
   longKnockbackForce: 6
   longKnockbackDuration: 0.4
+--- !u!114 &788405657921367632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 822663440472658644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e23341d49e2194a25982b806e8c5ff01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyFootstepAudio
+  clips:
+  - {fileID: 8300000, guid: d6b9f552072f047478e16a07e611b6d1, type: 3}
+  volume: 0.2
+  stepInterval: 0.4

@@ -94,6 +94,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ec1a2f92b928640ebb21a70a8cad33b2, type: 3}
       insertIndex: -1
       addedObject: {fileID: -5919444125635648023}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ec1a2f92b928640ebb21a70a8cad33b2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -3693694983451726547}
   m_SourcePrefab: {fileID: 100100000, guid: ec1a2f92b928640ebb21a70a8cad33b2, type: 3}
 --- !u!1 &2377721527627374052 stripped
 GameObject:
@@ -145,6 +148,8 @@ MonoBehaviour:
   knockbackDelay: 0.3
   longKnockbackForce: 10
   longKnockbackDuration: 0.15
+  knockoutVfxPrefab: {fileID: 0}
+  knockoutVfxHeight: 1.8
 --- !u!114 &666566055318759705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,3 +223,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyRespawner
   respawnable: 1
+--- !u!114 &-3693694983451726547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2377721527627374052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e23341d49e2194a25982b806e8c5ff01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyFootstepAudio
+  clips:
+  - {fileID: 8300000, guid: d6b9f552072f047478e16a07e611b6d1, type: 3}
+  volume: 0.2
+  stepInterval: 0.4
