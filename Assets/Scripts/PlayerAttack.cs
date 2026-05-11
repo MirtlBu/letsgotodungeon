@@ -5,6 +5,8 @@ public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] private float attackRange = 1.5f;
     [SerializeField] private float combatIdleTimeout = 3f;
+    [SerializeField] private AudioClip attackSound;
+    [SerializeField] [Range(0f, 1f)] private float attackVolume = 0.8f;
 
     private float cooldownTimer;
     private float combatIdleTimer;
@@ -72,6 +74,8 @@ public class PlayerAttack : MonoBehaviour
         FaceNearestEnemy();
         animator?.SetTrigger("attack");
         SetCombatActive();
+        if (attackSound != null)
+            AudioSource.PlayClipAtPoint(attackSound, transform.position, attackVolume);
 
         Collider[] hits = Physics.OverlapSphere(
             transform.position + transform.forward * (attackRange * 0.5f),

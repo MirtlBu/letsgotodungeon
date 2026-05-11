@@ -23,6 +23,10 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float longKnockbackForce = 6f;
     [SerializeField] private float longKnockbackDuration = 0.4f;
 
+    [Header("Death VFX")]
+    [SerializeField] private GameObject knockoutVfxPrefab;
+    [SerializeField] private float knockoutVfxHeight = 1.8f;
+
     private enum State { Patrol, Chase, Attack }
     private State state = State.Patrol;
 
@@ -203,6 +207,14 @@ public class EnemyAI : MonoBehaviour
 
         if (animator) animator.applyRootMotion = false;
         animator?.SetTrigger("dying");
+
+        if (knockoutVfxPrefab != null)
+        {
+            var vfx = Instantiate(knockoutVfxPrefab, transform.position + Vector3.up * knockoutVfxHeight, Quaternion.identity);
+            var ps = vfx.GetComponentInChildren<ParticleSystem>();
+            float vfxDuration = ps != null ? ps.main.duration + ps.main.startLifetime.constantMax : 2f;
+            Destroy(vfx, vfxDuration);
+        }
 
         // Long knockback при смерти
         if (player != null)
