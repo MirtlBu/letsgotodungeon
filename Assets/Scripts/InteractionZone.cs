@@ -53,6 +53,15 @@ public class InteractionZone : MonoBehaviour
             InteractionUI.Instance?.Show(promptText, transform);
     }
 
+    private void OnDisable()
+    {
+        if (playerInRange)
+        {
+            playerInRange = false;
+            InteractionUI.Instance?.Hide();
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;

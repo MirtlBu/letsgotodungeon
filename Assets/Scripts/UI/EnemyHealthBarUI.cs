@@ -76,7 +76,11 @@ public class EnemyHealthBarUI : MonoBehaviour
 
         foreach (var e in entries)
         {
-            if (e.anchor == null) continue;
+            if (e.anchor == null || !e.anchor.gameObject.activeInHierarchy)
+            {
+                e.bg.style.display = DisplayStyle.None;
+                continue;
+            }
 
             e.fill.style.width = Length.Percent(e.health.HealthPercent * 100f);
 
