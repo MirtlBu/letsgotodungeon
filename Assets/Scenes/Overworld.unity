@@ -21964,6 +21964,10 @@ PrefabInstance:
       propertyPath: attackSound
       value: 
       objectReference: {fileID: 8300000, guid: 467568f819856444fbdee59e8acc87db, type: 3}
+    - target: {fileID: 3176873577253236757, guid: e2c5f5ed86dac41bb83f3e744684d893, type: 3}
+      propertyPath: spamCooldown
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5408713088481007007, guid: e2c5f5ed86dac41bb83f3e744684d893, type: 3}
       propertyPath: maxHealth
       value: 1000

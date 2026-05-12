@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] private float attackRange = 1.5f;
+    [SerializeField] private float spamCooldown = 0.2f;
     [SerializeField] private float combatIdleTimeout = 3f;
     [SerializeField] private AudioClip attackSound;
     [SerializeField] [Range(0f, 1f)] private float attackVolume = 0.8f;
@@ -69,10 +70,10 @@ public class PlayerAttack : MonoBehaviour
 
     private void PerformAttack()
     {
-        cooldownTimer = combat.attackCooldown;
+        cooldownTimer = spamCooldown;
 
         FaceNearestEnemy();
-        animator?.SetTrigger("attack");
+        animator?.Play("attack", 0, 0f);
         SetCombatActive();
         if (attackSound != null)
             AudioSource.PlayClipAtPoint(attackSound, transform.position, attackVolume);
