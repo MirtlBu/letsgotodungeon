@@ -142,6 +142,81 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2380188249833633937, guid: ea34628c6894d484b838d57cf733080f, type: 3}
   m_PrefabInstance: {fileID: 2264597664273385389}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2856211009115612733
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6820915767864417311}
+    m_Modifications:
+    - target: {fileID: 8294917346813006257, guid: 0e1415c71c1454673acb5f442e9001ea, type: 3}
+      propertyPath: m_Name
+      value: knockout_stars
+      objectReference: {fileID: 0}
+    - target: {fileID: 8868375918368234819, guid: 0e1415c71c1454673acb5f442e9001ea, type: 3}
+      propertyPath: m_LocalScale.x
+      value: -0.079999976
+      objectReference: {fileID: 0}
+    - target: {fileID: 8868375918368234819, guid: 0e1415c71c1454673acb5f442e9001ea, type: 3}
+      propertyPath: m_LocalScale.z
+      value: -0.079999976
+      objectReference: {fileID: 0}
+    - target: {fileID: 8868375918368234819, guid: 0e1415c71c1454673acb5f442e9001ea, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.039342284
+      objectReference: {fileID: 0}
+    - target: {fileID: 8868375918368234819, guid: 0e1415c71c1454673acb5f442e9001ea, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8868375918368234819, guid: 0e1415c71c1454673acb5f442e9001ea, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.017120367
+      objectReference: {fileID: 0}
+    - target: {fileID: 8868375918368234819, guid: 0e1415c71c1454673acb5f442e9001ea, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8868375918368234819, guid: 0e1415c71c1454673acb5f442e9001ea, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8868375918368234819, guid: 0e1415c71c1454673acb5f442e9001ea, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8868375918368234819, guid: 0e1415c71c1454673acb5f442e9001ea, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8868375918368234819, guid: 0e1415c71c1454673acb5f442e9001ea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8868375918368234819, guid: 0e1415c71c1454673acb5f442e9001ea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8868375918368234819, guid: 0e1415c71c1454673acb5f442e9001ea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0e1415c71c1454673acb5f442e9001ea, type: 3}
+--- !u!198 &282045681124179606 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2614704393113802923, guid: 0e1415c71c1454673acb5f442e9001ea, type: 3}
+  m_PrefabInstance: {fileID: 2856211009115612733}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6679260659925056382 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8868375918368234819, guid: 0e1415c71c1454673acb5f442e9001ea, type: 3}
+  m_PrefabInstance: {fileID: 2856211009115612733}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6422832074370464756
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -216,6 +291,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: da4f15536906e4fb599b5a6ac70a8958, type: 3}
       insertIndex: 1
       addedObject: {fileID: 7651688882507152521}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: da4f15536906e4fb599b5a6ac70a8958, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6679260659925056382}
     - targetCorrespondingSourceObject: {fileID: 2412161367050800168, guid: da4f15536906e4fb599b5a6ac70a8958, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4002705340036315791}
@@ -259,6 +337,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: da4f15536906e4fb599b5a6ac70a8958, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6997270926772437252}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: da4f15536906e4fb599b5a6ac70a8958, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2940145030838886543}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: da4f15536906e4fb599b5a6ac70a8958, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4150109524622914382}
   m_SourcePrefab: {fileID: 100100000, guid: da4f15536906e4fb599b5a6ac70a8958, type: 3}
 --- !u!1 &6188810568285750949 stripped
 GameObject:
@@ -305,6 +389,8 @@ MonoBehaviour:
   moveSpeed: 5
   rotationSpeed: 10
   groundDistanceTolerance: 0.1
+  fallDelay: 0.15
+  fallMinHeight: 0.8
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 8
@@ -320,7 +406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
-  m_Actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_Actions: {fileID: 0}
   m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -356,6 +442,9 @@ MonoBehaviour:
   OnDamaged:
     m_PersistentCalls:
       m_Calls: []
+  OnCritDamaged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &35939726134876101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -381,7 +470,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
   attackRange: 1.5
+  spamCooldown: 0.2
+  impactDuration: 0.35
+  critImpactBonus: 0.4
   combatIdleTimeout: 0.2
+  attackSound: {fileID: 8300000, guid: 467568f819856444fbdee59e8acc87db, type: 3}
+  attackVolume: 1
 --- !u!114 &-3526796657536310599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -423,6 +517,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DebugTeleport
   targetPortalId: Overworld
+  debugBuff: {fileID: 0}
 --- !u!114 &5408713088481007007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -435,10 +530,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9b92fbfc63894a6ba708ec6cf8bc167, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Stats
-  maxHealth: 1000
+  maxHealth: 700
   speed: 5
-  damage: 20
-  attackCooldown: 1.5
+  damage: 10
+  attackCooldown: 1
   critChance: 0.5
   critMultiplier: 2
   backstabAngle: 120
@@ -484,7 +579,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 097cf4dc51d2149ffada6bf64018ba1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInventory
-  debugResetSword: 1
+--- !u!114 &2940145030838886543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6188810568285750949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 158b06d0ab73e41758a8346af72fb3b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FootstepAudio
+  overworldClips:
+  - {fileID: 8300000, guid: e22329638f44b4cdd843cc75dbf2c8f4, type: 3}
+  - {fileID: 8300000, guid: a9e71f1108b184197abc0cf2cc786fb9, type: 3}
+  - {fileID: 8300000, guid: 9232ee9abf6924c2da6f8cf0c0d5748c, type: 3}
+  dungeonClips:
+  - {fileID: 8300000, guid: 5f9767c234638403daba264b898d8ca6, type: 3}
+  - {fileID: 8300000, guid: 4ed17ea18c476471e80bb9f31fd5bd09, type: 3}
+  volume: 0.1
+  stepInterval: 0.42
+--- !u!114 &4150109524622914382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6188810568285750949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c693d5dacfae4d6a985e1bb6a9be0c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CritStarsEffect
+  starsParticle: {fileID: 282045681124179606}
 --- !u!4 &6820915767864417311 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: da4f15536906e4fb599b5a6ac70a8958, type: 3}

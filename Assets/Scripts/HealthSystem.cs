@@ -12,6 +12,7 @@ public class HealthSystem : MonoBehaviour
 
     public UnityEvent OnDeath;
     public UnityEvent OnDamaged;
+    public UnityEvent OnCritDamaged;
 
     void Awake()
     {
@@ -20,13 +21,16 @@ public class HealthSystem : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(float amount, bool isCrit = false)
     {
         currentHealth = Mathf.Max(0f, currentHealth - amount);
         if (currentHealth <= 0f)
             OnDeath?.Invoke();
         else
+        {
             OnDamaged?.Invoke();
+            if (isCrit) OnCritDamaged?.Invoke();
+        }
     }
 
     public void Heal(float amount)

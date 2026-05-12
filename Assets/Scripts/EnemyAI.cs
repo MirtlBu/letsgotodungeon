@@ -18,6 +18,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float knockbackForce = 3f;
     [SerializeField] private float knockbackDuration = 0.2f;
     [SerializeField] private float knockbackDelay = 0.08f;
+    [SerializeField] private float impactStunDuration = 0.35f;
 
     [Header("Long Knockback")]
     [SerializeField] private float longKnockbackForce = 6f;
@@ -155,10 +156,13 @@ public class EnemyAI : MonoBehaviour
         float angle = Vector3.Angle(transform.forward, dirToPlayer);
         if (angle > 70f) return;
 
+        bool isCrit = Random.value < combat.critChance;
+        float damage = combat.damage * (isCrit ? combat.critMultiplier : 1f);
+
         player.GetComponent<PlayerCombat>()?.RecordAttacker(transform);
-        player.GetComponent<HealthSystem>()?.TakeDamage(combat.damage);
+        player.GetComponent<HealthSystem>()?.TakeDamage(damage, isCrit);
         player.GetComponent<PlayerCombat>()?.ApplyKnockback(transform);
-        DamageNumbersUI.Instance?.Show(combat.damage, player.position + Vector3.up * 1.5f, false, isPlayerDamage: true);
+        DamageNumbersUI.Instance?.Show(damage, player.position + Vector3.up * 1.5f, isCrit, isPlayerDamage: true);
     }
 
     private void OnImpact()
@@ -179,15 +183,20 @@ public class EnemyAI : MonoBehaviour
         agent.enabled = false;
 
         float elapsed = 0f;
-        while (elapsed < knockbackDuration)
+        float totalStun = Mathf.Max(impactStunDuration - knockbackDelay, knockbackDuration);
+        while (elapsed < totalStun)
         {
-            float t = 1f - elapsed / knockbackDuration; // затухает к концу
-            transform.position += dir * (knockbackForce * t * Time.deltaTime);
+            if (elapsed < knockbackDuration)
+            {
+                float t = 1f - elapsed / knockbackDuration;
+                transform.position += dir * (knockbackForce * t * Time.deltaTime);
+            }
             elapsed += Time.deltaTime;
             yield return null;
         }
 
-        agent.enabled = true;
+        if (enabled)
+            agent.enabled = true;
     }
 
     private void OnDeath()

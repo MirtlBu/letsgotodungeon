@@ -5,29 +5,43 @@ public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] private float attackRange = 1.5f;
     [SerializeField] private float spamCooldown = 0.2f;
+    [SerializeField] private float impactDuration = 0.35f;
+    [SerializeField] private float critImpactBonus = 0.4f;
     [SerializeField] private float combatIdleTimeout = 3f;
     [SerializeField] private AudioClip attackSound;
     [SerializeField] [Range(0f, 1f)] private float attackVolume = 0.8f;
 
     private float cooldownTimer;
     private float combatIdleTimer;
+    private float hitStunTimer;
     private PlayerStats stats;
     private Stats combat;
     private Animator animator;
+    private CharacterMovement movement;
 
     void Start()
     {
         stats = GetComponent<PlayerStats>();
         combat = GetComponent<Stats>();
         animator = GetComponent<Animator>();
+        movement = GetComponent<CharacterMovement>();
 
         var health = GetComponent<HealthSystem>();
         health?.OnDamaged.AddListener(OnHit);
+        health?.OnCritDamaged.AddListener(OnCritHit);
     }
 
     void Update()
     {
         cooldownTimer -= Time.deltaTime;
+
+        if (hitStunTimer > 0f)
+        {
+            hitStunTimer -= Time.deltaTime;
+            if (hitStunTimer <= 0f)
+                movement.IsLocked = false;
+            return;
+        }
 
         if (combatIdleTimer > 0f)
         {
@@ -43,6 +57,14 @@ public class PlayerAttack : MonoBehaviour
     private void OnHit()
     {
         SetCombatActive();
+        animator?.Play("impact", 0, 0f);
+        hitStunTimer = impactDuration;
+        if (movement != null) movement.IsLocked = true;
+    }
+
+    private void OnCritHit()
+    {
+        hitStunTimer += critImpactBonus;
     }
 
     private void SetCombatActive()
@@ -101,7 +123,7 @@ public class PlayerAttack : MonoBehaviour
             bool isCrit = Random.value < stats.CritChance;
             if (isCrit) damage *= stats.CritMultiplier;
 
-            health.TakeDamage(damage);
+            health.TakeDamage(damage, isCrit);
             DamageNumbersUI.Instance?.Show(damage, hit.transform.position + Vector3.up * 1.5f, isCrit);
         }
     }
