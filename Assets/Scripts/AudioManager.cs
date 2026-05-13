@@ -50,6 +50,8 @@ public class AudioManager : MonoBehaviour
         musicSource.Play();
     }
 
+    public void SwitchMusic(AudioClip clip) => PlayMusic(clip);
+
     public void SetMusicVolume(float volume)
     {
         musicVolume = volume;

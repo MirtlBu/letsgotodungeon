@@ -4630,6 +4630,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1327504667}
     m_Modifications:
+    - target: {fileID: 732624129030351515, guid: 313d9a6175a824fd99850c2f678deb9a, type: 3}
+      propertyPath: coinReward
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 2377721527627374052, guid: 313d9a6175a824fd99850c2f678deb9a, type: 3}
       propertyPath: m_Name
       value: skeleton (2)
@@ -6205,6 +6209,7 @@ MonoBehaviour:
   promptText: Enter
   dialogue: {fileID: 0}
   defaultDialogue: {fileID: 0}
+  enterInputDelay: 0.4
   portalId: Dungeon
   targetScene: Overworld
   targetPortalId: Overworld
@@ -8575,6 +8580,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1327504667}
     m_Modifications:
+    - target: {fileID: 732624129030351515, guid: 313d9a6175a824fd99850c2f678deb9a, type: 3}
+      propertyPath: coinReward
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 2377721527627374052, guid: 313d9a6175a824fd99850c2f678deb9a, type: 3}
       propertyPath: m_Name
       value: skeleton
@@ -8641,6 +8650,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1327504667}
     m_Modifications:
+    - target: {fileID: 732624129030351515, guid: 313d9a6175a824fd99850c2f678deb9a, type: 3}
+      propertyPath: coinReward
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 2377721527627374052, guid: 313d9a6175a824fd99850c2f678deb9a, type: 3}
       propertyPath: m_Name
       value: skeleton (1)
@@ -9608,6 +9621,7 @@ MonoBehaviour:
   promptText: Investigate
   dialogue: {fileID: 0}
   defaultDialogue: {fileID: 0}
+  enterInputDelay: 0.4
   conditionType: 2
   requiredBuff: {fileID: 11400000, guid: 738ecac91b19c46458b8a00d70c19494, type: 2}
   requiredQuest: {fileID: 0}
@@ -10860,6 +10874,7 @@ MonoBehaviour:
   promptText: Enter
   dialogue: {fileID: 0}
   defaultDialogue: {fileID: 0}
+  enterInputDelay: 0.4
   portalId: 
   targetScene: Overworld
   targetPortalId: Overworld
@@ -14160,6 +14175,7 @@ MonoBehaviour:
   promptText: Open
   dialogue: {fileID: 0}
   defaultDialogue: {fileID: 0}
+  enterInputDelay: 0.4
   conditionType: 0
   requiredBuff: {fileID: 0}
   requiredQuest: {fileID: 0}

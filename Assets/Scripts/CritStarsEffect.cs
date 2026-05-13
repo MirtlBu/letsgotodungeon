@@ -18,7 +18,6 @@ public class CritStarsEffect : MonoBehaviour
 
     private void PlayStars()
     {
-        Debug.Log($"[CritStarsEffect] PlayStars called on {gameObject.name}, starsParticle={(starsParticle == null ? "NULL" : starsParticle.gameObject.name)}");
         if (starsParticle == null) return;
         starsParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         starsParticle.Play();

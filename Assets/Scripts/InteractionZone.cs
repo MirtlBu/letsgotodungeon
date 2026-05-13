@@ -8,9 +8,12 @@ public class InteractionZone : MonoBehaviour
     [SerializeField] protected DialogueSO dialogue;
     [SerializeField] private DialogueSO defaultDialogue;
 
+    [SerializeField] private float enterInputDelay = 0.4f;
+
     private bool playerInRange;
     private bool waitingForDismiss;
     protected bool skipNextEnter;
+    private float enterTimer;
     private Coroutine resultCoroutine;
 
     protected virtual void OnInteract() { }
@@ -68,6 +71,7 @@ public class InteractionZone : MonoBehaviour
         if (DialogueManager.Instance != null && DialogueManager.Instance.IsActive) return;
         playerInRange = true;
         waitingForDismiss = false;
+        enterTimer = enterInputDelay;
         if (InteractionUI.Instance == null) { Debug.LogWarning("InteractionUI not found — add BalloonUI to Overworld scene"); return; }
         InteractionUI.Instance.Show(promptText, transform);
     }
@@ -87,6 +91,8 @@ public class InteractionZone : MonoBehaviour
     protected virtual void Update()
     {
         if (!playerInRange) return;
+
+        if (enterTimer > 0f) { enterTimer -= Time.deltaTime; return; }
 
         // Диалог уже идёт — DialogueManager сам обрабатывает ввод
         if (DialogueManager.Instance != null && DialogueManager.Instance.IsActive) return;
