@@ -167,6 +167,7 @@ public class EnemyAI : MonoBehaviour
 
     private void OnImpact()
     {
+        if (!enabled) return; // уже мёртв — DyingRoutine отключила скрипт
         animator?.SetTrigger("impact");
         if (player != null)
             StartCoroutine(KnockbackRoutine());
@@ -215,7 +216,7 @@ public class EnemyAI : MonoBehaviour
             col.enabled = false;
 
         if (animator) animator.applyRootMotion = false;
-        animator?.SetTrigger("dying");
+        animator?.Play("enemy_dying", 0, 0f);
 
         if (knockoutVfxPrefab != null)
         {
@@ -247,7 +248,7 @@ public class EnemyAI : MonoBehaviour
         // Ждём до конца анимации
         yield return null;
         var info = animator.GetCurrentAnimatorStateInfo(0);
-        float duration = info.IsName("enemy_dying") ? info.length : 1.5f;
+float duration = info.IsName("enemy_dying") ? info.length : 1.5f;
         yield return new WaitForSeconds(duration + 2f);
 
         var respawner = GetComponent<EnemyRespawner>();

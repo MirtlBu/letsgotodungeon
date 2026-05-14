@@ -225,7 +225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Coin
   rotationSpeed: 90
   pickupSound: {fileID: 8300000, guid: 85d18650eea3d4feb9518596b22b7cdf, type: 3}
-  pickupVolume: 0.3
+  pickupVolume: 0.5
 --- !u!135 &6404010970843608605
 SphereCollider:
   m_ObjectHideFlags: 0

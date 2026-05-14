@@ -15,6 +15,7 @@ public enum InteractRewardType
     GiveSword,
     ApplyBuff,
     GiveCoins,
+    Heal,
 }
 
 // Вешай на любой объект (меч, сундук, алтарь...).
@@ -35,6 +36,7 @@ public class ConditionalInteractable : InteractionZone
     [SerializeField] private InteractRewardType rewardType;
     [SerializeField] private BuffDefinition rewardBuff;     // для ApplyBuff
     [SerializeField] private int rewardCoins;               // для GiveCoins
+    [SerializeField] private float rewardHeal = 50f;        // для Heal
 
     [Header("On Success")]
     [SerializeField] private UnityEvent onSuccess;
@@ -148,6 +150,9 @@ public class ConditionalInteractable : InteractionZone
                 break;
             case InteractRewardType.GiveCoins:
                 CoinCounter.Instance?.Add(rewardCoins);
+                break;
+            case InteractRewardType.Heal:
+                GameObject.FindWithTag("Player")?.GetComponent<HealthSystem>()?.Heal(rewardHeal);
                 break;
         }
     }

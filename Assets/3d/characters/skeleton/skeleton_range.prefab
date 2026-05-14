@@ -238,7 +238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Stats
   maxHealth: 500
   speed: 8
-  damage: 50
+  damage: 25
   attackCooldown: 0.7
   critChance: 0.7
   critMultiplier: 2
