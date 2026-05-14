@@ -9612,6 +9612,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3045541890491687467, guid: ea34628c6894d484b838d57cf733080f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1390661588}
+    - targetCorrespondingSourceObject: {fileID: 3045541890491687467, guid: ea34628c6894d484b838d57cf733080f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1390661590}
   m_SourcePrefab: {fileID: 100100000, guid: ea34628c6894d484b838d57cf733080f, type: 3}
 --- !u!4 &1384854269 stripped
 Transform:
@@ -9703,6 +9706,18 @@ CapsuleCollider:
   m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &1390661590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390661586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f20d9732249d84b7980de18c4b8ab129, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Chest
 --- !u!1001 &1394736769
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14167,6 +14182,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2602343649434645072, guid: 96a148e72cf3f4fd0b2a32ae0a92c460, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6346939188350311902}
+    - targetCorrespondingSourceObject: {fileID: 2602343649434645072, guid: 96a148e72cf3f4fd0b2a32ae0a92c460, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6346939188350311905}
   m_SourcePrefab: {fileID: 100100000, guid: 96a148e72cf3f4fd0b2a32ae0a92c460, type: 3}
 --- !u!4 &6346939188350311900 stripped
 Transform:
@@ -14218,10 +14236,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6346939188350311905}
+        m_TargetAssemblyTypeName: ChestRespawner, Assembly-CSharp
+        m_MethodName: MarkUsed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   destroyOnSuccess: 0
   objectToDestroyOnSuccess: {fileID: 0}
   objectToHideImmediately: {fileID: 0}
-  oneShot: 0
+  oneShot: 1
   usedText: Nothing more here...
   persistKey: 
 --- !u!114 &6346939188350311904 stripped
@@ -14235,6 +14265,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20d9732249d84b7980de18c4b8ab129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Chest
+--- !u!114 &6346939188350311905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6346939188350311901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7bdb914a2caa433697f846fc9fa4d30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChestRespawner
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

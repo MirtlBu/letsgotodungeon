@@ -9,6 +9,7 @@ public class DungeonState : MonoBehaviour
 
     private readonly HashSet<Vector3Int> deadEnemies    = new();
     private readonly HashSet<Vector3Int> collectedCoins = new();
+    private readonly HashSet<Vector3Int> usedChests     = new();
 
     void Awake()
     {
@@ -30,16 +31,21 @@ public class DungeonState : MonoBehaviour
     private void OnMidnight()
     {
         deadEnemies.Clear();
+        usedChests.Clear();
     }
 
     public void Reset()
     {
         deadEnemies.Clear();
         collectedCoins.Clear();
+        usedChests.Clear();
     }
 
     public bool IsEnemyDead(Vector3 pos)       => deadEnemies.Contains(Key(pos));
     public void RegisterEnemyDeath(Vector3 pos) => deadEnemies.Add(Key(pos));
+
+    public bool IsChestUsed(Vector3 pos)       => usedChests.Contains(Key(pos));
+    public void RegisterChestUsed(Vector3 pos) => usedChests.Add(Key(pos));
 
     public bool IsCoinCollected(Vector3 pos)       => collectedCoins.Contains(Key(pos));
     public void RegisterCoinCollected(Vector3 pos) => collectedCoins.Add(Key(pos));

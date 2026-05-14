@@ -56,6 +56,9 @@ public class ConditionalInteractable : InteractionZone
     private bool pendingShowWeapon;
     private bool used;
 
+    public void SetUsed()   => used = true;
+    public void ResetUsed() => used = false;
+
     void Start()
     {
         // If this is game_sword and the player already has the sword — destroy immediately

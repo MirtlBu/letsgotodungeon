@@ -17,4 +17,11 @@ public class Chest : MonoBehaviour
         opened = true;
         animator?.SetTrigger("open");
     }
+
+    public void Reset()
+    {
+        opened = false;
+        animator?.Rebind();
+        animator?.Update(0f);
+    }
 }
