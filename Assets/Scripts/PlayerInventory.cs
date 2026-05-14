@@ -8,6 +8,7 @@ public class PlayerInventory : MonoBehaviour
 
     void Awake()
     {
+        if (Instance != null) { Destroy(this); return; }
         Instance = this;
         HasSword = PlayerPrefs.GetInt("HasSword", 0) == 1;
     }
