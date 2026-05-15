@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: test 1
-  m_Shader: {fileID: -6465566751694194690, guid: dd5104dba9b69423a871e26b66f4d2c9, type: 3}
+  m_Name: "\u0432\u0430\u044B\u0432\u0430\u044B\u0432"
+  m_Shader: {fileID: -6465566751694194690, guid: bd28ade8a1e514e109e938f5e66f94c3, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -24,10 +24,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _SampleTexture2D_756fb5886a164fdcaa943ae4719fe506_Texture_1_Texture2D:
-        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -44,10 +40,13 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _density: 0.98
+    - _edge1: 0.47
+    - _edge2: 0.68
     m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &8534180840789706127
+--- !u!114 &1353560173859603624
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

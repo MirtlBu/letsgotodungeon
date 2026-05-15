@@ -50,6 +50,7 @@ public class InteractionUI : MonoBehaviour
         if (anchor == null || el == null) return;
         if (el.style.display == DisplayStyle.None) return;
 
+        if (Camera.main == null) return;
         Vector3 worldPos = anchor.position + Vector3.up * worldOffsetY;
         Vector2 screenPos = Camera.main.WorldToScreenPoint(worldPos);
         screenPos.y = Screen.height - screenPos.y;

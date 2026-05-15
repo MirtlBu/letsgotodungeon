@@ -25,6 +25,10 @@ public class CharacterMovement : MonoBehaviour
     private Vector3 velocity;
     private Vector2 moveInput;
     public bool IsLocked { get; set; }
+    public bool LockInput { get; set; }
+    public float GravityMultiplier { get; set; } = 1f;
+
+    public void ResetVerticalVelocity() => velocity.y = 0f;
 
     void Start()
     {
@@ -65,12 +69,19 @@ public class CharacterMovement : MonoBehaviour
             return;
         }
 
-        var kb = Keyboard.current;
-        if (kb != null)
+        if (!LockInput)
         {
-            float h = (kb.dKey.isPressed ? 1f : 0f) - (kb.aKey.isPressed ? 1f : 0f);
-            float v = (kb.wKey.isPressed ? 1f : 0f) - (kb.sKey.isPressed ? 1f : 0f);
-            moveInput = new Vector2(h, v);
+            var kb = Keyboard.current;
+            if (kb != null)
+            {
+                float h = (kb.dKey.isPressed ? 1f : 0f) - (kb.aKey.isPressed ? 1f : 0f);
+                float v = (kb.wKey.isPressed ? 1f : 0f) - (kb.sKey.isPressed ? 1f : 0f);
+                moveInput = new Vector2(h, v);
+            }
+        }
+        else
+        {
+            moveInput = Vector2.zero;
         }
 
         Vector3 direction = new Vector3(moveInput.x, 0f, moveInput.y).normalized;
@@ -103,7 +114,7 @@ public class CharacterMovement : MonoBehaviour
             animator.SetBool("isFalling", false);
         }
 
-        velocity.y += Physics.gravity.y * Time.deltaTime;
+        velocity.y += Physics.gravity.y * GravityMultiplier * Time.deltaTime;
 
         if (!isGrounded)
             notGroundedTime += Time.deltaTime;

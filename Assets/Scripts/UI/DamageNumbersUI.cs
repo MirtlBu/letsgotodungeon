@@ -43,6 +43,7 @@ public class DamageNumbersUI : MonoBehaviour
             elapsed += Time.deltaTime;
             float t = elapsed / duration;
 
+            if (Camera.main == null) { container.Remove(label); yield break; }
             Vector3 offsetPos = worldPos + Vector3.up * (floatSpeed * elapsed);
             Vector2 screenPos = Camera.main.WorldToScreenPoint(offsetPos);
             screenPos.y = Screen.height - screenPos.y;
